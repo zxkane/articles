@@ -1,0 +1,50 @@
+baseURL = "https://zxkane.github.io/"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+title = "The Road"
+
+theme = "dream-plus"
+
+googleAnalytics = "UA-11561366-2"
+
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+pygmentsOptions = "linenos=table"
+
+enableRobotsTXT = true
+
+#Enable Hugo Emoji Conversion
+enableEmoji=true
+
+[params]
+	author = "Kane"
+	description = "Just a blog for personal experience or thoughts, mostly tech-related."
+	avatar = "https://www.gravatar.com/avatar/0db85dd6e3b1972fafa2c36e6df3abfb"
+	motto = "Father with twin boys, an open source mania."
+	enableToc = false
+	enableShareCard = true
+
+	favicon = "/img/blog.png"
+
+  	#Background settings
+	enableColorBG= true
+
+	#Post-displaying Settings
+	enableTags = true
+	enableCategories = true
+
+	customCSS = ["/css/highlight.css"]
+
+	#Cards or posts shown per page
+	itemsPerPage = 4
+
+	#Set whether you're hosting "cards" or "post"
+	contentType = "posts"
+
+	#Enable Twitter Emoji
+	twitterEmoji=true
+
+[social]
+	github = "zxkane"
+	stackoverflow = "390513/kane"
+	siteStartYear = 2018
