@@ -45,6 +45,7 @@ enableEmoji=true
 	twitterEmoji=true
 
 [social]
+	email =  "me@kane.mx"
 	github = "zxkane"
 	stackoverflow = "390513/kane"
 	siteStartYear = 2018
