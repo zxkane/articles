@@ -19,7 +19,8 @@ fi
 git commit -m "$msg"
 
 # Push source and build repos.
-git push origin master
+git fetch && git rebase origin/master
+git push origin HEAD:master
 
 # Come Back up to the Project Root
 cd ..
