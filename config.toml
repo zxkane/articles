@@ -16,6 +16,8 @@ enableRobotsTXT = true
 #Enable Hugo Emoji Conversion
 enableEmoji=true
 
+enableUtterances = true
+
 [params]
 	author = "Kane"
 	description = "Just a blog for personal experience or thoughts, mostly tech-related."
@@ -43,6 +45,10 @@ enableEmoji=true
 
 	#Enable Twitter Emoji
 	twitterEmoji=true
+
+	utterancesRepo = "zxkane/articles"
+	utterancesIssueTerm = "pathname"
+	utterancesTheme = "github-light"
 
 [social]
 	email =  "me@kane.mx"
