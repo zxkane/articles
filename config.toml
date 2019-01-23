@@ -19,23 +19,7 @@ enableEmoji=true
 enableUtterances = true
 
 [params]
-	author = "Kane"
-	description = "Just a blog for personal experience or thoughts, mostly tech-related."
-	avatar = "https://www.gravatar.com/avatar/0db85dd6e3b1972fafa2c36e6df3abfb"
-	motto = "Twin boys' father, an open source mania."
-	enableToc = false
-	enableShareCard = true
-
 	favicon = "/img/blog.png"
-
-  	#Background settings
-	enableColorBG= true
-
-	#Post-displaying Settings
-	enableTags = true
-	enableCategories = true
-
-	customCSS = ["/css/highlight.css"]
 
 	#Cards or posts shown per page
 	itemsPerPage = 4
@@ -43,12 +27,37 @@ enableUtterances = true
 	#Set whether you're hosting "cards" or "post"
 	contentType = "posts"
 
-	#Enable Twitter Emoji
-	twitterEmoji=true
+	[params.utterances]
+		repo = "zxkane/articles"
+		issueTerm = "pathname"
+		theme = "github-light"
 
-	utterancesRepo = "zxkane/articles"
-	utterancesIssueTerm = "pathname"
-	utterancesTheme = "github-light"
+	[params.author]
+		name = "Kane"
+		description = "Just a blog for personal experience or thoughts, mostly tech-related."
+		avatar = "https://www.gravatar.com/avatar/0db85dd6e3b1972fafa2c36e6df3abfb"
+		motto = "Twin boys' father, open source mania."
+
+	[params.features]
+		#Enable Twitter Emoji
+		twitterEmoji = true
+		#Enable Table of Contents
+		toc = false
+		#Enable share card
+		shareCard = true
+		#Use custom CSS
+		customCSS = ["/css/highlight.css"]
+
+	[params.background]
+		colorBG = true
+
+	#Tags settings
+	[params.tags]
+		enabled = true
+
+	#Categories settings
+	[params.categories]
+		enabled = true
 
 [social]
 	email =  "me@kane.mx"
