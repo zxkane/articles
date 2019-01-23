@@ -16,8 +16,6 @@ enableRobotsTXT = true
 #Enable Hugo Emoji Conversion
 enableEmoji=true
 
-enableUtterances = true
-
 [params]
 	favicon = "/img/blog.png"
 
@@ -54,6 +52,7 @@ enableUtterances = true
 	#Tags settings
 	[params.tags]
 		enabled = true
+		tagLimit = 10
 
 	#Categories settings
 	[params.categories]
