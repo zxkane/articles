@@ -9,7 +9,6 @@ googleAnalytics = "UA-11561366-2"
 
 pygmentsCodeFences = true
 pygmentsUseClasses = true
-pygmentsOptions = "linenos=table"
 
 enableRobotsTXT = true
 

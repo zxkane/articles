@@ -4,7 +4,6 @@ description : "使用云厂商托管Kubernetes的好处，多到你想不到。"
 date: 2019-01-22
 lastmod: 2019-01-24
 draft: false
-writer: Kane
 categories:
 - effective-cloud-computing
 - kubernetes

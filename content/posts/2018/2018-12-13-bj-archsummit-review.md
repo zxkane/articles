@@ -2,7 +2,6 @@
 title: "2018北京ArchSummit回顾"
 date: 2018-12-13
 draft: false
-writer: Kane
 categories:
 - blogging
 cover: "https://img.bagevent.com/resource/20180730/2317201724451.jpg?imageView2/2/w/1920/interlace/1/q/100&lazy=0"
