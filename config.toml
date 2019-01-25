@@ -16,7 +16,7 @@ enableRobotsTXT = true
 enableEmoji=true
 
 [params]
-	favicon = "/img/blog.png"
+	favicon = "/img/favicon.ico"
 
 	#Cards or posts shown per page
 	itemsPerPage = 4
@@ -32,7 +32,7 @@ enableEmoji=true
 	[params.author]
 		name = "Kane"
 		description = "Just a blog for personal experience or thoughts, mostly tech-related."
-		avatar = "https://www.gravatar.com/avatar/0db85dd6e3b1972fafa2c36e6df3abfb"
+		avatar = "/img/portrait.jpg"
 		motto = "Twin boys' father, open source mania."
 
 	[params.features]
