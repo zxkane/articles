@@ -62,3 +62,7 @@ enableEmoji=true
 	github = "zxkane"
 	stackoverflow = "390513/kane"
 	siteStartYear = 2018
+
+[sitemap]
+	changefreq = "weekly"
+	priority = 0.5
