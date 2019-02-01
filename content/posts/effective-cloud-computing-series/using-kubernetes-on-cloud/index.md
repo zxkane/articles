@@ -2,7 +2,7 @@
 title: "不要自建Kubernetes"
 description : "使用云厂商托管Kubernetes的好处，多到你想不到。"
 date: 2019-01-22
-lastmod: 2019-01-24
+lastmod: 2019-02-01
 draft: false
 categories:
 - effective-cloud-computing
@@ -12,6 +12,7 @@ tags:
 - 云计算
 - 阿里云
 - AWS
+- kubernetes
 ---
 这是“如何高效使用云服务”系列文章的首篇分享。可能有朋友好奇为什么不是从云计算最基础的服务--计算资源[ECS][ecs]/[EC2][ec2]讲起呢？在[Cloud Native][cloud-native]已经被越来越接受的今天，基于[Kubernetes][k8s]部署、编排应用的方式已经是业界的事实标准。无论是互联网巨头，传统500强企业，还是创业团队都在使用或规划使用[Kubernetes][k8s]作为应用程序的自动化部署、可扩展管理平台。在云计算平台，虚拟机越来越不需要单独的管理，在绝大多数的业务场景下，它们只是作为容器集群所管理的计算资源。甚至虚拟机的创建到销毁整个生命周期管理都可以由[Kubernetes][k8s]根据集群的负载来自动完成。
 
