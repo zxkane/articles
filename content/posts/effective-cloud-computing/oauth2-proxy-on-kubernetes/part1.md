@@ -5,6 +5,7 @@ date: 2019-02-03
 draft: false
 aliases:
 - /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/
+- /posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/
 cover: /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/images/cover.jpg
 categories:
 - effective-cloud-computing

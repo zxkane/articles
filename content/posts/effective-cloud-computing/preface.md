@@ -3,6 +3,7 @@ title: "真的会用云服务吗？"
 description : "这是“如何高效使用云服务”系列文章的引子。"
 aliases:
 - /posts/effective-cloud-computing/
+- /posts/effective-cloud-computing-series/
 date: 2019-01-07
 lastmod: 2019-01-08
 draft: false
