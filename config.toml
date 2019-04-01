@@ -8,7 +8,7 @@ theme = "dream-plus"
 googleAnalytics = "UA-11561366-2"
 
 pygmentsCodeFences = true
-pygmentsUseClasses = true
+pygmentsUseClasses = false
 
 enableRobotsTXT = true
 
