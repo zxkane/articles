@@ -48,7 +48,16 @@ enableGitInfo=true
 		customCSS = ["/css/highlight.css"]
 
 	[params.background]
-		colorBG = true
+		colorBG = false
+		bgBlur = 0.4
+		bgList = [
+			"https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/sunset.jpeg",
+			"https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/pia23059.jpg",
+			"https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw1912a.jpg",
+			"https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/stationmoon.jpg",
+			"https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw1911a.jpg",
+			"https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/3.3-445a2747.jpg"
+			]
 
 	#Tags settings
 	[params.tags]
