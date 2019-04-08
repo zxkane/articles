@@ -49,9 +49,9 @@ tags:
 ### 部署示例应用
 
 1. 克隆[示例][hands-on-dingtalk-oauth2-proxy]部署脚本。
-1. 替换`values.yml`中的`dingtalk_corpid`为工作台应用的`appKey`， `dingtalk_corpsecret`为工作台应用的`appSecret`。
-        `由于社区维护的[oauth2-proxy charts][helm-charts-oauth2-proxy]并不支持dingtalk扩展的SECRET ENV，所以将密钥配置到了`configmap`中。用于生产环境的话，建议按[这个commit][helm-charts-oauth2-proxy-dingtalk]使用`secret`保存应用secret。`
-{{< highlight yaml>}}
+1. 替换`values.yaml`中的`dingtalk_corpid`为工作台应用的`appKey`， `dingtalk_corpsecret`为工作台应用的`appSecret`。
+        由于社区维护的[oauth2-proxy charts][helm-charts-oauth2-proxy]并不支持dingtalk扩展的SECRET ENV，所以将密钥配置到了`configmap`中。用于生产环境的话，建议按[这个commit][helm-charts-oauth2-proxy-dingtalk]使用`secret`保存应用secret。
+{{< highlight yaml "linenos=table,hl_lines=10-11,linenostart=62">}}
 oauth2-proxy:
   config:
     clientID: aaa
@@ -69,7 +69,7 @@ oauth2-proxy:
 dingtalk_departments = ["xx公司/产品技术中心","xx公司/部门2/子部门3"]
 {{< /highlight >}}
 1. 替换部署应用的域名为你的域名。
-2. 执行以下命令安装Helm部署依赖。
+1. 执行以下命令安装Helm部署依赖。
 {{< highlight bash>}}
 helm dep up
 {{< /highlight >}}
@@ -77,8 +77,18 @@ helm dep up
 {{< highlight bash>}}
 helm upgrade --install -f values.yaml --set oauth2-proxy.config.clientID=<移动应用appid>,oauth2-proxy.config.clientSecret=<移动应用appsecret> site-with-auth --wait ./
 {{< /highlight >}}
-1. 部署成功后，获取`NLB`地址
-{{< highlight bash>}}
+如果集群中已经部署了`Nginx Ingress Controller`，修改`values.yaml`如下将忽略部署Nginx ingress，
+{{< highlight yaml "linenos=table,hl_lines=4,linenostart=47">}}
+affinity: {}
+
+nginx-ingress:
+  enabled: false
+  controller:
+    ingressClass: nginx
+    config:
+{{< /highlight >}}
+1. 部署成功后，获取`ELB`地址。
+{{< highlight zsh>}}
 kubectl get svc -o jsonpath='{ $.status.loadBalancer.ingress[*].hostname }' <deployment name>-nginx-ingress-controller;echo
 a3afe672259c511e98e2a0a0d88fda3e-xx.elb.ap-southeast-1.amazonaws.com
 {{< /highlight >}}

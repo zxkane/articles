@@ -37,7 +37,7 @@ tags:
 1. 部署在[Kubernetes][k8s]中无内置认证机制的Web应用，通过[nginx-ingress][nginx-ingress]的[外部OAUTH认证][nginx-ingress-oauth-auth]实现基于oauth2的安全认证。
 1. [Jenkins][jenkins]可以通过[反向代理插件][jenkins-reverse-proxy-auth-plugin]实现使用oauth2认证登录。
 
-在下篇中，我们将图文详解如何一步步实现为一个无认证的企业文档Web应用添加基于[钉钉的统一认证][dingtalk-auth]。
+在[下篇][part2]中，我们将图文详解如何一步步实现为一个无认证的企业文档Web应用添加基于[钉钉的统一认证][dingtalk-auth]。
 
 [http-basic-auth]: https://en.wikipedia.org/wiki/Basic_access_authentication
 [jenkins]: https://jenkins.io/
@@ -57,3 +57,4 @@ tags:
 [nginx-ingress]: https://kubernetes.github.io/ingress-nginx/
 [nginx-ingress-oauth-auth]: https://kubernetes.github.io/ingress-nginx/examples/auth/oauth-external-auth/
 [jenkins-reverse-proxy-auth-plugin]: https://plugins.jenkins.io/reverse-proxy-auth-plugin
+[part2]: {{< relref "part2.md" >}}
