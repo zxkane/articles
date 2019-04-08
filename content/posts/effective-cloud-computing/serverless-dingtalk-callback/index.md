@@ -13,7 +13,9 @@ tags:
 - 阿里云
 - 函数计算
 - AWS
-- Lambda
+- AWS Lambda
+- 钉钉
+- dingtalk
 - Serverless Computing
 ---
 由于企业内部管理的需要，用到了[钉钉的业务事件回调][dingtalk-callback]能力，正好将这个轻量级的接口使用[无服务器技术][serverless-101-post]来实现部署，以应对流量无规律下的动态扩展伸缩、按需使用、按量计费等需求。
