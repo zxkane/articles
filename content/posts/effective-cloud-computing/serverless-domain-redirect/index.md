@@ -26,7 +26,14 @@ tags:
 3. 创建新的CloudFront分发，设置第一步创建的S3 bucket作为[自定义源站(不可以配置源站为S3 bucket)][cf-custom-origin]。并且配置使用自定义域名 `redirect.domain.com`。注意，配置自定义CNames需要提供域名对应的SSL证书，可以使用AWS Certificate Manager创建免费的SSL/TLS证书
 4. 在域名`domain.com`解析服务商为域名`redirect.domain.com`创建新的解析记录
 
-我创建了一个基于[AWS CDK][aws-cdk]的[Github项目][serverless-domain-redirect-s3]，利用AWS Infrastructure as Code的强大能力一键部署这套无服务器环境，有需要的可以作为实现参考。
+### 使用AWS Lambda和API Gateway实现域名重定向
+
+1. 创建一个Lambda函数来返回302请求或者HTML页面，在页面中通过Javascript实现重定向页面
+2. 为该Lambda函数创建API Gateway触发器
+3. 为该API Gateway接口创建自定义域名
+4. 在域名`domain.com`解析服务商为域名`redirect.domain.com`创建新的解析记录 
+
+我创建了一个基于[AWS CDK][aws-cdk]的[Github项目][serverless-domain-redirect-s3]，利用AWS Infrastructure as Code的强大能力一键部署以上两种无服务器环境，有需要的可以作为实现参考。
 
 [cf-custom-origin]: https://docs.aws.amazon.com/zh_cn/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html
 [serverless-domain-redirect-s3]: https://github.com/zxkane/serverless-domain-redirect#use-aws-s3-and-cloudfront-for-domain-redirect
