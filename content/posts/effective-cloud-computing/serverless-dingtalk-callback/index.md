@@ -149,7 +149,7 @@ Resources:
 AWS版本完整的代码、CloudFormation配置以及部署文档可以通过[这里][dingtalk-callback-on-aws]查看。
 
 [dingtalk-callback]: https://open-doc.dingtalk.com/microapp/serverapi2/lo5n6i
-[serverless-101-post]: {{< relref "serverless-computing-101/index.md" >}}
+[serverless-101-post]: {{< relref "/posts/effective-cloud-computing/serverless-computing-101/index.md" >}}
 [aliyun-fc]: https://www.aliyun.com/product/fc
 [aliyun-fc-develop-language]: https://help.aliyun.com/document_detail/74712.html
 [ots]: https://www.aliyun.com/product/ots

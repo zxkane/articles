@@ -39,5 +39,5 @@ tags:
 
 [serverless]: https://en.wikipedia.org/wiki/Serverless_computing
 [ec2]: https://aws.amazon.com/cn/ec2
-[managed-k8s]: {{< relref "using-kubernetes-on-cloud/index.md" >}}
+[managed-k8s]: {{< relref "/posts/effective-cloud-computing/using-kubernetes-on-cloud/index.md" >}}
 [aliyun-fc]: https://help.aliyun.com/document_detail/52895.html
