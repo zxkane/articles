@@ -5,6 +5,7 @@ date: 2020-03-26
 draft: false
 categories:
 - blogging
+- effective-cloud-computing
 isCJKLanguage: true
 tags:
 - 云计算
