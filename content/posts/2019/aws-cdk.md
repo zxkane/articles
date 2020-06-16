@@ -10,7 +10,7 @@ cover: "https://miro.medium.com/max/680/1*bnmfpzoIBkPe3PfuunfIZQ.png"
 isCJKLanguage: true
 tags:
 - AWS
-- Amazon CDK
+- AWS CDK
 - Infrastructure as Code
 ---
 
