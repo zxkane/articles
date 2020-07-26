@@ -35,7 +35,7 @@ enableGitInfo=true
 		name = "Kane"
 		description = "Just a blog for personal experience or thoughts, mostly tech-related."
 		avatar = "/img/portrait.jpg"
-		motto = "Twin boys' father, open source mania."
+		motto = "Three boys' father, open source mania."
 
 	[params.features]
 		#Enable Twitter Emoji
