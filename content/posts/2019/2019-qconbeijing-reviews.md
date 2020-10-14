@@ -10,7 +10,7 @@ isCJKLanguage: true
 tags:
 - 会议
 - QCon
-- devops
+- DevOps
 - 架构
 - 混沌工程
 - 工程效率
