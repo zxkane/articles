@@ -62,3 +62,6 @@ typings/
 
 resources/
 .vscode/
+
+# gohugo built static site
+public/
