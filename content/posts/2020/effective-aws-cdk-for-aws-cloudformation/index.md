@@ -14,7 +14,7 @@ tags:
 - AWS
 ---
 
-[Infrastructure as Code][infra-as-cdoe] is the trend to manage the resources of application. [AWS CloudFormation][aws-cloudformation] is the managed serive offering the IaC capability on AWS [since 2011][cloudformation-announcement-blog]. CloudFormation uses the [declarative language][declarative-programming] to manage your AWS resources with the style what you declare what you get.
+[Infrastructure as Code][infra-as-cdoe] is the trend to manage the resources of application. [AWS CloudFormation][aws-cloudformation] is the managed serive offering the IaC capability on AWS [since 2011][cloudformation-announcement-blog]. CloudFormation uses the [declarative language][declarative-programming] to manage your AWS resources with the style what you get is what you declare.
 
 However there are cons of CloudFormation as a declarative language,
 - the readability and maintanence for applications involving lots of resources
@@ -113,7 +113,9 @@ For example, when deploying a solution with creating a new VPC with NAT gateway,
 
 ## EKS module(@aws-cdk/aws-eks)
 
-### specify kubectl layer when creating EKS cluster
+### ~~specify kubectl layer when creating EKS cluster~~
+
+**NOTE**: This tricky only applies for AWS CDK prior to [1.81.0][cdk-release-1.81.0]. CDK will [bundle `kubectl`, `helm` and `awscli` as lambda layer][cdk-pr-12129] instead of SAR appliction since [1.81.0][cdk-release-1.81.0], it resolves below limitation.
 
 EKS uses a lambda layer to run `kubectl`/`helm` cli as custom resource, the `@aws-cdk/aws-eks` module depends on the `Stack.region` to check the region to be deployed in synthesizing phase. It violates the principle of Environment-agnostic stack! Use below workaround to create the EKS cluster,
 
@@ -163,4 +165,6 @@ For example, there is an EKS cluster with AWS load balancer controller, then you
 [cloudformation-announcement-blog]: https://aws.amazon.com/blogs/aws/cloudformation-create-your-aws-stack-from-a-recipe/
 [declarative-programming]: https://en.wikipedia.org/wiki/Declarative_programming
 [cloudformation-modules]: https://aws.amazon.com/blogs/mt/introducing-aws-cloudformation-modules/
+[cdk-release-1.81.0]: https://github.com/aws/aws-cdk/releases/tag/v1.81.0
+[cdk-pr-12129]: https://github.com/aws/aws-cdk/pull/12129
 [cdk-intro]: {{< relref "/posts/2019/aws-cdk.md" >}}
