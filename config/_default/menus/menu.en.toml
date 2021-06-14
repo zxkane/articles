@@ -5,19 +5,24 @@
 
 # Submenus are done this way: parent -> identifier
 [[main]]
-  name = "Links"
-  identifier = "Links"
+  name = "Series"
+  identifier = "Series"
   weight = -108
 [[main]]
-  parent = "Links"
+  parent = "Series"
   name = "Effective Cloud Computing"
   url = "/series/effective-cloud-computing/"
   weight = 10
 [[main]]
-  parent = "Links"
+  parent = "Series"
   name = "Serverless"
   url = "/series/serverless-computing/"
   weight = 20
+[[main]]
+  parent = "Series"
+  name = "Amazon Builders Library"
+  url = "/series/amazon-builders-library/"
+  weight = 30  
 [[main]]
   name = "About"
   url = "about/"
