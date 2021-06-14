@@ -5,8 +5,9 @@ date: 2019-12-26
 draft: false
 categories:
 - blogging
+series:
 - effective-cloud-computing
-cover: "https://d3nmt5vlzunoa1.cloudfront.net/dotnet/files/2019/12/banner-1.png"
+thumbnail: "https://d3nmt5vlzunoa1.cloudfront.net/dotnet/files/2019/12/banner-1.png"
 isCJKLanguage: true
 tags:
 - AWS

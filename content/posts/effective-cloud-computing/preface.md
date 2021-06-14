@@ -7,9 +7,9 @@ aliases:
 date: 2019-01-07
 lastmod: 2019-01-08
 draft: false
-categories:
+series:
 - effective-cloud-computing
-cover: "https://www.thebluediamondgallery.com/tablet/images/cloud-computing.jpg"
+thumbnail: "https://www.thebluediamondgallery.com/tablet/images/cloud-computing.jpg"
 isCJKLanguage: true
 tags:
 - 云计算

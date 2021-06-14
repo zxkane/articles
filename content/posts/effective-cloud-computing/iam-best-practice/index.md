@@ -3,9 +3,10 @@ title: "IAM最佳实践"
 description : "企业上云最基本的账户权限安全实践"
 date: 2019-02-01
 draft: false
+thumbnail: posts/effective-cloud-computing/iam-best-practice/images/cover.jpg
 aliases:
 - /posts/effective-cloud-computing-series/iam-best-practice/
-categories:
+series:
 - effective-cloud-computing
 isCJKLanguage: true
 tags:

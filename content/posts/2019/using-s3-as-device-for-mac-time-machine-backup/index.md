@@ -3,6 +3,7 @@ title: "使用AWS S3作为MacOSX时间机器(Time Machine)的备份存储"
 description : "为MacOSX提供无限存储且加密安全的备份方案"
 date: 2019-06-30
 draft: false
+thumbnail: posts/2019/using-s3-as-device-for-mac-time-machine-backup/images/cover.jpg
 categories:
 - blogging
 isCJKLanguage: true

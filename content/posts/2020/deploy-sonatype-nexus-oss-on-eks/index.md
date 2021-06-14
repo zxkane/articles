@@ -3,8 +3,10 @@ title: "Deploy Sonatype Nexus repository OSS on EKS"
 description : "Deploy production ready Nexus repository OSS on EKS in ~10 minutes"
 date: 2020-06-16
 draft: false
+thumbnail: posts/2020/deploy-sonatype-nexus-oss-on-eks/images/cover.png
 categories:
 - blogging
+series:
 - effective-cloud-computing
 isCJKLanguage: false
 tags:

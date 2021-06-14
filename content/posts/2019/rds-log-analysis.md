@@ -3,7 +3,7 @@ title: "AWS RDS数据库日志分析及展示"
 description : "搭建Serverless架构下的实时日志分析报表"
 date: 2019-11-05
 draft: false
-cover: "https://d2908q01vomqb2.cloudfront.net/472b07b9fcf2c2451e8781e944bf5f77cd8457c8/2018/04/09/3-3.png"
+thumbnail: "https://d2908q01vomqb2.cloudfront.net/472b07b9fcf2c2451e8781e944bf5f77cd8457c8/2018/04/09/3-3.png"
 categories:
 - blogging
 isCJKLanguage: true

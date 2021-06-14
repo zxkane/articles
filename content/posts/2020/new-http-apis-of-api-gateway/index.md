@@ -3,8 +3,10 @@ title: "AWS发布更快、更便宜、更易用的HTTP APIs"
 description : ""
 date: 2020-03-13
 draft: false
+thumbnail: posts/2020/new-http-apis-of-api-gateway/images/cover.png
 categories:
 - blogging
+series:
 - serverless-computing
 isCJKLanguage: true
 tags:

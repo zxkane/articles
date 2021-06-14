@@ -4,7 +4,7 @@ date: 2018-12-13
 draft: false
 categories:
 - blogging
-cover: "https://img.bagevent.com/resource/20180730/2317201724451.jpg?imageView2/2/w/1920/interlace/1/q/100&lazy=0"
+thumbnail: "https://img.bagevent.com/resource/20180730/2317201724451.jpg?imageView2/2/w/1920/interlace/1/q/100&lazy=0"
 isCJKLanguage: true
 tags:
 - 会议

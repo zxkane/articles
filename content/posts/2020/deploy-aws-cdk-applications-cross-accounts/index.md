@@ -3,8 +3,10 @@ title: "跨账号跨区域部署AWS CDK编排的应用"
 description : "使用AWS Step Functions编排你的DevOps流水线"
 date: 2020-10-14
 draft: false
+thumbnail: posts/2020/deploy-aws-cdk-applications-cross-accounts/images/cover.png
 categories:
 - blogging
+series:
 - effective-cloud-computing
 isCJKLanguage: true
 tags:

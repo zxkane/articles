@@ -3,8 +3,8 @@ title: "Spring Cloud Function -- 跨Serverless平台的函数计算框架"
 description : "实战使用Spring Cloud Function开发AWS Lambda函数"
 date: 2019-06-28
 draft: false
-cover: https://i.ytimg.com/vi/2drTR7pEUyg/maxresdefault.jpg
-categories:
+thumbnail: https://i.ytimg.com/vi/2drTR7pEUyg/maxresdefault.jpg
+series:
 - effective-cloud-computing
 - serverless-computing
 isCJKLanguage: true

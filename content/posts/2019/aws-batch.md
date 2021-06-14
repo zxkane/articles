@@ -5,8 +5,9 @@ date: 2019-12-25
 draft: false
 categories:
 - blogging
+series:
 - effective-cloud-computing
-cover: "/posts/2019/aws-batch/aws-batch-app-demo.png"
+thumbnail: "/posts/2019/aws-batch/aws-batch-app-demo.png"
 isCJKLanguage: true
 tags:
 - AWS

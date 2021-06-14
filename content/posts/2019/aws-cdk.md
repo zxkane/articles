@@ -5,8 +5,9 @@ date: 2019-09-08
 draft: false
 categories:
 - blogging
+series:
 - effective-cloud-computing
-cover: "https://miro.medium.com/max/680/1*bnmfpzoIBkPe3PfuunfIZQ.png"
+thumbnail: "https://miro.medium.com/max/680/1*bnmfpzoIBkPe3PfuunfIZQ.png"
 isCJKLanguage: true
 tags:
 - AWS

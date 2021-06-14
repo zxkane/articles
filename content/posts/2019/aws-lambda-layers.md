@@ -3,9 +3,10 @@ title: "AWS Lambda Layer实践"
 description : "使用Lambda Layer共享基础依赖、三方库或自定义runtime"
 date: 2019-05-14
 draft: false
-cover: "/posts/effective-cloud-computing/serverless-dingtalk-callback/images/cover.png"
+thumbnail: "/posts/effective-cloud-computing/serverless-dingtalk-callback/images/cover.png"
 categories:
 - blogging
+series:
 - serverless-computing
 isCJKLanguage: true
 tags:

@@ -3,7 +3,7 @@ title: "使用Openswan连接AWS VPC"
 description : "搭建跨云的私有网络"
 date: 2019-09-16
 draft: false
-cover: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhVhCAPtkt64t1r_xy4oXeTi3vXSmD80gN4tJp0dklwSxkLAv3
+thumbnail: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhVhCAPtkt64t1r_xy4oXeTi3vXSmD80gN4tJp0dklwSxkLAv3
 categories:
 - blogging
 isCJKLanguage: true

@@ -1,5 +1,3 @@
-[submodule "themes/dream-plus"]
-	path = themes/dream-plus
-	url = git://github.com/zxkane/hugo-dream-plus
-	branch = kane.mx
-
+[submodule "themes/hugo-clarity"]
+	path = themes/hugo-clarity
+	url = https://github.com/chipzoller/hugo-clarity

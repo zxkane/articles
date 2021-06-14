@@ -3,9 +3,12 @@ title: "无服务器架构的Docker镜像数据分析应用"
 description : "用数据湖玩转数据分析"
 date: 2020-05-04
 draft: false
+thumbnail: posts/2020/serverless-docker-images-analytics/images/cover.jpeg
 categories:
 - blogging
+series:
 - effective-cloud-computing
+- serverless-computing
 isCJKLanguage: true
 tags:
 - 云计算

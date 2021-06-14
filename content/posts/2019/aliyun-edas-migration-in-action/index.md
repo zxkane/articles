@@ -3,6 +3,7 @@ title: "实战Aliyun EDAS应用迁移AWS"
 description : "一套能快速上手且可复制的迁移方案"
 date: 2019-12-02
 draft: false
+thumbnail: posts/2019/aliyun-edas-migration-in-action/images/cover.jpg
 categories:
 - blogging
 isCJKLanguage: true

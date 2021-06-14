@@ -5,7 +5,7 @@ date: 2019-05-09
 draft: false
 categories:
 - blogging
-cover: "https://static001.geekbang.org/static/qconbj2019/img/logo-qcon-bj-10th.0a0e2a4.svg"
+thumbnail: "https://static001.geekbang.org/static/qconbj2019/img/logo-qcon-bj-10th.0a0e2a4.svg"
 isCJKLanguage: true
 tags:
 - 会议

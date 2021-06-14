@@ -3,12 +3,14 @@ title: "为Kubernetes中任意应用添加基于oauth2的认证保护 (上)"
 description : "企业IAM实战(一)"
 date: 2019-02-03
 draft: false
+thumbnail: posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/images/cover.jpg
 aliases:
 - /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/
 - /posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/
-cover: /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/images/cover.jpg
-categories:
+thumbnail: /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/images/cover.jpg
+series:
 - effective-cloud-computing
+categories:
 - kubernetes
 isCJKLanguage: true
 tags:

@@ -5,7 +5,7 @@ date: 2019-08-14
 draft: false
 categories:
 - blogging
-cover: "https://cdn.vox-cdn.com/thumbor/QTgOq0XkZr5H8IHTM3aNa15yDXM=/0x0:694x388/1200x800/filters:focal(292x139:402x249)/cdn.vox-cdn.com/uploads/chorus_image/image/58385367/Screen_Shot_2018_01_19_at_2.15.47_PM.1516388236.png"
+thumbnail: "https://cdn.vox-cdn.com/thumbor/QTgOq0XkZr5H8IHTM3aNa15yDXM=/0x0:694x388/1200x800/filters:focal(292x139:402x249)/cdn.vox-cdn.com/uploads/chorus_image/image/58385367/Screen_Shot_2018_01_19_at_2.15.47_PM.1516388236.png"
 isCJKLanguage: true
 tags:
 - AWS

@@ -3,7 +3,7 @@ title: "oh-my-zsh性能调优思路"
 description : "记录一次oh-my-zsh性能问题排查过程"
 date: 2020-04-22
 draft: false
-cover: https://ohmyz.sh/img/OMZLogo_BnW.png
+thumbnail: https://ohmyz.sh/img/OMZLogo_BnW.png
 categories:
 - blogging
 isCJKLanguage: true

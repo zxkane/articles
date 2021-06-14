@@ -3,7 +3,7 @@ title: "亚马逊的部署最佳实践"
 description : "亚马逊如何做持续部署"
 date: 2020-11-28
 draft: false
-cover: https://d1.awsstatic.com/builderslibrary/icons/WEB_Redwood_Card-thumbnail_Software-deployments.89a23234e262e526ee155d5194c52e3aa605ffff.png
+thumbnail: https://d1.awsstatic.com/builderslibrary/icons/WEB_Redwood_Card-thumbnail_Software-deployments.89a23234e262e526ee155d5194c52e3aa605ffff.png
 categories:
 - blogging
 - amazon-builders-library

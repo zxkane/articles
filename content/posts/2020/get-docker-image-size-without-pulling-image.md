@@ -3,7 +3,7 @@ title: "Get the size of Docker image without pulling image"
 description : "Utility the Docker registry API to calculate the size of Docker image"
 date: 2020-05-02
 draft: false
-cover: https://static.packt-cdn.com/products/9781788992329/graphics/0ee3d4cf-2133-4143-a7c4-690274483841.png
+thumbnail: https://static.packt-cdn.com/products/9781788992329/graphics/0ee3d4cf-2133-4143-a7c4-690274483841.png
 categories:
 - blogging
 isCJKLanguage: false

@@ -2,7 +2,7 @@
 title: "公有云对比"
 description : "AWS vs. Aliyun"
 date: 2019-06-26
-cover: https://cdn01.bespinglobal.com/wp-content/uploads/2017/05/aws-vs-alicloud.jpg
+thumbnail: https://cdn01.bespinglobal.com/wp-content/uploads/2017/05/aws-vs-alicloud.jpg
 draft: false
 categories:
 - blogging

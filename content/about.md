@@ -1,3 +1,11 @@
++++
+title = "About"
+description = "About me"
+aliases = ["about-me", "contact"]
+author = "Kane"
+date = 2021-01-01
++++
+
 # So, Who Am I?
 
 ----

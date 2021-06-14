@@ -3,7 +3,8 @@ title: "无服务器计算101"
 description : "函数计算简介"
 date: 2019-04-01
 draft: false
-categories:
+thumbnail: posts/effective-cloud-computing/serverless-computing-101/images/cover.jpg
+series:
 - effective-cloud-computing
 - serverless-computing
 isCJKLanguage: true
