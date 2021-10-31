@@ -11,7 +11,7 @@ series:
 isCJKLanguage: false
 tags:
 - AWS
-- Tips
+- Tip
 - network
 - NAT
 - CDK Construct

@@ -9,7 +9,7 @@ categories:
 isCJKLanguage: false
 tags:
 - docker
-- Tips
+- Tip
 ---
 Recently I had a requirement to stats the size of some Docker images. It would be waste if pulling them all firstly then calculating the size of each image. Also you know the docker image consists of some Docker layers that probably are shared by other images. It's hard to get the disk usage if only sum the size of each image.
 
