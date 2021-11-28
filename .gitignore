@@ -65,3 +65,4 @@ resources/
 
 # gohugo built static site
 public/
+.hugo_build.lock

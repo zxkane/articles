@@ -3,7 +3,7 @@ title: "元宇宙风口下的机会"
 description : "元宇宙探索小结"
 date: 2021-11-22
 draft: false
-thumbnail: https://www.ft.com/__origami/service/image/v2/images/raw/https://d1e00ek4ebabms.cloudfront.net/production/c8e41feb-1135-4819-82ef-c265fa4a32ea.jpg?source=next&fit=scale-down&quality=highest&width=1067
+thumbnail: https://d1e00ek4ebabms.cloudfront.net/production/c8e41feb-1135-4819-82ef-c265fa4a32ea.jpg?source=next&fit=scale-down&quality=highest&width=1067
 categories:
 - blogging
 isCJKLanguage: false
