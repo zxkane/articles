@@ -88,6 +88,9 @@ rss_summary_read_more_link = true
 name = "Kane Zhu"
 photo = "/img/favicon.ico" #include this if you would like to show the author photo on the sidebar
 
+[cloudwatch_rum]
+enable = true
+
 [plausible_analytics]
 enable = false # to enable plausible analytics set to true.
 websiteDomain = "example.com" # domain name of your website, most cases same as your base url
