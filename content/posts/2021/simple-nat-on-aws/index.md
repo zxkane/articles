@@ -8,7 +8,7 @@ categories:
 - blogging
 series:
 - effective-cloud-computing
-isCJKLanguage: false
+isCJKLanguage: true
 tags:
 - AWS
 - Tip

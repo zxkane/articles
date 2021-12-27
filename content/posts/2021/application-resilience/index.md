@@ -9,7 +9,7 @@ categories:
 series:
 - effective-cloud-computing
 - amazon-builders-library
-isCJKLanguage: false
+isCJKLanguage: true
 tags:
 - AWS
 - resilience engineering

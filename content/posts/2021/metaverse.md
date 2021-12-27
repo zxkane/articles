@@ -6,7 +6,7 @@ draft: false
 thumbnail: https://d1e00ek4ebabms.cloudfront.net/production/c8e41feb-1135-4819-82ef-c265fa4a32ea.jpg?source=next&fit=scale-down&quality=highest&width=1067
 categories:
 - blogging
-isCJKLanguage: false
+isCJKLanguage: true
 tags:
 - metaverse
 - nft
