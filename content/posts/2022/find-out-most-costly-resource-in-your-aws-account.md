@@ -6,6 +6,7 @@ draft: false
 thumbnail: https://cdn.geekwire.com/wp-content/uploads/2018/04/header-630x450-630x450.png
 categories:
 - blogging
+series:
 - effective-cloud-computing
 isCJKLanguage: false
 tags:
