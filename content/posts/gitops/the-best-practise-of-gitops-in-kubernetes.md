@@ -141,9 +141,29 @@ CNCF 在2021年发布的 [Multicluster Management 技术雷达][cncf-radar-multi
 基于前面对 GitOps 的核心定义，CNCF 的技术雷达象限以及[社区的对比][newstack-gitops]，目前整个社区中最为
 普及的 GitOps 工具是 Argo CD 和 Flux。
 
+### Push 还是 Poll?
+
+GitOps 在实践中面临是采用推(push)还是拉(pull)的部署风格选择。
+
+采用**推**部署风格会有如下好处，
+
+- 简单易理解。这种部署方式已经被众多知名的 CI/CD 工具所采用，例如 Jenkins CI，AWS Code系列。
+- 灵活。易于同其他的脚本或工具集成。拉(pull)风格的 GitOps 代理只能运行在 Kuberentes 中。
+
+采用**拉**部署风格会有如下好处，
+
+- 更加安全。因为 GitOps 代理运行在 Kubernetes 集群中，因此仅需要最小的权限用于部署。简化网络配置不需要该集群同 CD 程序建立网络连接，尤其在管理多集群时尤为简洁。
+- 一致性。管理多集群时，确保了每个集群的管理方式都是一样的。
+- 隔离性。每个集群的部署不依赖于集中的流水线 CD 程序。
+- 可伸缩性。该方式可以容易的扩展到同时管理成百上千的集群。
+
+从以上对比可见，采用拉(pull)的部署风格从安全性、可伸缩性、隔离性、一致性都更优，GitOps 部署方式应该首选**拉**部署风格。
+
+### 主流云原生 GitOps 对比
+
 下表详细对比了 Argo CD / Flux v2，供参考。
 
-|              | Argo CD  | Flux v2 |
+|              | ArgoCD  | Flux v2 |
 | :----        | :----        |    :----   |
 | 安装/配置 | 一个命令安装，但没有原生的机制实现配置。需要通过 UI 或创建大量清单      | 一个命令完成安装和配置       |
 | 部署风格 | 推(push) / 拉(pull)      | 拉(pull)       |
@@ -161,6 +181,12 @@ CNCF 在2021年发布的 [Multicluster Management 技术雷达][cncf-radar-multi
 | 多集群管理 -- 创建集群 | 不支持，需要通过第三方工具。例如，CAPI, Crossplane, Open Cluster Management 等。 | 不支持，需要通过第三方工具。例如，CAPI, Crossplane, Open Cluster Management 等。 |
 | GitOps 工具自身的可观测性 | 通过 Prometheus + Grafana 提供。 | 通过 Prometheus + Grafana 提供。 |
 
+通过上表从 GitOps 核心理念来看，无论 ArgoCD 还是 Flux 都满足 GitOps 的理念。且满足了企业级需求，如多租户权限、多集群管理、
+秘钥管理、告警通知、支持 Helm 和 Kustomization。从自身的实现上说，ArgoCD 提供了完整的抽象，包括且不限于 Cluster、RBAC、Application、Hook 等。
+这样的做法具备了更加广泛的功能集的可能，但同时增加了自身程序的复杂度，也提高了用户的学习门槛。Flux 自身架构更加简洁，[默认组件仅有 Source, Kustomize, 
+Helm, Notification, Image automation 这5个组件][flux-components]，尽量复用 Kuberentes 原生能力，例如使用 ServiceAccount 实现多租户的 RBAC 控制，
+降低了用户的学习门槛，同云原生社区其他项目的兼容性更强。
+
 [1]: Git仓库可能公开读且明文保存 Secrets 对象，需要将其加密后再提交到 Git
 
 [2]: 默认采用 Poll 轮询拉取 Git 仓库变更，提供 Webhook 接口可被 Git 仓库提交事件触发
@@ -175,6 +201,8 @@ Argo CD 和 Flux 的对比。后续将以 Flux v2 为实战，深入介绍如何
 - [GitOps: Cloud-native Continuous Deployment][gitops]
 - The CNCF End User Technology Radar [Continuous Delivery, June 2020][cncf-radar-cd]
 - The CNCF End User Technology Radar [Multicluster Management, June 2021][cncf-radar-multicluster]
+- [Push vs. Pull in GitOps: Is There Really a Difference?][push-pull-in-gitops]
+- [Why is a PULL vs a PUSH pipeline important?][push-pull-in-gitops]
 - [GitOps on Kubernetes: Deciding Between Argo CD and Flux][newstack-gitops]
 
 [managed-k8s]: {{< relref "/posts/effective-cloud-computing/using-kubernetes-on-cloud/index.md" >}}
@@ -193,3 +221,5 @@ Argo CD 和 Flux 的对比。后续将以 Flux v2 为实战，深入介绍如何
 [flux-components]: https://fluxcd.io/docs/components/
 [weave-gitops]: https://github.com/weaveworks/weave-gitops
 [kyverno]: https://kyverno.io/
+[push-pull-in-gitops]: https://thenewstack.io/push-vs-pull-in-gitops-is-there-really-a-difference/
+[pull-vs-push-pipeline]: https://www.weave.works/blog/why-is-a-pull-vs-a-push-pipeline-important
