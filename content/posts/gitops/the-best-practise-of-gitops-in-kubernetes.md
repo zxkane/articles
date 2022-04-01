@@ -4,7 +4,6 @@ description : "将Git仓库作为系统的唯一事实来源"
 date: 2022-03-30
 draft: false
 toc: true
-usePageBundles: yes
 thumbnail: /posts/gitops/images/cover.png
 categories:
 - blogging

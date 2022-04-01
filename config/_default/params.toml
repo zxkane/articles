@@ -83,6 +83,9 @@ iconsDir = "icons/" # without a leading forward slash
 
 rss_summary = true
 rss_summary_read_more_link = true
+
+enableSearch = true
+
 # website author
 [author]
 name = "Kane Zhu"

@@ -9,6 +9,9 @@ theme = "hugo-clarity"
 disqusShortname = "kane-mx"
 
 DefaultContentLanguage = "en"
+
+staticDir = ["content"]
+showRelatedInSidebar = true
 # [languages]
 # config/_default/languages.toml
 
@@ -19,3 +22,6 @@ DefaultContentLanguage = "en"
 category = "categories"
 tag = "tags"
 series = "series"
+
+[outputs]
+  home = ["HTML", "RSS","JSON"]
