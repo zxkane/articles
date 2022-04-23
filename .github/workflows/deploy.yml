@@ -31,7 +31,9 @@ jobs:
           echo '{{- partialCached "cw-rum" . }}' >> themes/hugo-clarity/layouts/partials/hooks/head-end.html
           
       - name: Build
-        run: hugo --minify
+        run: |
+          hugo --minify
+          cp -rf static/icons public/
 
       - name: Deploy
         run: |

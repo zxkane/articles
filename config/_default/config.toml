@@ -2,7 +2,6 @@
 # if you set it to "/" share icons won't work properly on production
 baseurl = "https://kane.mx/"  # Include trailing slash
 # title = "Clarity"  # Edit directly from config/_default/languages.toml # alternatively, uncomment this and remove `title` entry from the aforemention file.
-copyright = "Copyright © 2021, Kane Zhu; all rights reserved."
 # canonifyurls = true
 paginate = 10
 theme = "hugo-clarity"
