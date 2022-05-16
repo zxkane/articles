@@ -3,7 +3,7 @@ title: "The practise of Amazon Neptune"
 description : "Lesson and learn of using Amazon Neptune"
 date: 2021-09-03
 draft: false
-thumbnail: posts/2021/the-practise-of-amazon-neptune/images/cover.png
+thumbnail: /posts/2021/the-practise-of-amazon-neptune/images/cover.png
 categories:
 - blogging
 series:

@@ -7,7 +7,7 @@ categories:
 - blogging
 series:
 - effective-cloud-computing
-thumbnail: "https://d3nmt5vlzunoa1.cloudfront.net/dotnet/files/2019/12/banner-1.png"
+thumbnail: /img/posts/2019/cloud-debugging.jpg
 isCJKLanguage: true
 tags:
 - AWS

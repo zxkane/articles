@@ -3,7 +3,7 @@ title: "在AWS上快速部署专用的NAT实例"
 description : "无侵入的VPC内应用特殊网络访问解决方案"
 date: 2021-04-16
 draft: false
-thumbnail: posts/2021/simple-nat-on-aws/images/cover.png
+thumbnail: /posts/2021/simple-nat-on-aws/images/cover.png
 categories:
 - blogging
 series:

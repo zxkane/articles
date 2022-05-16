@@ -3,7 +3,7 @@ title: "基于CodeCommit代码管理的无服务器架构Devops"
 description : "轻松管理海量仓库的Devops协作流程"
 date: 2020-03-26
 draft: false
-thumbnail: posts/2020/codecommit-devops-model/images/cover.png
+thumbnail: /posts/2020/codecommit-devops-model/images/cover.png
 categories:
 - blogging
 series:

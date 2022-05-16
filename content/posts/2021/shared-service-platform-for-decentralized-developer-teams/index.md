@@ -3,7 +3,7 @@ title: "AWS上构建共享自服务平台服务去中心化研发团队"
 description : "用抽象和自助服务安全合规的提升研发交付速度"
 date: 2021-12-26
 draft: false
-thumbnail: posts/2021/shared-service-platform-for-decentralized-developer-teams/images/cover.png
+thumbnail: /posts/2021/shared-service-platform-for-decentralized-developer-teams/images/cover.png
 categories:
 - blogging
 series:

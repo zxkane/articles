@@ -3,7 +3,7 @@ title: "无服务器架构的域名重定向服务"
 description : "基于AWS的无服务器域名重定向实践"
 date: 2019-08-27
 draft: false
-thumbnail: posts/effective-cloud-computing/serverless-domain-redirect/images/cover.png
+thumbnail: /posts/effective-cloud-computing/serverless-domain-redirect/images/cover.png
 series:
 - effective-cloud-computing
 - serverless-computing

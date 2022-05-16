@@ -3,7 +3,7 @@ title: "The update of Sonatype Nexus repository OSS on AWS solution"
 description : "Deploy production ready Nexus repository OSS on EKS in ~30 minutes"
 date: 2021-06-24
 draft: false
-thumbnail: posts/2020/deploy-sonatype-nexus-oss-on-eks/images/cover.png
+thumbnail: /posts/2020/deploy-sonatype-nexus-oss-on-eks/images/cover.png
 categories:
 - blogging
 series:

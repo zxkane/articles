@@ -3,7 +3,7 @@ title: "Turn off Filevault on macOS"
 description : "Disable Filevault from cli for installing macOS Monterey"
 date: 2021-10-31
 draft: false
-thumbnail: posts/2021/turn-off-filevault-on-macosx/images/cover.png
+thumbnail: /posts/2021/turn-off-filevault-on-macosx/images/cover.png
 categories:
 - blogging
 isCJKLanguage: false

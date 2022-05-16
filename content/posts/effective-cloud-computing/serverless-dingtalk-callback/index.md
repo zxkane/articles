@@ -3,7 +3,7 @@ title: "基于函数计算的钉钉回调函数接口"
 description : "基于阿里云和AWS生产级别的钉钉回调函数接口"
 date: 2019-04-02
 draft: false
-thumbnail: posts/effective-cloud-computing/serverless-dingtalk-callback/images/cover.png
+thumbnail: /posts/effective-cloud-computing/serverless-dingtalk-callback/images/cover.png
 series:
 - effective-cloud-computing
 - serverless-computing

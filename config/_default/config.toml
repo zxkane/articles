@@ -9,7 +9,6 @@ disqusShortname = "kane-mx"
 
 DefaultContentLanguage = "en"
 
-staticDir = ["content"]
 showRelatedInSidebar = true
 # [languages]
 # config/_default/languages.toml

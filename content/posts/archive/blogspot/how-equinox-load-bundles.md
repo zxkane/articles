@@ -9,9 +9,8 @@ How Equinox load bundles
 ========================
 
   
-Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.  
-![](http://docs.google.com/drawings/image?id=sNT8DMKTCXXaH4PoaQOafoA&w=400&h=400&rev=109&ac=1)  
-  
+Equinox launcher is responsible to start OSGi framework. The system bundle would be created and marked as installed when initializing the framework. Equinox also tries to install the installed bundles if finding them in persistence data during the initializing period. Of course there is no extra bundles would be installed when launching Equinox first time.
+
 Then Equinox launcher would install the bundles specified by vm's system property 'osgi.bundles'. And start the initial bundles that are marked as early start. For example, let's have a look at the configuration/config.ini of Eclipse, you would find a line similar as below,  
 osgi.bundles=reference\\:file\\:org.eclipse.equinox.simpleconfigurator_1.0.200.v20090831.jar@1\\:start  
 It means the start level of bundle 'org.eclipse.equinox.simpleconfigurator_1.0.200.v20090831.jar' is 1, and it would be started after installing it.  

@@ -2,7 +2,7 @@
 title: "免费邮件转发服务"
 description : "零花费搭建邮件服务器"
 date: 2019-12-18
-thumbnail: https://www.hover.com/wp-content/uploads/2013/08/forward-mail1.jpg
+thumbnail: /img/posts/2019/email-forward.png
 draft: false
 categories:
 - blogging

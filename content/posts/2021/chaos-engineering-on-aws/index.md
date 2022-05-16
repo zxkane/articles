@@ -2,7 +2,7 @@
 title: "AWS上的混沌工程"
 description : "Chaos engineering on AWS"
 date: 2021-11-21
-thumbnail: posts/2021/chaos-engineering-on-aws/images/simian-army.jpg
+thumbnail: /posts/2021/chaos-engineering-on-aws/images/simian-army.jpg
 draft: false
 categories:
 - blogging

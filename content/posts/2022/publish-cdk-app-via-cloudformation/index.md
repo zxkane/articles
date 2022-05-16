@@ -5,7 +5,7 @@ date: 2022-05-15
 draft: false
 toc: true
 figurePositionShow: true
-thumbnail: posts/2022/publish-cdk-app-via-cloudformation/images/cover.png
+thumbnail: /posts/2022/publish-cdk-app-via-cloudformation/images/cover.png
 categories:
 - blogging
 series:

@@ -8,9 +8,8 @@ tags : [Equinox, p2, Eclipse]
 Learn p2 step by step
 =====================
 
-[Kane](mailto:kane.mx@gmail.com "Kane")                 
-  
-                       
+> See [this link](https://docs.google.com/document/d/1mDhET8al4FO4zlafeTUcXqFEopGbKqWZ5UQ2EbMH20Y/edit?usp=sharing) for detail
+
 
 1.  [Learn P2 step by step](http://www.blogger.com/post-edit.g?blogID=8314384370778429245&postID=6549693887265291061#Learn_P2_step_by_step)  
     
@@ -170,10 +169,6 @@ try {
      Operand\[\]通过ProvisionPlan.getOperands()获得。  
   
   
-  
-  
-  
-
 ### p2 install practice  
 
   
@@ -181,40 +176,14 @@ try {
 先制作一个可安装的repository，这里的方法是基于Eclipse提供的模版创建一个RCP程序，比如mail template,  
   
 
-[![](http://docs.google.com/File?id=ddqccrw2_871xs75p2fh_b)](http://docs.google.com/File?id=ddqccrw2_871xs75p2fh_b)  
-
-[![](http://docs.google.com/File?id=ddqccrw2_872fzbmznfm_b)](http://docs.google.com/File?id=ddqccrw2_872fzbmznfm_b)  
-
-  
-
 然后创建一个feature包含刚才创建出来的plug-in 'com.example.mail'。  
 
   
 基于存在的‘com.example.mail.product’创建product configuration，将其设置为base on features, 同时在dependencies页面添加以下feature。feature的qaulifier id依赖于用到的Eclipsse版本，从下图看到我这里使用的是Eclipse 3.5.1。如果要让RCP程序具有安装插件的能力（包含p2和p2 UI），就需要依赖更多的feature。后面的example里面会实现这部分功能。另外注意：[ID不能包括空格字符](https://bugs.eclipse.org/bugs/show_bug.cgi?id=291872 "ID不能包括空格字符")。  
 
-[![](http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b)](http://docs.google.com/File?id=ddqccrw2_873fx44c3ff_b)  
-
-  
-
-  
 接下来使用Eclipse Product Export Wizard生成repository。记得要勾选上generate metadata repository。  
 
-[](http://docs.google.com/File?id=ddqccrw2_874qnh7n3gc_b)  
-
-[![](http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b)](http://docs.google.com/File?id=ddqccrw2_875gfs4p3d2_b)  
-
-  
-
-  
 在成功创建了Mail Application的repository后，试用我们自己的p2 installer来安装这个应用程序。安装过程类似下面的截图。然后执行/folk/kzhu0/tmp/mailrcp/mail来运行Mail Application.  
-  
-
-[![](http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b)](http://docs.google.com/File?id=ddqccrw2_877cm6fxcc6_b)  
-
-[![](http://docs.google.com/File?id=ddqccrw2_878dg9g8kf4_b)](http://docs.google.com/File?id=ddqccrw2_878dg9g8kf4_b)  
-
-  
-  
   
 
 ### p2 repository publish
@@ -250,17 +219,10 @@ touchpoint类型和action都是通过extension point来扩展的。通过扩展�
 我们创建plug-in 'com.example.p2.touchpoint'来实现桌面快捷方式的扩展，并且创建'com.example.p2.feature'包含touchpoint实现的plug-in。具体实现请参考p2 example源码。  
 然后为Mail Application添加p2相关feature的依赖，重新发布得到支持安装软件的新版本。并且用p2 example installer安装它。p.s: 个人感觉Eclipse在包含第三方plug-in时，层次有些问题。p2作为一个runtime的project（跟equinox, ECF同级），居然需要直接或间接依赖help, rcp.platform这样的上层模块。  
 
-[![](http://docs.google.com/File?id=ddqccrw2_879cjg6wrgg_b)](http://docs.google.com/File?id=ddqccrw2_879cjg6wrgg_b)  
-
 接下来创建plug-in 'com.example.mail.desktop' 和 feature 'com.example.mail.desktop.feature'，作为提供桌面快捷方式的IU。用Eclipse Export Feature将'com.example.mail.desktop.feature'导出，实际就是用PDE替我们编译打包:)。  
 运行‘com.example.p2.generator'提供的headless publisher来生成我们定制的repository。’/folk/kzhu0/tmp/mail/desktop-deploy'是先前desktop feature导出后的路径，而'/folk/kzhu0/tmp/mail/desktop'是生成repository的路径。  
 
-[![](http://docs.google.com/File?id=ddqccrw2_880tk4fk8wd_b)](http://docs.google.com/File?id=ddqccrw2_880tk4fk8wd_b)  
-
 运行新版本的Mail Application，在Help菜单下面会多出Install New Software选项。将自定义publisher生成的Desktop feature repository添加为新的软件源，安装Mail Desktop Feature。安装完成后，将在桌面找到Mail Application的快捷方式。在Installation Detail里面将会出现这次安装的内容。选中Desktop Feature后选择卸载，桌面的快捷方式文件将会被删除掉。当然也可以使用p2 example installer来为Mail Application安装desktop feature。p.s: example代码里只实现了创建linux/unix桌面快捷方式。  
-
-[![](http://docs.google.com/File?id=ddqccrw2_8814qg7wvhs_b)](http://docs.google.com/File?id=ddqccrw2_8814qg7wvhs_b)  
-
   
 
 ### Example Code
