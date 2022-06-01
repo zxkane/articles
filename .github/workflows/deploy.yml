@@ -19,11 +19,22 @@ jobs:
           repository: zxkane/zxkane.github.io
           path: public/
           token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          
+      - name: Set Timezone
+        uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Asia/Singapore"
+
+      - name: Read .env
+        id: hugo-version
+        run: |
+          . ./.env
+          echo "::set-output name=HUGO_VERSION::${HUGO_VERSION}"          
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.96.0'
+          hugo-version: '${{ steps.hugo-version.outputs.HUGO_VERSION }}'
           extended: true
 
       - name: Enable cw-rum
@@ -33,7 +44,6 @@ jobs:
       - name: Build
         run: |
           hugo --minify
-          cp -rf static/icons public/
 
       - name: Deploy
         run: |
