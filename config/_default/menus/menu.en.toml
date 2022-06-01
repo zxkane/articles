@@ -15,6 +15,11 @@
   weight = 10
 [[main]]
   parent = "Series"
+  name = "GitOps"
+  url = "/series/gitops/"
+  weight = 15 
+[[main]]
+  parent = "Series"
   name = "Serverless"
   url = "/series/serverless-computing/"
   weight = 20
