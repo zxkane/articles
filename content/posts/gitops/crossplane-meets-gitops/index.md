@@ -4,7 +4,8 @@ description : "用 Kubernetes 原生方式管理云中资源"
 date: 2022-06-01
 draft: false
 toc: true
-thumbnail: /posts/gitops/images/crossplane-horizontal-color.png
+thumbnail: ./crossplane-horizontal-color.png
+usePageBundles: true
 codeMaxLines: 20
 categories:
 - blogging

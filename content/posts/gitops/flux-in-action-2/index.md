@@ -4,7 +4,8 @@ description : "基于 GitOps 构建共享服务平台"
 date: 2022-05-08
 draft: false
 toc: true
-thumbnail: /posts/gitops/images/flux-eyecatch.png
+usePageBundles: true
+thumbnail: ./flux-eyecatch.png
 codeMaxLines: 20
 categories:
 - blogging
@@ -574,7 +575,7 @@ patches:
 根据 `ImageUpdateAutomation` 配置的 [Sock Shop 应用仓库][sock-shop-repo]，查找指定的镜像变量，
 Flux 的 `image-automation-controller` 自动将[更新的镜像信息提交到应用仓库][flux-image-update-commit]实现持续部署。
 
-{{< figure src="/posts/gitops/images/flux-image-automation-update-event.jpg" alt="图1：镜像自动更新消息通知" >}}
+![镜像自动更新消息通知](./flux-image-automation-update-event.jpg "图1：镜像自动更新消息通知")
 
 ## 六、小结及展望
 

@@ -4,7 +4,8 @@ description : "使用 GitOps 轻松管理跨VPC跨账户跨云多Kubernetes集�
 date: 2022-04-22
 draft: false
 toc: true
-thumbnail: /posts/gitops/images/flux-eyecatch.png
+usePageBundles: true
+thumbnail: ./flux-eyecatch.png
 codeMaxLines: 20
 categories:
 - blogging
@@ -441,7 +442,7 @@ spec:
 查阅[DEV][slack-notify-dev-commit], [STAGING][slack-notify-staging-commit],
 [PRODUCT][slack-notify-product-commit]这三个提交查看完整 commits 如何在不同环境集群中部署了 Slack 通知集成。
 
-{{< figure src="/posts/gitops/images/gitops-slack-notify.jpg" alt="图1：Slack channel 订阅 GitOps 流水线消息通知" >}}
+![Slack channel 订阅 GitOps 流水线消息通知](./gitops-slack-notify.jpg "图1：Slack channel 订阅 GitOps 流水线消息通知")
 
 {{% notice tip "最佳实践" %}}
 针对订阅不同命名空间(非`Alert`对象定义的命令空间)的事件通知，需要显示指定命名空间属性。

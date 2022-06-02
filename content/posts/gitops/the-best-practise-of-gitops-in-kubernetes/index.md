@@ -4,7 +4,8 @@ description : "将Git仓库作为系统的唯一事实来源"
 date: 2022-03-30
 draft: false
 toc: true
-thumbnail: /posts/gitops/images/cover.png
+usePageBundles: true
+thumbnail: ./cover.png
 categories:
 - blogging
 - kubernetes
@@ -72,7 +73,7 @@ GitOps 方法下，Git 成为系统所需状态的唯一事实来源，支持可
 当系统最终状态的声明代码进入 Git 仓库主线分支后，依托 GitOps 工具链来完成验证部署，到观测告警，
 到操作修复达到系统最终状态的闭环(见图1)。
 
-{{< figure src="/posts/gitops/images/gitops-model.jpg" alt="图1：GitOps -- 一个持续运维的模型" >}}
+!["GitOps -- 一个持续运维的模型"](./gitops-model.jpg "图1：GitOps -- 一个持续运维的模型")
 
 下面让我们来看看理想中的 Kuberentes 上的 GitOps 最佳实践。
 
@@ -84,7 +85,7 @@ GitOps 方法下，Git 成为系统所需状态的唯一事实来源，支持可
 2. 持续集成服务器编译、测试、扫描并且推送新版本的镜像到镜像仓库，同时更新 K8S manifests 到 Git 仓库。
 3. GitOps 代理(如 ArgoCD/Flux) 检测到 Git 仓库变更并自动变动到 K8S 集群。
  
-{{< figure src="/posts/gitops/images/gitops-deployments.jpg" alt="图2：基于 GitOps 的持续部署" >}}
+!["基于 GitOps 的持续部署型"](./gitops-deployments.jpg "图2：基于 GitOps 的持续部署型")
 
 ### 基于 GitOps 的多集群管理
 
@@ -93,21 +94,21 @@ GitOps 方法下，Git 成为系统所需状态的唯一事实来源，支持可
 - 每个集群有一个集群仓库用于存储配置，例如访问控制、DNS等。同时每个集群通过平台仓库
 同上游平台同步。
 
-{{< figure src="/posts/gitops/images/multclusters-2.jpg" alt="图3：基于 GitOps 的多集群管理" >}}
+!["基于 GitOps 的多集群管理"](./multclusters-2.jpg "图3：基于 GitOps 的多集群管理")
 
 ### GitOps 下的应用开发体验
 
 1. 业务团队负责镜像的编译、测试和扫描等。声明配置被提交到业务/应用特定的配置仓库。
 2. GitOps 代理运行在特定的租户命名空间，应用的状态从应用团队的仓库同步到特定的租户命名空间。
 
-{{< figure src="/posts/gitops/images/tenat-1.jpg" alt="图4：GitOps 下的应用开发" >}}
+!["GitOps 下的应用开发"](./tenat-1.jpg "图4：GitOps 下的应用开发")
 
 ### 支持多租户的集群
 
 同上，不同的业务/应用团队有各自的配置仓库。在集群中，不同的业务/应用由不同的命名空间隔离，
 被 GitOps 代理持续部署在各自不同的命名空间中。
 
-{{< figure src="/posts/gitops/images/tenat-2.jpg" alt="图5：GitOps 多租户支持" >}}
+!["GitOps 多租户支持"](./tenat-2.jpg "图5：GitOps 多租户支持")
 
 ### 使用 Helm 管理应用程序
 
@@ -122,8 +123,7 @@ GitOps 方法下，Git 成为系统所需状态的唯一事实来源，支持可
 [Kustomize][kustomize] 正是为解决这个问题而创建，并且已经成为 K8S 原生工具链中的一部分。对 Kustomize 提供支持，
 将很好的在 GitOps 中满足此类需求。
 
-{{< figure src="/posts/gitops/images/multiple-envs.jpg" alt="图6：GitOps 多环境支持" >}}
-
+!["GitOps 多环境支持"](./multiple-envs.jpg "图6：GitOps 多环境支持")
 
 综上，从持续部署，多集群管理，多租户支持和现有工具链、生态集成方面，描述了对
 Kubernetes 上 GitOps 的理想状态。接下来让我们来讨论下现有的 GitOps 工具，
