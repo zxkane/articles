@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
         with:
@@ -40,6 +40,12 @@ jobs:
       - name: Enable cw-rum
         run: | 
           echo '{{- partialCached "cw-rum" . }}' >> themes/hugo-clarity/layouts/partials/hooks/head-end.html
+
+      - name: Generate modern images
+        run: |
+          brew install imagemagick
+          npm install -g avif
+          ./scripts/image_optimize.sh
           
       - name: Build
         run: |
