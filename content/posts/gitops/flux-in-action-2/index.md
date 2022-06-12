@@ -586,8 +586,8 @@ Flux 的 `image-automation-controller` 自动将[更新的镜像信息提交到�
 同时面对复杂的企业场景，还有一些方面还可以持续的优化，例如，
 
 - 面对关键的线上生产系统，如何安全增量的灰度发布？
-- Sealed Secrets 引入了额外的私钥管理需求，在云计算环境如何改善 GitOps 秘钥的管理？
-- 如何将云平台的资源 IaC 同 Kubernetes 内资源 GitOps 协同管理？
+- Sealed Secrets 引入了额外的私钥管理需求，在云计算环境[如何改善 GitOps 密钥的管理][external-secrets]？
+- 如何将[云平台的资源 IaC 同 Kubernetes 内资源 GitOps 协同管理][crossplane-gitops]？
 - 如何更加高效的开发 Kubernetes manifests(YAML)？
 
 将在后续的文章中逐个探讨这些问题。
@@ -619,3 +619,5 @@ Flux 的 `image-automation-controller` 自动将[更新的镜像信息提交到�
 [app-a-helmrelease]: https://github.com/zxkane/eks-gitops-app-a/blob/main/base/prestashop.yaml
 [sock-shop-repo]: https://github.com/zxkane/microservices-demo
 [flux-image-update-commit]: https://github.com/zxkane/microservices-demo/commit/adc652eee462a7db9df1388a9be5fb5dc73626b2
+[external-secrets]: {{< relref "/posts/gitops/manage-k8s-secrets-in-external-secrets-manager.md" >}}
+[crossplane-gitops]: {{< relref "/posts/gitops/crossplane-meets-gitops.md" >}}
