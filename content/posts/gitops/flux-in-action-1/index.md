@@ -287,6 +287,11 @@ Flux将会为我们部署这些声明在Git仓库中的组件！可查阅[DEV][i
 
 ## 3. 密钥的管理
 
+{{% notice tip "最佳实践" %}}
+**2022/06更新**：使用成熟的K8S集群外置的密钥管理服务可以很好的将成熟密钥管理最佳实践和K8S原生生态集成在一起。
+详见博文[使用外部Secrets Manager管理Kubernetes密钥]({{< relref "/posts/gitops/manage-k8s-secrets-in-external-secrets-manager.md" >}})。
+{{% /notice %}}
+
 GitOps 的理念是将一切配置以声明式文本方式保存在仓库中。而对保存 [Kubernetes Secrets][k8s-secrets] 是个挑战，
 因为 Git 仓库对所有读权限的用户公开，甚至项目的仓库是开源。Flux 通过支持 [Bitnami Sealed Secrets][bitnami-sealed-secrets] 和 
 [Mozilla SOPS][flux-sops] 安全的在 Git 仓库中管理密钥。接下来将示例如何使用 [Sealed Secrets][flux-sealed-secrets]
@@ -517,3 +522,4 @@ CD 部署事件同 IM(Slack) 的集成，最终示例了通过 GitOps 代码的 
 [manifests-test]: https://github.com/zxkane/eks-gitops/blob/main/.github/workflows/test.yaml
 [repo]: https://github.com/zxkane/eks-gitops
 [flux-in-action-2]: {{< relref "/posts/gitops/flux-in-action-2.md" >}}
+[external-secrets]: {{< relref "/posts/gitops/manage-k8s-secrets-in-external-secrets-manager.md" >}}
