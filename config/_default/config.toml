@@ -9,7 +9,10 @@ disqusShortname = "kane-mx"
 
 DefaultContentLanguage = "en"
 
+showRelatedInArticle = true
 showRelatedInSidebar = true
+
+enableEmoji = true
 # [languages]
 # config/_default/languages.toml
 
