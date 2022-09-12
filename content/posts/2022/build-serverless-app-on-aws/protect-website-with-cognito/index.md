@@ -17,10 +17,11 @@ tags:
 - Serverless
 - AWS
 - AWS CDK
+- API Gateway
 - Cognito
 - Amplify
-- authentication
-- authorization
+- Authentication
+- Authorization
 ---
 
 [Previous post][static-website] we demonstrated how distributing and securely deploying the website to global end users.

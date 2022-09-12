@@ -28,13 +28,14 @@ AWS serverless services and AWS CDK, it consists of,
 - [Restful HTTP APIs][restful-api], use [Amazon API Gateway][api-gateway] and [Amazon DynamoDB][dynamodb]
 - Securely and accelerately [distribute the static website][static-website] via [Amazon CloudFront][cloudfront] and [Amazon S3][s3]
 - [Authentication and Authorization][web-authn] via [Amazon Cognito][cognito] and [AWS Amplify][amplify]
-- OIDC federation authentication with [Amazon Cognito][cognito]
+- [Federated OIDC authentication][federated-oidc] with [Amazon Cognito][cognito]
 - CI/CD DevOps pipeline
 - [source code][repo] written by [AWS CDK][cdk] to archive above features
 
 [restful-api]: {{< relref "/posts/2022/build-serverless-app-on-aws/restful-api/index.md" >}}
 [static-website]: {{< relref "/posts/2022/build-serverless-app-on-aws/static-website/index.md" >}}
 [web-authn]: {{< relref "/posts/2022/build-serverless-app-on-aws/protect-website-with-cognito/index.md" >}}
+[federated-oidc]: {{< relref "/posts/2022/build-serverless-app-on-aws/federated-oidc-login-with-cognito-and-amplify/index.md" >}}
 [api-gateway]: https://aws.amazon.com/api-gateway/
 [dynamodb]: https://aws.amazon.com/dynamodb/
 [cognito]: https://aws.amazon.com/cognito/
