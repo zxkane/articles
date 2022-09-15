@@ -46,7 +46,9 @@ For example, a CDK application with using [Node.js Function][aws-lambda-nodejs],
 [S3 Deployment][aws-s3-deployment], [Docker Image Assets][aws-ecr-assets] and so on will be synthesized to the templates
 that are not deployable directly. It requires to publish those assets(both S3 and ECR assets) firstly, then deploy
 the templates with [parameters][cfn-parameters] pointing to the assets. This step is difficult to be completed manually,
-because the assets are named with its content hash are not readable by human being.
+because the assets are named with its content hash are not readable by human being in CDK V1. 
+CDK v2 uses the [modern bootstrapping template][bootstrapping] which uses deterministic name for resources to remove the parameters,
+but it still depends on the assets published priorly before deploying the CloudFormation template.
 
 ### `cdk-assets` command
 
@@ -85,3 +87,4 @@ Also it provides [a pipeline example][pipeline-example](based on AWS CodePipelin
 [cdk-assets-cli]: https://www.npmjs.com/package/cdk-assets
 [cdk-bootstrapless-synthesizer]: https://github.com/aws-samples/cdk-bootstrapless-synthesizer
 [pipeline-example]: https://github.com/aws-samples/cdk-bootstrapless-synthesizer/tree/main/sample-pipeline
+[bootstrapping]: https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html#bootstrapping-template
