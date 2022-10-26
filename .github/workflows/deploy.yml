@@ -41,6 +41,10 @@ jobs:
         run: | 
           echo '{{- partialCached "cw-rum" . }}' >> themes/hugo-clarity/layouts/partials/hooks/head-end.html
 
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+  
       - name: Generate modern images
         run: |
           brew install imagemagick
