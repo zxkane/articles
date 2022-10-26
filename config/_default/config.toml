@@ -5,7 +5,8 @@ baseurl = "https://kane.mx/"  # Include trailing slash
 # canonifyurls = true
 paginate = 10
 theme = "hugo-clarity"
-disqusShortname = "kane-mx"
+disqusShortname = ""
+# disqusShortname = "kane-mx"
 
 DefaultContentLanguage = "en"
 
