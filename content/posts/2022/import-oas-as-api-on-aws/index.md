@@ -34,7 +34,7 @@ existing OpenAPI definition as API.
 
 <!--more-->
 
-Amazon API Gateway offers two Restful API products, [REST API][rest-api] and [HTTP API][http-api]. Both of those two APIs
+Amazon API Gateway offers two RESTful API products, [REST API][rest-api] and [HTTP API][http-api]. Both of those two APIs
 support importing OpenAPI definition, but they might use different [OpenAPI extensions][openapi-extensions] to support different features.
 
 And below example will use infrastructure as code(AWS CDK) to import the OpenAPI definition to the API Gateway APIs.
@@ -62,6 +62,7 @@ For AWS CDK(on top of AWS CloudFormation) uses the [intrinsic functions of Cloud
 ```
 
 - HTTP API
+
 But above solution does not work with `HTTP API`, because the CloudFormation of `HTTP API` does not support intrinsic functions of CFN. :disappointed_relieved:
 The workaround is putting the OpenAPI definition to Amazon S3 firstly, then import it from S3 bucket via CloudFormation.
 It involves putting the OpenAPI definition with dynamic resource information to S3 bucket before importing the OpenAPI definition from S3.
@@ -125,7 +126,7 @@ Here I leveage the CDK built-in custom resource to call S3 API to put the OpenAP
 The example code creates both `REST API` and `HTTP API`, 
 both of them forwards the events to Amazon SQS queue that are sent by **HTTP POST** requests.
 See [OpenAPI definition of HTTP to SQS][http-oas], [OpenAPI definition of REST to SQS][rest-oas]
-and complete [source][source] for further reference.
+or complete [source][source] for further reference.
 
 [werner-vogels-6-rules]: https://thenewstack.io/werner-vogels-6-rules-for-good-api-design/
 [oas]: https://oai.github.io/Documentation/
