@@ -43,7 +43,7 @@ dynamic resources information(for example, IAM role for calling downstream resou
 For AWS CDK(on top of AWS CloudFormation) uses the [intrinsic functions of CloudFormation][cfn-intrinsic](`Fn::Join`) to archive it.
 
 - REST API
-```ts {hl_lines=["8-10"]}
+```ts {hl_lines=["8-10","12"]}
     const deployOptions = {
       stageName: '',
       loggingLevel: MethodLoggingLevel.ERROR,
@@ -63,63 +63,31 @@ For AWS CDK(on top of AWS CloudFormation) uses the [intrinsic functions of Cloud
 
 - HTTP API
 
-But above solution does not work with `HTTP API`, because the CloudFormation of `HTTP API` does not support intrinsic functions of CFN. :disappointed_relieved:
+~~But above solution does not work with `HTTP API`, because the CloudFormation of `HTTP API` does not support intrinsic functions of CFN. :disappointed_relieved:
 The workaround is putting the OpenAPI definition to Amazon S3 firstly, then import it from S3 bucket via CloudFormation.
 It involves putting the OpenAPI definition with dynamic resource information to S3 bucket before importing the OpenAPI definition from S3.
-Here I leveage the CDK built-in custom resource to call S3 API to put the OpenAPI definition file to S3.
+Here I leveage the CDK built-in custom resource to call S3 API to put the OpenAPI definition file to S3.~~
 
-```ts {hl_lines=["10-11","26-37","40-42","46"]}
-    const bucket = new Bucket(this, 'provisioning-bucket', {
-      removalPolicy: RemovalPolicy.DESTROY,
-    });
+**22/11/09 UPDATE**: The [Body of AWS::ApiGatewayV2::Api][cfn-apiv2-body] only supports the json object. 
+It works after converting the Yaml OpenAPI definition to JSON!
 
+```ts {hl_lines=["11-12", "15"]}
+const yaml = require('js-yaml');
+
+...
+
+    // import openapi as http api
     const variables = {
       integrationRoleArn: apiRole.roleArn,
       queueName: bufferQueue.queueName,
       queueUrl: bufferQueue.queueUrl,
     };
-    const openAPISpec = this.resolve(Mustache.render(
-      fs.readFileSync(path.join(__dirname, './http-sqs.yaml'), 'utf-8'), variables));
-
-    const contentHash = strHash(JSON.stringify(openAPISpec));
-
-    const openAPIFile = `install/openapi-${contentHash}.yaml`;
-    const sdkPutCall = {
-      service: 'S3',
-      action: 'putObject',
-      parameters: {
-        Body: openAPISpec,
-        Bucket: bucket.bucketName,
-        Key: openAPIFile,
-      },
-      physicalResourceId: PhysicalResourceId.of(`openapi-upsert-${contentHash}`),
-    };
-    const createOpenAPIFile = new AwsCustomResource(
-      this,
-      'CreateOpenAPIDefinition',
-      {
-        onCreate: sdkPutCall,
-        onUpdate: sdkPutCall,
-        installLatestAwsSdk: false,
-        policy: AwsCustomResourcePolicy.fromSdkCalls({
-          resources: [bucket.arnForObjects('install/openapi-*.yaml')],
-        }),
-      },
-    );
+    const openAPISpec = this.resolve(yaml.load(Mustache.render(
+      fs.readFileSync(path.join(__dirname, './http-sqs.yaml'), 'utf-8'), variables)));
 
     const httpApi = new CfnApi(this, 'http-api-to-sqs', {
-      bodyS3Location: {
-        bucket: bucket.bucketName,
-        key: openAPIFile,
-      },
+      body: openAPISpec,
       failOnWarnings: false,
-    });
-    httpApi.node.addDependency(createOpenAPIFile);
-
-    new CfnStage(this, 'DefaultStage', {
-      apiId: httpApi.ref,
-      stageName: '$default',
-      autoDeploy: true,
     });
 ```
 
@@ -138,3 +106,4 @@ or complete [source][source] for further reference.
 [http-oas]: https://github.com/zxkane/cdk-collections/blob/master/create-apis-from-openapi-spec/src/http-sqs.yaml
 [rest-oas]: https://github.com/zxkane/cdk-collections/blob/master/create-apis-from-openapi-spec/src/rest-sqs.yaml
 [source]: https://github.com/zxkane/cdk-collections/tree/master/create-apis-from-openapi-spec
+[cfn-apiv2-body]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigatewayv2-api.html#cfn-apigatewayv2-api-body
