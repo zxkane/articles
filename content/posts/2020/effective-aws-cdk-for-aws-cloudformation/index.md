@@ -2,6 +2,7 @@
 title: "Effective AWS CDK for AWS CloudFormation"
 description : "Effectively write AWS CDK application then deploy it via AWS CloudFormation across multiple regions"
 date: 2020-12-16
+lastmod: 2023-10-24
 draft: false
 thumbnail: /posts/2020/effective-aws-cdk-for-aws-cloudformation/images/cover.jpg
 categories:
