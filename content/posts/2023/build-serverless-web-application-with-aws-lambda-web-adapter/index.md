@@ -2,6 +2,7 @@
 title: "Build serverless web application with AWS Lambda web adapter"
 description : "build a fully functional and flexible cloud web application"
 date: 2023-10-26
+lastmod: 2023-11-16
 draft: false
 thumbnail: ./cover.jpg
 usePageBundles: true
@@ -58,7 +59,7 @@ While implementing the above patterns in the Clickstream solution, we learned th
     - Split the bundled JS into multiple chunks
   - Handle with the authentication and authorization via your Web framework
 
-I presented this topic in AWSUGTW today in Chinese. Below are the slides in the community sharing,
+I [presented this topic in AWS User Group Taiwan CDK Squad Meetup][presentation-record] in Chinese. Below are the slides in the community sharing,
 
 {{< gdocs src="https://docs.google.com/presentation/d/1b7lq2S_WtgqCY39n1DIsooa89z8NUv83oABnY-qUWaU/embed?start=false&loop=false&delayms=5000" >}}
 
@@ -67,3 +68,4 @@ I presented this topic in AWSUGTW today in Chinese. Below are the slides in the 
 [clickstream-deployment]: https://awslabs.github.io/clickstream-analytics-on-aws/en/deployment/
 [pattern-1-construct]: https://github.com/awslabs/clickstream-analytics-on-aws/blob/main/src/control-plane/cloudfront-s3-portal.ts
 [pattern-2-construct]: https://github.com/awslabs/clickstream-analytics-on-aws/blob/main/src/control-plane/alb-lambda-portal.ts
+[presentation-record]: https://youtu.be/k8UJN7RPQEg?si=DV-UKodgAR3ZzEKp&t=3443
