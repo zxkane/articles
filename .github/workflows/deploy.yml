@@ -60,7 +60,7 @@ jobs:
         run: |
           cd public/
           git config --global user.name 'Kane Zhu'
-          git config --global user.email 'kane@users.noreply.github.com'
+          git config --global user.email '843303+zxkane@users.noreply.github.com'
           git add .
           git commit -am "new release at `date`"
           git push
