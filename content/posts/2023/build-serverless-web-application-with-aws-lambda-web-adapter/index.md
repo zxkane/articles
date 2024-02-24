@@ -9,8 +9,9 @@ usePageBundles: true
 codeMaxLines: 50
 codeLineNumbers: true
 categories:
-- effective-cloud-computing
 - blogging
+series:
+- effective-cloud-computing
 isCJKLanguage: false
 tags:
 - AWS
