@@ -1,13 +1,13 @@
 {{ $clickstream := site.Params.aws_clickstream }}
 {{- if $clickstream.enable }}
-<script src="https://github.com/awslabs/clickstream-web/releases/download/v0.9.2/clickstream-web.min.js"></script>
+<script src="https://github.com/awslabs/clickstream-web/releases/download/v0.11.0/clickstream-web.min.js"></script>
 <script>
     window.ClickstreamAnalytics.init({
         appId: '{{ $clickstream.app_id }}',
         endpoint: '{{ $clickstream.endpoint }}',
         isLogEvents: true,
         pageType: window.PageType.multiPageApp, //multiPageApp
-        sendMode: window.SendMode.Batch, //Immediate
+        sendMode: window.SendMode.Immediate, //Immediate
     })
 </script>
 {{- end -}}
