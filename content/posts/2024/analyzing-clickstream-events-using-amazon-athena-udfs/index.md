@@ -11,7 +11,8 @@ codeLineNumbers: true
 categories:
 - blogging
 - effective-cloud-computing
-- clickstream-analytics-on-aws
+series:
+- clickstream-analytics
 isCJKLanguage: false
 tags:
 - Amazon Athena
