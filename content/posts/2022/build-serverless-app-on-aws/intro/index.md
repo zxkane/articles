@@ -6,9 +6,8 @@ draft: false
 thumbnail: /posts/2022/build-serverless-app-on-aws/images/cover.png
 categories:
 - blogging
-series:
-- effective-cloud-computing
-- serverless-computing
+- cloud-computing
+series: build-serverless-application
 isCJKLanguage: false
 tags:
 - Serverless

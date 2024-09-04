@@ -6,9 +6,8 @@ draft: false
 usePageBundles: true
 categories:
 - blogging
-- effective-cloud-computing
-series:
-- clickstream-analytics
+- cloud-computing
+series: clickstream-analytics
 thumbnail: images/cover2.jpeg
 isCJKLanguage: false
 codeMaxLines: 50

@@ -6,9 +6,8 @@ thumbnail: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9-TlIqnY2-cpKR
 draft: false
 categories:
 - blogging
-series:
-- effective-cloud-computing
-- amazon-builders-library
+- cloud-computing
+series: amazon-builders-library
 isCJKLanguage: true
 tags:
 - AWS

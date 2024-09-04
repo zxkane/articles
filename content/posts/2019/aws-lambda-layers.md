@@ -6,7 +6,6 @@ draft: false
 thumbnail: "/posts/effective-cloud-computing/serverless-dingtalk-callback/images/cover.png"
 categories:
 - blogging
-series:
 - serverless-computing
 isCJKLanguage: true
 tags:

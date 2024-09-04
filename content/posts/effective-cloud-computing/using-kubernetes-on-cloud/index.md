@@ -7,8 +7,7 @@ draft: false
 thumbnail: /posts/effective-cloud-computing/using-kubernetes-on-cloud/images/cover.png
 aliases:
 - /posts/effective-cloud-computing-series/using-kubernetes-on-cloud/
-series:
-- effective-cloud-computing
+series: effective-cloud-computing
 categories:
 - kubernetes
 isCJKLanguage: true

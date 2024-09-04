@@ -9,9 +9,8 @@ codeMaxLines: 37
 codeLineNumbers: true
 categories:
 - blogging
-series:
-- effective-cloud-computing
-- serverless-computing
+- cloud-computing
+series: build-serverless-application
 isCJKLanguage: false
 tags:
 - Serverless

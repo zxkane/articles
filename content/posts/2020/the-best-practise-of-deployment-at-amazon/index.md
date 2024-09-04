@@ -6,8 +6,7 @@ draft: false
 thumbnail: https://d1.awsstatic.com/builderslibrary/icons/WEB_Redwood_Card-thumbnail_Software-deployments.89a23234e262e526ee155d5194c52e3aa605ffff.png
 categories:
 - blogging
-series:
-- amazon-builders-library
+series: amazon-builders-library
 isCJKLanguage: true
 tags:
 - DevOps

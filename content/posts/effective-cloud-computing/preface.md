@@ -7,8 +7,7 @@ aliases:
 date: 2019-01-07
 lastmod: 2019-01-08
 draft: false
-series:
-- effective-cloud-computing
+series: effective-cloud-computing
 thumbnail: "https://www.thebluediamondgallery.com/tablet/images/cloud-computing.jpg"
 isCJKLanguage: true
 tags:

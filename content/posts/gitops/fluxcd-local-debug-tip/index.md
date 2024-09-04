@@ -9,8 +9,7 @@ codeMaxLines: 20
 categories:
 - blogging
 - kubernetes
-series:
-- gitops
+series: gitops
 isCJKLanguage: false
 tags:
 - Flux

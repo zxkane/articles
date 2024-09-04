@@ -8,8 +8,7 @@ figurePositionShow: true
 thumbnail: /posts/2022/publish-cdk-app-via-cloudformation/images/cover.png
 categories:
 - blogging
-series:
-- effective-cloud-computing 
+- cloud-computing 
 isCJKLanguage: false
 tags:
 - AWS CDK

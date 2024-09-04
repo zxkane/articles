@@ -6,7 +6,6 @@ draft: false
 thumbnail: /posts/2020/new-http-apis-of-api-gateway/images/cover.png
 categories:
 - blogging
-series:
 - serverless-computing
 isCJKLanguage: true
 tags:

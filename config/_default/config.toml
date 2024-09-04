@@ -10,7 +10,7 @@ disqusShortname = ""
 
 DefaultContentLanguage = "en"
 
-showRelatedInArticle = true
+showRelatedInArticle = false
 showRelatedInSidebar = true
 
 enableEmoji = true

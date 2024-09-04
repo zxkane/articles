@@ -4,8 +4,7 @@ description : "企业IAM实战(二)"
 date: 2019-04-08
 draft: false
 thumbnail: /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/images/part2.png
-series:
-- effective-cloud-computing
+series: effective-cloud-computing
 categories:
 - kubernetes
 isCJKLanguage: true

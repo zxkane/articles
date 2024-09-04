@@ -5,8 +5,7 @@ date: 2019-12-26
 draft: false
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
 thumbnail: /img/posts/2019/cloud-debugging.jpg
 isCJKLanguage: true
 tags:

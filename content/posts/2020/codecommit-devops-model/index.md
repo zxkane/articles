@@ -6,8 +6,7 @@ draft: false
 thumbnail: /posts/2020/codecommit-devops-model/images/cover.png
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
 isCJKLanguage: true
 tags:
 - 云计算

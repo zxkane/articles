@@ -6,7 +6,6 @@ draft: false
 thumbnail: /img/posts/2019/serverless-framework.png
 categories:
 - blogging
-series:
 - serverless-computing
 isCJKLanguage: true
 tags:

@@ -4,9 +4,10 @@ description : "实战使用Spring Cloud Function开发AWS Lambda函数"
 date: 2019-06-28
 draft: false
 thumbnail: https://i.ytimg.com/vi/2drTR7pEUyg/maxresdefault.jpg
-series:
-- effective-cloud-computing
+categories:
+- cloud-computing
 - serverless-computing
+series: build-serverless-application
 isCJKLanguage: true
 tags:
 - 云计算

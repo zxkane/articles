@@ -6,8 +6,8 @@ draft: false
 thumbnail: /posts/2021/shared-service-platform-for-decentralized-developer-teams/images/cover.png
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
+series: effective-cloud-computing
 isCJKLanguage: true
 tags:
 - SSP

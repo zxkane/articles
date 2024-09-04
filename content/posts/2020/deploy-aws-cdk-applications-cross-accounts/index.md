@@ -6,8 +6,7 @@ draft: false
 thumbnail: /posts/2020/deploy-aws-cdk-applications-cross-accounts/images/cover.png
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
 isCJKLanguage: true
 tags:
 - AWS

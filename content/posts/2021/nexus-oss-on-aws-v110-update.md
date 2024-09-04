@@ -6,8 +6,7 @@ draft: false
 thumbnail: /posts/2020/deploy-sonatype-nexus-oss-on-eks/images/cover.png
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
 isCJKLanguage: false
 tags:
 - Amazon EKS

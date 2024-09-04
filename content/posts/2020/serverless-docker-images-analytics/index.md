@@ -6,9 +6,9 @@ draft: false
 thumbnail: /posts/2020/serverless-docker-images-analytics/images/cover.jpeg
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
 - serverless-computing
+series: build-serverless-application
 isCJKLanguage: true
 tags:
 - 云计算

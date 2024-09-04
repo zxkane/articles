@@ -4,8 +4,7 @@ description : "Cloud Native时代，Spring Cloud Netflix OSS还是最佳实践�
 date: 2019-04-29
 draft: false
 thumbnail: /posts/effective-cloud-computing/spring-cloud-or-cloud-native/images/cover.png
-series:
-- effective-cloud-computing
+series: effective-cloud-computing
 categories:
 - kubernetes
 isCJKLanguage: true

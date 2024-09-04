@@ -10,9 +10,8 @@ codeMaxLines: 50
 codeLineNumbers: true
 categories:
 - blogging
-- effective-cloud-computing
-series:
-- clickstream-analytics
+- cloud-computing
+series: clickstream-analytics
 isCJKLanguage: false
 tags:
 - Amazon Athena

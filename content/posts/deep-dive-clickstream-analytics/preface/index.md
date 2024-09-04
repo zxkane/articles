@@ -5,9 +5,8 @@ date: 2024-09-03
 draft: false
 categories:
 - blogging
-- effective-cloud-computing
-series:
-- clickstream-analytics
+- cloud-computing
+series: clickstream-analytics
 usePageBundles: true
 thumbnail: images/cover.png
 isCJKLanguage: false

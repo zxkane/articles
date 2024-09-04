@@ -10,9 +10,8 @@ codeMaxLines: 20
 categories:
 - blogging
 - kubernetes
-series:
-- effective-cloud-computing
-- gitops
+- cloud-computing
+series: gitops
 isCJKLanguage: true
 tags:
 - GitOps

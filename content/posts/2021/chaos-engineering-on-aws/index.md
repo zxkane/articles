@@ -6,8 +6,7 @@ thumbnail: /posts/2021/chaos-engineering-on-aws/images/simian-army.jpg
 draft: false
 categories:
 - blogging
-series:
-- effective-cloud-computing 
+- cloud-computing 
 isCJKLanguage: true
 tags:
 - AWS

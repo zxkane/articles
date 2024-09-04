@@ -10,9 +10,9 @@ codeMaxLines: 50
 codeLineNumbers: true
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
 - serverless-computing
+series: effective-cloud-computing
 isCJKLanguage: false
 tags:
 - AWS

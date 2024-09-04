@@ -6,8 +6,7 @@ draft: false
 thumbnail: /posts/effective-cloud-computing/iam-best-practice/images/cover.jpg
 aliases:
 - /posts/effective-cloud-computing-series/iam-best-practice/
-series:
-- effective-cloud-computing
+series: effective-cloud-computing
 isCJKLanguage: true
 tags:
 - 云计算

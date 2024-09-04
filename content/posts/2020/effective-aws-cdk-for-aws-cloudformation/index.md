@@ -7,8 +7,7 @@ draft: false
 thumbnail: /posts/2020/effective-aws-cdk-for-aws-cloudformation/images/cover.jpg
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
 isCJKLanguage: false
 tags:
 - Infrastructure as Code

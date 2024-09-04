@@ -6,8 +6,7 @@ draft: false
 thumbnail: /posts/2021/the-practise-of-amazon-neptune/images/cover.png
 categories:
 - blogging
-series:
-- effective-cloud-computing
+- cloud-computing
 isCJKLanguage: false
 tags:
 - graph database
