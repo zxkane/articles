@@ -10,6 +10,7 @@ categories:
 series: clickstream-analytics
 thumbnail: images/cover2.jpeg
 isCJKLanguage: false
+showRelatedInArticle: false
 codeMaxLines: 50
 codeLineNumbers: true
 toc: true

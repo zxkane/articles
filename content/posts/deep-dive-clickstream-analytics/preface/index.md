@@ -10,6 +10,7 @@ series: clickstream-analytics
 usePageBundles: true
 thumbnail: images/cover.png
 isCJKLanguage: false
+showRelatedInArticle: false
 codeMaxLines: 50
 codeLineNumbers: true
 tags:
