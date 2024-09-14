@@ -1,13 +1,16 @@
 ---
-title: "Deep dive clickstream analytic series: Data ingestion"
+title: "Deep dive clickstream analytic series: Data Ingestion"
 description : "detail architecture, key features, and design principles"
 date: 2024-09-08
+lastmod: 2024-09-11
 draft: false
 usePageBundles: true
 categories:
 - blogging
 - cloud-computing
 series: clickstream-analytics
+aliases:
+- /posts/deep-dive-clickstream-analytics/ingestion-service/
 thumbnail: images/cover3.png
 isCJKLanguage: false
 showRelatedInArticle: false
