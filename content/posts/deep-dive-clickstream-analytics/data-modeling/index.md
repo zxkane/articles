@@ -2,6 +2,7 @@
 title: "Deep dive clickstream analytic series: Data Modeling"
 description : "This post explains the data modeling process in a clickstream analytics solution, covering data loading, modeling workflows, and Redshift management strategies."
 date: 2024-09-22
+lastmod: 2024-09-23
 draft: false
 usePageBundles: true
 categories:
@@ -84,6 +85,37 @@ The solution uses the infrastructure-as-code (IaC) tool [AWS CDK][cdk] to manage
 
 To address this, the solution makes the job of updating Redshift resources an asynchronous workflow, which never blocks pipeline creation or updates. The workflow is designed to be idempotent, allowing safe resumption of the job if it fails due to timeout or other constraints.
 
+## Redshift Schema Best Practices
+
+### Properly Configure `BACKUP` Option for MATERIALIZED VIEW
+
+When creating [materialized views][create-mv] in Redshift that are crucial for persisting data for business purposes, use the `BACKUP YES` option. This ensures that the materialized view is included in automated and manual cluster snapshots.
+
+For provisioned Redshift clusters, this practice is particularly important. When a cluster is maintained due to underlying hardware failure, it typically involves dumping a snapshot and restoring a new cluster from that snapshot. Materialized views created with the `BACKUP NO` option would be lost in this process.
+
+### Use Proper Sort Key
+
+Clickstream events are time-series data, with each event containing a mandatory `event_timestamp` field of type **timestamp**. This field serves as the [sort key][sort-key] for the event table, distributing records across Redshift clusters. When querying the event table, using the `event_timestamp` field in filter conditions is crucial. Without specifying this field in query conditions, Redshift would perform a full table scan, significantly impacting performance.
+
+### Use SUPER Type for Semi-structured Data
+
+Clickstream events often require the ability to store arbitrary key-value pairs as custom properties for events and users. This presents a challenge for traditional relational databases. A common approach is to create an `event_prop` table to store these dynamic key-value pairs, like so:
+
+| uuid                                   | event_id | key           | value         | value_type |
+|----------------------------------------|----------|---------------|---------------|------------|
+| 123e4567-e89b-12d3-a456-426614174000   | 1        | user_id       | 42            | INTEGER    |
+| 123e4567-e89b-12d3-a456-426614174001   | 1        | session_id    | abc123        | STRING     |
+| 123e4567-e89b-12d3-a456-426614174002   | 1        | event_type    | click         | STRING     |
+| 123e4567-e89b-12d3-a456-426614174003   | 2        | user_id       | 43            | INTEGER    |
+| 123e4567-e89b-12d3-a456-426614174004   | 2        | session_id    | def456        | STRING     |
+| 123e4567-e89b-12d3-a456-426614174005   | 2        | event_type    | view          | STRING     |
+| 123e4567-e89b-12d3-a456-426614174006   | 2        | custom_field  | my_field_value | STRING     |
+
+However, querying custom properties of events becomes extremely slow when joining billions of event records with hundreds of billions of event property records (assuming an event has 10 or more properties).
+
+The [SUPER type][super-type] in Redshift offers a solution to this problem. It can contain complex values such as arrays, nested structures, and other complex structures associated with serialization formats like JSON. The SUPER data type is a set of schemaless array and structure values that encompass all other scalar types in Amazon Redshift. Our solution utilizes a SUPER field to represent the custom properties of events and users, containing an object with arbitrary key-value pairs.
+
+
 [clickstream-series]: {{< relref "/posts/deep-dive-clickstream-analytics/preface/index.md" >}}
 [data-processing]: {{< relref "/posts/deep-dive-clickstream-analytics/data-processing/index.md" >}}
 [redshift]: https://aws.amazon.com/redshift/
@@ -97,3 +129,6 @@ To address this, the solution makes the job of updating Redshift resources an as
 [faq-analytics-studio]: https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/frequently-asked-questions.html#analytics-studio-3
 [cdk]: https://aws.amazon.com/cdk/
 [state-machine-executions-limition]: https://docs.aws.amazon.com/step-functions/latest/dg/service-quotas.html#service-limits-state-machine-executions
+[sort-key]: https://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html
+[super-type]: https://docs.aws.amazon.com/redshift/latest/dg/r_SUPER_type.html
+[create-mv]: https://docs.aws.amazon.com/redshift/latest/dg/materialized-view-create-sql-command.html
