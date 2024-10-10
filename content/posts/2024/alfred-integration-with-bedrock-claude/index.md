@@ -23,8 +23,6 @@ tags:
 - Productivity
 ---
 
-# Access Bedrock Claude 3/3.5 Models with Alfred OpenAI Workflow
-
 Many [Alfred][alfred] users enjoy the convenience of [the OpenAI ChatGPT workflow][alfred-workflow] for quick AI-powered assistance. However, with the introduction of [Amazon's Bedrock][bedrock] Claude 3 and 3.5 models, some may want to leverage these powerful alternatives. In this post, we'll explore how to set up a custom gateway to access Bedrock Claude models instead of the OpenAI API for your Alfred OpenAI workflow.
 
 ## Why Use Bedrock Claude?
