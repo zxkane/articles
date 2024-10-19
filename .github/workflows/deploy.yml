@@ -29,7 +29,7 @@ jobs:
         id: hugo-version
         run: |
           . ./.env
-          echo "HUGO_VERSION=$PHUGO_VERSION}" >> $GITHUB_ENV 
+          echo "HUGO_VERSION=${HUGO_VERSION}" >> $GITHUB_ENV 
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
