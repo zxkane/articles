@@ -18,7 +18,7 @@ codeMaxLines: 50
 codeLineNumbers: true
 toc: true
 tags:
-- Clickstream Analtyics
+- Clickstream Analytics
 - AWS
 - Container
 - Amazon ECS
