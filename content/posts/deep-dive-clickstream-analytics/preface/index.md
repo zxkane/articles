@@ -2,7 +2,7 @@
 title: "How to build a clickstream analytic system for small businesses to large-scale events"
 description : "the solution overview and introduction"
 date: 2024-09-03
-lastmod: 2024-10-19
+lastmod: 2024-10-21
 draft: false
 categories:
 - blogging
@@ -35,6 +35,7 @@ I will thoroughly explore all modules to deeply dive how to build a cloud-native
 - [Data Processing][data-processing]
 - [Data Modeling][data-moduling]
 - [Reporting][reporting]
+- [Data Pipeline Observability][reporting]
 
 [clickstream-landing-page]: https://aws.amazon.com/solutions/implementations/clickstream-analytics-on-aws/
 [web-console]: {{< relref "/posts/deep-dive-clickstream-analytics/web-console/index.md" >}}
@@ -42,3 +43,4 @@ I will thoroughly explore all modules to deeply dive how to build a cloud-native
 [data-processing]: {{< relref "/posts/deep-dive-clickstream-analytics/data-processing/index.md" >}}
 [data-moduling]: {{< relref "/posts/deep-dive-clickstream-analytics/data-modeling/index.md" >}}
 [reporting]: {{< relref "/posts/deep-dive-clickstream-analytics/report/index.md" >}}
+[pipeline-observability]: {{< relref "/posts/deep-dive-clickstream-analytics/pipeline-observability/index.md" >}}
