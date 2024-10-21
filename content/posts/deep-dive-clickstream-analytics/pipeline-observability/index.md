@@ -100,6 +100,8 @@ To aid in troubleshooting, consider the following steps:
 
 5. **Performance Analyzer**: Utilize tools to analyze and optimize query performance in Redshift, including recommendations for table design and query structure.
 
+6. **Contact Support**: [Get expert assistance with this solution][contact-support] if you have an active support plan.
+
 ## Best Practices for Pipeline Observability
 
 To make the most of these observability features, consider the following best practices:
@@ -138,3 +140,4 @@ Observability is a critical aspect of maintaining a healthy and efficient clicks
 [cloudwatch-insights]: https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html
 [clickstream-troubleshoot]: https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/troubleshooting.html
 [lambda-cloudwatch-log]: https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs-view.html#monitoring-cloudwatchlogs-console
+[contact-support]: https://docs.aws.amazon.com/solutions/latest/clickstream-analytics-on-aws/contact-aws-support.html
