@@ -2,6 +2,7 @@
 title: "免费邮件转发服务"
 description : "零花费搭建邮件服务器"
 date: 2019-12-18
+lastmod: 2024-10-24
 thumbnail: /img/posts/2019/email-forward.png
 draft: false
 categories:
@@ -31,5 +32,12 @@ tags:
 
 更多配置选项请查看[文档][forward-email-conf-guide]。
 
+---
+
+---
+
+作为 Forward Email 数年的付费的用户后，把该配置迁移到了免费的 [Cloudflare Email Routing][cloudflare-email-routing]，实现了同样的功能。因为该功能需要先将域名 DNS 解析放到 Cloudflare，所以只需要点点鼠标就配置完成了。😊✌️
+
 [forward-email]: https://github.com/forwardemail/free-email-forwarding
 [forward-email-conf-guide]: https://github.com/forwardemail/free-email-forwarding#how-do-i-get-started-and-set-up-email-forwarding
+[cloudflare-email-routing]: https://www.cloudflare.com/developer-platform/email-routing/
