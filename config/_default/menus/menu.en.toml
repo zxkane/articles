@@ -34,9 +34,23 @@
   url = "/series/amazon-builders-library/"
   weight = 30  
 [[main]]
+  name = "Tools"
+  identifier = "Tools"
+  weight = -100
+[[main]]
+  parent = "Tools"
+  name = "Word Dictation Practice on AWS"
+  url = "https://dictation.aws.kane.mx/"
+  weight = 10
+[[main]]
+  parent = "Tools"
+  name = "Word Dictation Practice on Vercel"
+  url = "https://dictation.vercel.kane.mx/"
+  weight = 20
+[[main]]
   name = "About"
   url = "about/"
-  weight = -107
+  weight = -50
 
 # social menu links
 
