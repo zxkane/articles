@@ -41,11 +41,11 @@ tags:
 
 <!-- more -->
 
-随着大模型能力的持续增强，特别是 Claude 3.5 v2 的发布，[AI 编程的能力再次得到显著提升][swe-bench-sonnet]。各种 AI 编程工具和 AI IDE 层出不穷，比如 [Cline][cline]（VS Code 插件）、[Aider][aider]（主要支持 terminal）、[Continue][continue]（VS Code 和 JetBrains 插件）、[Cursor][cursor]（基于 VS Code 的自定义 IDE）、[Amazon Q Developer][q-developer]（VS Code 和 JetBrains 插件）以及 [GitHub Copilot][github-copilot]（VS Code 插件）等。这些工具如雨后春笋般涌现，确实说明 LLM 在编程领域的能力已经得到了显著提升，具备了实际应用的场景和能力。
+随着大模型能力的持续增强，特别是 Claude Sonnet 3.5 v2 的发布，[AI 编程的能力再次得到显著提升][swe-bench-sonnet]。各种 AI 编程工具和 AI IDE 层出不穷，比如 [Cline][cline]（VS Code 插件）、[Aider][aider]（主要支持 terminal）、[Continue][continue]（VS Code 和 JetBrains 插件）、[Cursor][cursor]（基于 VS Code 的自定义 IDE）、[Amazon Q Developer][q-developer]（VS Code 和 JetBrains 插件）以及 [GitHub Copilot][github-copilot]（VS Code 插件）等。这些工具如雨后春笋般涌现，确实说明 LLM 在编程领域的能力已经得到了显著提升，具备了实际应用的场景和能力。
 
 最近，我在一个个人项目中完整体验了 Cursor 的 AI **辅助编程**能力，下面我就以这个项目为例，分享我的使用体验。
 
-这是一个基于 [Next.js][nextjs] 和 [Material UI][mui] 实现的 [Web 应用][word-dication-source]，用于英语单词听写练习，同时可以帮助电脑初学者统计键盘输入效率。虽然我有多年的 JavaScript/TypeScript 开发经验，但这是我首次使用 React、Next.js、Material UI 等框架开发 Web 应用。整个应用从零开始，通过 Chat 模式与 LLM（主要是 Claude 3.5 v2）协作创建项目骨架，并逐步完善功能及页面展示。最终通过 [Vercel][vercel] 和 [AWS Amplify][amplify-hosting] 完成部署上线（[Vercel 版本][word-dication-on-vercel]、[AWS 版本][word-dication-on-aws]）。
+这是一个基于 [Next.js][nextjs] 和 [Material UI][mui] 实现的 [Web 应用][word-dication-source]，用于英语单词听写练习，同时可以帮助电脑初学者统计键盘输入效率。虽然我有多年的 JavaScript/TypeScript 开发经验，但这是我首次使用 React、Next.js、Material UI 等框架开发 Web 应用。整个应用从零开始，通过 Chat 模式与 LLM（主要是 Claude Sonnet 3.5 v2）协作创建项目骨架，并逐步完善功能及页面展示。最终通过 [Vercel][vercel] 和 [AWS Amplify][amplify-hosting] 完成部署上线（[Vercel 版本][word-dication-on-vercel]、[AWS 版本][word-dication-on-aws]）。
 
 在开发过程中，我主要通过 Cursor 的 Chat 功能来描述需求，让 Cursor 据此生成代码。我的工作主要是审查生成的代码，决定接受或拒绝，并根据新的反馈让 Cursor 继续优化。与传统开发模式不同，我不再需要在编辑器中大量输入代码，而是通过对话模式与 Cursor 交流，描述需求并获取相应的代码实现。值得一提的是，Cursor 能够阅读整个项目的代码库，基于现有代码生成新的代码片段，并且支持同时为多个文件生成代码。它还支持引用外部文档和链接，通过 RAG 能力有效弥补了 LLM 知识库可能不够完整的短板。
 
