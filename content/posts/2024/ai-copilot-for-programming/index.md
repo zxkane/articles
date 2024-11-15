@@ -85,5 +85,5 @@ tags:
 [vercel]: https://vercel.com/
 [amplify-hosting]: https://aws.amazon.com/amplify/hosting/
 [word-dication-on-aws]: https://dictation.aws.kane.mx/
-[word-dication-on-vercel]: https://dictation.vercel.kane.mx/]
+[word-dication-on-vercel]: https://dictation.vercel.kane.mx/
 [word-dication-source]: https://github.com/zxkane/word-dictation-practice
