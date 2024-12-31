@@ -12,6 +12,7 @@ categories:
 - blogging
 - serverless-computing
 isCJKLanguage: false
+featured: true
 tags:
 - AWS
 - AWS Amplify
