@@ -14,6 +14,7 @@ isCJKLanguage: true
 tags:
 - Programming
 - IDE
+- GenAI
 - Cline
 - Aider
 - Continue

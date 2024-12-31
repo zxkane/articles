@@ -15,6 +15,7 @@ tags:
 - Alfred
 - Alfred Workflow
 - LLM
+- GenAI
 - OpenAI API
 - ChatGPT
 - Amazon Bedrock

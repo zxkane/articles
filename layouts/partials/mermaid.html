@@ -1,0 +1,34 @@
+{{- if findRE `class="mermaid"` .Content 1 }}
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  function updateMermaidConfig() {
+    const isDark = document.body.classList.contains('dark');
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: isDark ? 'dark' : 'default',
+      themeVariables: {
+        background: isDark ? '#252a33' : '#ffffff',
+        primaryColor: isDark ? '#252a33' : '#ffffff',
+        secondaryColor: isDark ? '#252a33' : '#ffffff'
+      }
+    });
+  }
+
+  // Initial configuration
+  updateMermaidConfig();
+
+  // Update on theme change
+  document.addEventListener('themeChanged', function(e) {
+    updateMermaidConfig();
+    // Force redraw all diagrams
+    document.querySelectorAll('.mermaid').forEach(el => {
+      const content = el.getAttribute('data-source');
+      if (content) {
+        el.removeAttribute('data-processed');
+        el.innerHTML = content;
+        mermaid.init(undefined, el);
+      }
+    });
+  });
+</script>
+{{- end }}

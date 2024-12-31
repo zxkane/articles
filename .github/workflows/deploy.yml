@@ -36,11 +36,6 @@ jobs:
           hugo-version: '${{ env.HUGO_VERSION }}'
           extended: true
 
-      - name: Enable cw-rum
-        run: | 
-          echo '{{- partialCached "clickstream" . }}' >> themes/hugo-clarity/layouts/partials/hooks/head-end.html
-          echo '{{- partialCached "cw-rum" . }}' >> themes/hugo-clarity/layouts/partials/hooks/head-end.html
-
       - name: Set up Homebrew
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master

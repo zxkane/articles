@@ -15,6 +15,7 @@ tags:
 - Cursor
 - LLM
 - OpenAI API
+- GenAI
 - ChatGPT
 - Anthropic Claude
 - AWS

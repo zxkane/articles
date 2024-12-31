@@ -22,6 +22,7 @@ tags:
 - Claude
 - Serverless
 - Fullstack
+- GenAI
 ---
 
 AWS Amplify is a powerful set of tools and services for developing, hosting, and managing serverless applications. With the recent launch of Amplify Gen 2[^1][^2], the platform has evolved significantly to enhance the developer experience. In this guide, we'll explore nine essential tips that will help you maximize your productivity with AWS Amplify, covering everything from authentication and infrastructure management to AI integration and deployment.
