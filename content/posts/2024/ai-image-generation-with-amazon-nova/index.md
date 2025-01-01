@@ -19,6 +19,7 @@ tags:
 - Amazon Nova Canvas
 - Image Generation
 - GenAI
+- AWS
 - Anthropic
 - Claude Desktop
 - Cline
