@@ -2,6 +2,7 @@
 title: "2025 AI Developer Tools Benchmark: Comprehensive IDE & Assistant Comparison"
 description: "In-depth analysis and benchmark of 10 leading AI-powered development tools including Cursor, Cline, GitHub Copilot, and Windsurf, focusing on real-world programming tasks"
 date: 2025-01-17
+lastmod: 2025-01-18
 draft: false
 thumbnail: ./cover.png
 usePageBundles: true
@@ -98,7 +99,7 @@ Each tool was evaluated across four key dimensions:
 
 ### Test Environment Background
 
-The web application used for testing is built with the following technologies:
+The [web application][fullstack-app] used for testing is built with the following technologies:
 
 1. **Amplify Gen2**: Latest version of AWS Amplify for frontend and backend development
 2. **Frontend**: Next.js 14.x with MUI (Material-UI) and Amplify UI components
@@ -301,3 +302,4 @@ With over 25,000 installations in the VS Code marketplace, Roo Cline has become 
 [llm-ranking]: https://openrouter.ai/rankings
 [roo-cline]: https://github.com/RooVetGit/Roo-Cline
 [openrouter]: https://openrouter.ai/
+[fullstack-app]: https://github.com/zxkane/game-match-playground
