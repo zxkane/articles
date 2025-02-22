@@ -2,6 +2,7 @@
 title: "Nine Essential Tips of AWS Amplify for Boosting Development Productivity"
 description: "Master AWS Amplify with these essential tips covering authentication, infrastructure management, GenAI integration, and CI/CD deployment - everything you need to build modern serverless applications."
 date: 2024-12-24
+lastmod: 2025-02-22
 draft: false
 thumbnail: ./cover.png
 usePageBundles: true
@@ -324,6 +325,9 @@ export default function RootLayout({
 
 For complex backend requirements, AWS CDK enables powerful customization of your [Amplify backend][amplify-data-backend]. This allows you to manage all types of AWS resources while benefiting from the extensive CDK construct ecosystem.
 
+### Example 1: Customizing Lambda Logging
+You might want to customize the logging configuration of a Lambda function in your Amplify backend. Here's how you can achieve this using CDK Interoperability:
+
 {{< highlight ts >}}
 (backend.leagueHandler.resources.lambda.node.defaultChild as CfnFunction).addPropertyOverride('LoggingConfig', {
   LogFormat: 'JSON',
@@ -331,6 +335,58 @@ For complex backend requirements, AWS CDK enables powerful customization of your
   SystemLogLevel: 'INFO',
 });
 {{< /highlight >}}
+
+### Example 2: Use environment variables in AppSync JS resolvers
+When using AppSync resolvers, you might need to access different external resources in different stags. You can use environment variables of AppSync to achieve this. Here's how you can set them in your Amplify backend and access them in a resolver:
+
+{{< labelled-highlight lang="ts" filename="amplify/backend.ts" >}}
+const { cfnResources } = backend.data.resources;
+cfnResources.cfnGraphqlApi.xrayEnabled = true;
+cfnResources.cfnGraphqlApi.environmentVariables = {
+  ...(config.data.knowledgeBaseId ? { KNOWLEDGE_BASE_ID: config.data.knowledgeBaseId } : {}),
+  RERANK_MODEL_ID: 'cohere.rerank-v3-5:0',
+};
+{{</ labelled-highlight >}}
+
+{{< labelled-highlight lang="js" filename="amplify/data/resolvers/kbResolver.js" options="hl_lines=5 21" >}}
+export function request(ctx) {
+  const { input } = ctx.args;
+  const { REGION, KNOWLEDGE_BASE_ID, RERANK_MODEL_ID } = ctx.env;
+  return {
+    resourcePath: `/knowledgebases/${KNOWLEDGE_BASE_ID}/retrieve`,
+    method: "POST",
+    params: {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        retrievalQuery: {
+          text: input,
+        },
+        vectorSearchConfiguration: {
+          numberOfResults: 30,
+          rerankingConfiguration: {
+            type: 'BEDROCK',
+            bedrockRerankingConfiguration: {
+              modelConfiguration: {
+                modelArn: `arn:aws:bedrock:${REGION}::foundation-model/${RERANK_MODEL_ID}`,
+                additionalModelRequestFields: {
+                  topK: 20
+                }
+              },
+              numberOfRerankedResults: 10
+            }
+          }
+        },
+      }),
+    },
+  };
+}
+
+export function response(ctx) {
+  return JSON.stringify(ctx.result.body);
+}
+{{</ labelled-highlight >}}
 
 ## Tip 6: Optimizing DynamoDB Access
 
