@@ -1,0 +1,4 @@
+{{- $user := index .Params 0 -}}
+{{- $id := index .Params 1 -}}
+{{- $file := index .Params 2 -}}
+<script src="https://gist.github.com/{{ $user }}/{{ $id }}.js{{- if $file -}}?file={{ $file }}{{- end -}}"></script>
