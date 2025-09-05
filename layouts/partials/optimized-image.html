@@ -1,0 +1,47 @@
+{{- $src := .src }}
+{{- $alt := .alt | default "" }}
+{{- $title := .title | default "" }}
+{{- $class := .class | default "" }}
+{{- $width := .width | default "" }}
+{{- $height := .height | default "" }}
+{{- $lazy := .lazy | default true }}
+{{- $webp := .webp | default true }}
+
+{{- $imagePath := $src }}
+{{- if not (strings.HasPrefix $src "http") }}
+  {{- $imagePath = $src | relURL }}
+{{- end }}
+
+<picture class="optimized-image {{ $class }}">
+  {{- if and $webp (not (strings.HasPrefix $src "http")) }}
+    {{- $webpPath := $src | replaceRE "\\.([jJ][pP][gG]|[pP][nN][gG]|[jJ][pP][eE][gG])$" ".webp" }}
+    <source srcset="{{ $webpPath | relURL }}" type="image/webp">
+  {{- end }}
+  
+  <img 
+    {{- if $lazy }}
+      loading="lazy"
+      decoding="async"
+    {{- else }}
+      loading="eager"
+    {{- end }}
+    src="{{ $imagePath }}"
+    alt="{{ $alt }}"
+    {{- with $title }}
+      title="{{ . }}"
+    {{- end }}
+    {{- with $width }}
+      width="{{ . }}"
+    {{- end }}
+    {{- with $height }}
+      height="{{ . }}"
+    {{- end }}
+    {{- with $class }}
+      class="{{ . }}"
+    {{- end }}
+    {{- if or $width $height }}
+      style="{{- with $width }}max-width: {{ . }}px;{{ end }}{{- with $height }} max-height: {{ . }}px;{{ end }} width: auto; height: auto;"
+    {{- end }}
+  >
+</picture>
+

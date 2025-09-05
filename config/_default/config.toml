@@ -30,3 +30,12 @@ series = "series"
 
 [pagination]
 pagerSize = 10
+
+[sitemap]
+changefreq = "weekly"
+filename = "sitemap.xml"
+priority = 0.5
+
+[imaging]
+quality = 85
+resampleFilter = "Lanczos"

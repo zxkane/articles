@@ -1,0 +1,185 @@
+{{- $params := site.Params }}
+{{- $summary := truncate 160 (.Description | default .Summary) }}
+{{- $image := absURL $params.fallBackOgImage }}
+{{- with .Params.thumbnail }}
+  {{- $image = . | absURL }}
+{{- end }}
+{{- with .Params.featureImage }}
+  {{- $image = . | absURL }}
+{{- end }}
+{{- with .Params.shareImage }}
+  {{- $image = . | absURL }}
+{{- end }}
+
+{{- if .IsHome }}
+<!-- Website and Organization Schema for Homepage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ .Site.BaseURL }}#website",
+      "url": "{{ .Site.BaseURL }}",
+      "name": "{{ .Site.Title }}",
+      "description": "{{ $params.description }}",
+      "publisher": {
+        "@id": "{{ .Site.BaseURL }}#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ .Site.BaseURL }}search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "inLanguage": "{{ .Site.Language.Lang }}"
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ .Site.BaseURL }}#organization",
+      "name": "{{ .Site.Title }}",
+      "url": "{{ .Site.BaseURL }}",
+      "description": "{{ $params.description }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ $params.footerLogo | absURL }}",
+        "width": 512,
+        "height": 512
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "{{ $image }}",
+        "width": 1200,
+        "height": 630
+      },
+      "sameAs": [
+        {{- with $params.twitter }}"https://twitter.com/{{ strings.TrimPrefix "@" . }}"{{- end }}
+        {{- with $params.github }},"https://github.com/{{ . }}"{{- end }}
+        {{- with $params.linkedin }},"https://linkedin.com/in/{{ . }}"{{- end }}
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "url": "{{ .Site.BaseURL }}contact"
+      }
+    }
+  ]
+}
+</script>
+{{- else if .IsPage }}
+<!-- Article/BlogPost Schema for Individual Pages -->
+{{- $keywords := slice }}
+{{- with .Params.tags }}
+  {{- range . }}
+    {{- $keywords = $keywords | append . }}
+  {{- end }}
+{{- end }}
+{{- with .Params.categories }}
+  {{- range . }}
+    {{- $keywords = $keywords | append . }}
+  {{- end }}
+{{- end }}
+{{- $wordCount := .WordCount }}
+{{- $readingTime := div $wordCount 200 }}
+{{- if lt $readingTime 1 }}
+  {{- $readingTime = 1 }}
+{{- end }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ if eq .Section "posts" }}BlogPosting{{ else }}Article{{ end }}",
+  "@id": "{{ .Permalink }}#article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "headline": "{{ .Title }}",
+  "name": "{{ .Title }}",
+  "description": "{{ $summary }}",
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ $image }}",
+    "width": 1200,
+    "height": 630
+  },
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ $params.author.name }}",
+    "url": "{{ .Site.BaseURL }}about",
+    {{- with $params.author.photo }}
+    "image": {
+      "@type": "ImageObject",
+      "url": "{{ . | absURL }}",
+      "width": 400,
+      "height": 400
+    },
+    {{- end }}
+    "sameAs": [
+      {{- with $params.twitter }}"https://twitter.com/{{ strings.TrimPrefix "@" . }}"{{- end }}
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "url": "{{ .Site.BaseURL }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ $params.footerLogo | absURL }}",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "url": "{{ .Permalink }}",
+  "wordCount": {{ $wordCount }},
+  "timeRequired": "PT{{ $readingTime }}M",
+  "inLanguage": "{{ .Lang }}",
+  {{- with $keywords }}
+  "keywords": {{ . | jsonify }},
+  {{- end }}
+  {{- if .Params.categories }}
+  "articleSection": {{ .Params.categories | jsonify }},
+  {{- end }}
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "{{ .Site.BaseURL }}#website"
+  }
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+{{- $breadcrumbs := slice }}
+{{- $breadcrumbs = $breadcrumbs | append (dict "name" "Home" "url" .Site.BaseURL) }}
+{{- if .Section }}
+  {{- $sectionTitle := .Section | title }}
+  {{- if eq .Section "posts" }}
+    {{- $sectionTitle = "Blog" }}
+  {{- end }}
+  {{- $breadcrumbs = $breadcrumbs | append (dict "name" $sectionTitle "url" (printf "%s%s/" .Site.BaseURL .Section)) }}
+{{- end }}
+{{- if .Parent }}
+  {{- $breadcrumbs = $breadcrumbs | append (dict "name" .Parent.Title "url" .Parent.Permalink) }}
+{{- end }}
+{{- $breadcrumbs = $breadcrumbs | append (dict "name" .Title "url" .Permalink) }}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {{- range $index, $crumb := $breadcrumbs }}
+    {{- if gt $index 0 }},{{ end }}
+    {
+      "@type": "ListItem",
+      "position": {{ add $index 1 }},
+      "name": "{{ $crumb.name }}",
+      "item": "{{ $crumb.url }}"
+    }
+    {{- end }}
+  ]
+}
+</script>
+{{- end }}
