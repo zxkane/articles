@@ -1,0 +1,119 @@
+{{- $params := site.Params }}
+{{- $separator := default "|" $params.titleSeparator }}
+{{- $title := "" }}
+{{- if and .Title (ne (trim (lower .Site.Title) "") (trim (lower .Title) "")) }}
+  {{- if eq .Kind "taxonomy" }}
+    {{- $title = default .Title ( T (lower .Title) ) }}
+  {{- else }}
+    {{- $title = .Title }}
+  {{- end }}
+{{- end }}
+<title>{{ with $title }}{{ . }} {{ $separator }} {{ end }}{{ .Site.Title }}</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- SEO Meta Tags -->
+{{- $description := $params.description }}
+{{- if .Description }}
+  {{- $description = .Description }}
+{{- else if .Summary }}
+  {{- $description = truncate 160 .Summary }}
+{{- else if .IsHome }}
+  {{- $description = $params.description }}
+{{- end }}
+<meta name="description" content="{{ $description }}">
+
+{{- if .Params.noindex }}
+<meta name="robots" content="noindex, nofollow">
+{{- else }}
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+{{- end }}
+
+<!-- Author and Publisher -->
+<meta name="author" content="{{ $params.author.name }}">
+{{- if .IsPage }}
+<meta name="article:author" content="{{ $params.author.name }}">
+<meta name="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta name="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+{{- end }}
+
+<!-- Security Headers -->
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+<!-- Verification -->
+{{- with $params.ga_verify }}
+<meta name="google-site-verification" content="{{ . }}">
+{{- end }}
+{{- with $params.bing_verify }}
+<meta name="msvalidate.01" content="{{ . }}">
+{{- end }}
+
+<!-- Theme and Mobile -->
+<meta name="theme-color" content="#1f2937">
+<meta name="msapplication-TileColor" content="#1f2937">
+<meta name="format-detection" content="telephone=no">
+
+<!-- PWA and App Support -->
+<link rel="manifest" href="/manifest.json">
+<meta name="application-name" content="The Road">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="The Road">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="msapplication-starturl" content="/">
+<meta name="msapplication-config" content="/browserconfig.xml">
+{{- if (ne hugo.Environment "development") }}
+  {{- partialCached "analytics" . }}
+{{- end }}
+{{- partial "opengraph" . }}
+{{- partialCached "favicon" . }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{ range .AlternativeOutputFormats -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end -}}
+
+<!-- Performance Optimizations -->
+<!-- DNS prefetch for external domains -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+
+<!-- Preconnect to critical domains -->
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Resource hints for better performance -->
+<link rel="prefetch" href="/posts/">
+<link rel="prefetch" href="/about/">
+
+<!-- preload assets declaration -->
+<!-- preload main css file -->
+{{ $styles := partialCached "func/getStylesBundle" . }}
+<link rel="preload" href="{{ $styles.Permalink }}" integrity = "{{ $styles.Data.Integrity }}" as="style" crossorigin="anonymous">
+
+<!-- preload main javascript file -->
+{{ $bundle := partialCached "func/getJavascriptBundle" . }}
+<link rel="preload" href="{{ $bundle.Permalink }}" as="script" integrity=
+"{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
+
+<!-- Preload critical fonts if any -->
+{{- if $params.customFonts }}
+<link rel="preload" href="/fonts/primary.woff2" as="font" type="font/woff2" crossorigin>
+{{- end }}
+
+<!-- link main css file -->
+<link rel="stylesheet" type="text/css" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous">
+<!-- load all custom css files -->
+<link rel="stylesheet" href="{{ "css/seo-optimizations.css" | relURL }}">
+{{- with $params.customCSS }}
+  {{- range . -}}
+  <link rel="stylesheet" href="{{ relURL . }}">
+  {{- end }}
+{{- end }}
+
+{{- partial "scripts/google/tag-manager" (dict "noscript" false) }}
