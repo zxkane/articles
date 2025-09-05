@@ -92,6 +92,9 @@ enableSearch = true
 name = "Kane Zhu"
 photo = "/img/favicon.ico" #include this if you would like to show the author photo on the sidebar
 
+[adsense]
+publisher = "ca-pub-9948807638905550"
+
 [cloudwatch_rum]
 enable = true
 
