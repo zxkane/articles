@@ -1,7 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 <script>
   function updateMermaidConfig() {
-    const isDark = document.body.classList.contains('dark');
+    const isDark = document.body && document.body.classList.contains('dark');
     mermaid.initialize({
       startOnLoad: true,
       theme: isDark ? 'dark' : 'default',
@@ -13,8 +13,12 @@
     });
   }
 
-  // Initial configuration
-  updateMermaidConfig();
+  // Wait for DOM to be ready before initial configuration
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateMermaidConfig);
+  } else {
+    updateMermaidConfig();
+  }
 
   // Update on theme change
   document.addEventListener('themeChanged', function(e) {
