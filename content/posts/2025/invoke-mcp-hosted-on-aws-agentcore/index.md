@@ -2,6 +2,7 @@
 title: "How invoking remote MCP servers hosted on AWS AgentCore"
 description: "A comprehensive guide to connecting with MCP servers deployed on AWS AgentCore, covering OAuth authentication, client implementation, and practical usage patterns"
 date: 2025-08-22
+lastmod: 2025-09-05
 draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
@@ -399,6 +400,10 @@ def setup_environment():
 if __name__ == "__main__":
     asyncio.run(main())
 ```
+
+## Update: Improved OAuth Client Provider Approach
+
+**Update**: For a more robust, production-ready solution using the native MCP SDK's built-in OAuth Client Provider with automatic token management, M2M authentication support, and AgentCore-specific compatibility fixes, see: **[Leveraging MCP Client's OAuthClientProvider for Seamless AWS AgentCore Authentication]({{< relref "/posts/2025/use-mcp-client-oauthclientprovider-invoke-mcp-hosted-on-aws-agentcore/index.md" >}})**.
 
 ## Key Learnings
 
