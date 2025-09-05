@@ -72,14 +72,7 @@
 }
 
 /* Performance Optimizations */
-img[loading="lazy"] {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-img[loading="lazy"].loaded {
-  opacity: 1;
-}
+/* Lazy loading works automatically in modern browsers without additional CSS */
 
 /* WebP Support Fallback */
 .no-webp .optimized-image source[type="image/webp"] {
