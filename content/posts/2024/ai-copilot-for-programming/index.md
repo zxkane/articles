@@ -5,6 +5,7 @@ date: 2024-11-13
 lastmod: 2024-11-15
 draft: false
 thumbnail: ./images/cover.png
+exclude_from_recent: true
 usePageBundles: true
 codeMaxLines: 50
 codeLineNumbers: true
