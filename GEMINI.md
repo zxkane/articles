@@ -4,7 +4,7 @@ This file provides guidance to Gemini when working with code in this repository.
 
 ## Project Overview
 
-This is a personal technical blog (kane.mx) built with the [Hugo](https://gohugo.io/) static site generator. The site focuses on cloud computing, AI/ML, and software engineering topics. It uses the `hugo-clarity` theme, which has been customized for extensive SEO and performance optimizations. The blog supports both English and Chinese content.
+This is a personal technical blog (kane.mx) built with the [Hugo][hugo-url] static site generator. The site focuses on cloud computing, AI/ML, and software engineering topics. It uses the `hugo-clarity` theme, which has been customized for extensive SEO and performance optimizations. The blog supports both English and Chinese content.
 
 ## Building and Running
 
@@ -63,6 +63,12 @@ New posts should include comprehensive front matter for SEO and content manageme
     ```markdown
     [Link Text]({{< relref "../path/to/other-post/index.md" >}})
     ```
+*   Use reference-style links (footer annotations) for all external links to keep the content clean.
+    ```markdown
+    This is an example of an [external link][example-link].
+
+    [example-link]: https://example.com/
+    ```
 
 ### SEO and Performance
 
@@ -80,3 +86,5 @@ The site is automatically deployed to GitHub Pages on every push to the `master`
 3.  Running the image optimization script.
 4.  Building the Hugo site with minification.
 5.  Committing the generated `public` directory to the `zxkane.github.io` repository.
+
+[hugo-url]: https://gohugo.io/
