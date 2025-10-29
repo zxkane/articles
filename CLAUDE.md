@@ -106,6 +106,12 @@ series: series-name # For multi-part content
 - Link to official documentation and external resources
 - Use structured headings (H2, H3) for better SEO and readability
 - Include "Resources" section at the end with relevant links
+- Use reference-style links (footer annotations) for all external links to keep content clean:
+  ```markdown
+  This is an example of an [external link][example-link].
+
+  [example-link]: https://example.com/
+  ```
 
 ### SEO Optimization Standards
 
@@ -155,6 +161,39 @@ The blog implements comprehensive SEO optimizations (see `SEO_OPTIMIZATIONS.md`)
 
 ## Image Handling
 
+### Cover Image Generation
+
+Use the **canvas-design** skill to generate cover images for blog posts:
+
+```bash
+# Invoke the canvas-design skill
+/canvas-design
+
+# Provide a design brief:
+# - Post topic and key concepts
+# - Desired visual style (modern, technical, abstract)
+# - Color preferences (align with AWS/tech branding)
+# - Required dimensions: 1200x630px for social sharing
+```
+
+**Design Guidelines for Cover Images**:
+- **Style**: Modern, professional, tech-focused aesthetic
+- **Content**: Visual representation of the post's main concept
+- **Text**: Minimal or no text overlay (title is in metadata)
+- **Format**: PNG with high quality
+- **Dimensions**: 1200x630px (optimized for social media cards)
+- **File location**: Save to `./images/cover.png` in post directory
+
+**Example Design Brief**:
+```
+Create a cover image for a blog post about Amazon QuickSuite.
+- Theme: AI-powered business intelligence
+- Style: Modern, professional with AWS color palette
+- Elements: Abstract data visualization, AI brain/neural network motifs
+- Dimensions: 1200x630px
+- Format: PNG
+```
+
 ### Image Optimization
 - Use page bundles (`usePageBundles: true`) for posts with images
 - Store images in `./images/` relative to post
@@ -163,7 +202,7 @@ The blog implements comprehensive SEO optimizations (see `SEO_OPTIMIZATIONS.md`)
 - Optimize for lazy loading (already implemented site-wide)
 
 ### Image Best Practices
-- Cover images: 1200x630px for social sharing
+- Cover images: 1200x630px for social sharing (use canvas-design skill)
 - Thumbnails: 400x225px for homepage cards
 - Screenshots: Use high-resolution with proper compression
 - Diagrams: Prefer Mermaid or SVG for scalability
