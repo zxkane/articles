@@ -12,7 +12,7 @@ toc: true
 categories:
 - blogging
 isCJKLanguage: false
-featured: true
+featured: false
 tags:
 - Model Context Protocol
 - Amazon Nova

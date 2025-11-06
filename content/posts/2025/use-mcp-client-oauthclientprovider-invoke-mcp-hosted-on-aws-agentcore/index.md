@@ -5,7 +5,7 @@ date: 2025-09-04
 draft: false
 thumbnail: ../invoke-mcp-hosted-on-aws-agentcore/images/cover.png
 usePageBundles: true
-featured: true
+featured: false
 codeMaxLines: 70
 codeLineNumbers: true
 toc: true

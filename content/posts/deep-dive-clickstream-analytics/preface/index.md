@@ -14,7 +14,7 @@ isCJKLanguage: false
 showRelatedInArticle: false
 codeMaxLines: 50
 codeLineNumbers: true
-featured: true
+featured: false
 tags:
 - Clickstream Analytics
 - AWS

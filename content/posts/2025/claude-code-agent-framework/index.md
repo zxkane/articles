@@ -5,7 +5,7 @@ date: 2025-09-29
 draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
-featured: true
+featured: false
 codeMaxLines: 70
 codeLineNumbers: true
 toc: true

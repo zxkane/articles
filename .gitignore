@@ -69,3 +69,6 @@ public/
 # Claude code
 CLAUDE.local.md
 .claude/settings.local.json
+
+# playwright test results
+.playwright-mcp/
