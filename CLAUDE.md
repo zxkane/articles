@@ -133,6 +133,65 @@ The blog implements comprehensive SEO optimizations (see `SEO_OPTIMIZATIONS.md`)
 - [ ] Proper heading structure (H1 > H2 > H3)
 - [ ] Cover image optimized for social sharing
 
+### Content Optimization with Gemini CLI
+
+Use **gemini** (Gemini CLI) in headless mode to optimize blog post writing style based on guidelines in `GEMINI.md`:
+
+```bash
+# Create optimization prompt
+cat > /tmp/optimize_prompt.txt << 'EOF'
+You are optimizing a technical blog post for kane.mx based on these guidelines:
+
+GUIDELINES FROM GEMINI.MD:
+- SEO-friendly titles (under 60 characters)
+- Meta descriptions (120-155 characters)
+- Proper heading structure (H1, H2, H3)
+- Keyword-rich content
+- Professional technical writing style
+- Use reference-style links for external URLs
+- Clear, concise technical explanations
+
+CURRENT BLOG POST:
+EOF
+
+# Append the blog post content
+cat content/posts/YYYY/post-name/index.md >> /tmp/optimize_prompt.txt
+
+# Add task instructions
+cat >> /tmp/optimize_prompt.txt << 'EOF'
+
+TASK:
+Optimize this blog post's writing style to be:
+1. More professional and technically precise
+2. Better structured for SEO
+3. Clearer and more concise
+4. Following the blog's established style guidelines
+
+Return ONLY the optimized markdown content without any explanations or comments.
+EOF
+
+# Run gemini to optimize
+gemini --output-format text "$(cat /tmp/optimize_prompt.txt)" > /tmp/optimized_post.md
+
+# Extract clean content (skip error messages)
+tail -n +20 /tmp/optimized_post.md > content/posts/YYYY/post-name/index.md
+
+# Clean up
+rm /tmp/optimize_prompt.txt /tmp/optimized_post.md
+```
+
+**When to Use Gemini Optimization**:
+- After creating a new blog post draft
+- When refining technical explanations
+- To improve SEO optimization
+- For consistency with blog's writing style
+
+**Benefits**:
+- Professional technical writing style
+- Better SEO optimization
+- Improved clarity and structure
+- Consistent tone across posts
+
 ## Theme Configuration
 
 ### Hugo Clarity Theme
@@ -183,6 +242,13 @@ Use the **canvas-design** skill to generate cover images for blog posts:
 - **Format**: PNG with high quality
 - **Dimensions**: 1200x630px (optimized for social media cards)
 - **File location**: Save to `./images/cover.png` in post directory
+
+**Post-Generation Cleanup**:
+After the canvas-design skill generates the cover image, clean up the intermediate design philosophy file:
+```bash
+# Remove the design philosophy markdown file (not needed in final post)
+rm content/posts/YYYY/post-name/design-philosophy.md
+```
 
 **Example Design Brief**:
 ```
