@@ -6,7 +6,7 @@ lastmod: 2025-11-12
 draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
-featured: false
+featured: true
 codeMaxLines: 70
 codeLineNumbers: true
 toc: true
