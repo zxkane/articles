@@ -108,3 +108,21 @@ enable = false # to enable plausible analytics set to true.
 websiteDomain = "example.com" # domain name of your website, most cases same as your base url
 # plausibleDomain = "plausible.io" # default is set to plausible.io, only required if plausible is selfhosted
 # scritpName = "plausible" # default is set to plausible, only required if using a custome name for script
+
+[markdownExport]
+# Enable/disable "Copy as Markdown" button globally
+enable = true
+# Include front matter metadata in markdown export
+includeFrontMatter = true
+# Add source attribution link in exported markdown
+includeAttribution = true
+# Use reference-style links for cleaner markdown
+useReferenceLinks = true
+# Format style: "llm" (optimized for LLMs), "github", "plain"
+formatStyle = "llm"
+
+[github]
+# GitHub repository for source markdown files
+repo = "zxkane/articles"
+branch = "master"
+contentPath = "content"

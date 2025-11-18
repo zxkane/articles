@@ -3,3 +3,8 @@
 {{- partialCached "mermaid.html" . }}
 {{- partialCached "adsense.html" . }}
 {{- partial "json-ld.html" . }}
+{{- if .IsPage }}
+  <link rel="stylesheet" href="{{ "css/copy-markdown.css" | absURL }}">
+  <script src="https://cdn.jsdelivr.net/npm/turndown@7.2.0/dist/turndown.min.js" defer></script>
+  <script src="{{ "js/markdown-export.js" | absURL }}" defer></script>
+{{- end }}

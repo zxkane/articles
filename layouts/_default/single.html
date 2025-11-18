@@ -13,8 +13,16 @@
   <article class="post_content">
     {{- partial "breadcrumbs" . }}
     {{- $t := .Title }}
-    <h1 class="post_title">{{ $t | markdownify }}</h1>
+    <div class="post_header_wrapper">
+      <h1 class="post_title">{{ $t | markdownify }}</h1>
+      <div class="post_copy_desktop">
+        {{- partial "copy-markdown" . }}
+      </div>
+    </div>
     {{- partial "post-meta" . }}
+    <div class="post_copy_mobile">
+      {{- partial "copy-markdown" . }}
+    </div>
     {{- with .Params.featureImage -}}
       <div class="post_featured">
         {{- partial "image" (dict "file" $p.featureImage "alt" $p.featureImageAlt "cap" $p.featureImageCap "type" "featured" "Page" $.Page) }}
