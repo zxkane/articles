@@ -1,8 +1,8 @@
 ---
 title: "Xiaozhi ESP32 MCP Gateway with Amazon Bedrock AgentCore"
 description: "Build a unified MCP gateway for Xiaozhi ESP32 voice assistant using Amazon Bedrock AgentCore to aggregate multiple AI tools and APIs via WebSocket."
-date: 2025-01-17
-lastmod: 2025-01-17
+date: 2025-11-17
+lastmod: 2025-11-18
 draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
