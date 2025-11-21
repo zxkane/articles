@@ -70,7 +70,7 @@ Keycloak operates as containerized workloads on AWS Fargate, offering managed co
 
 Amazon Aurora provides a highly available, scalable PostgreSQL-compatible database backend:
 
--   **Database Engine**: PostgreSQL 15, a prerequisite for Keycloak 26.4.4.
+-   **Database Engine**: PostgreSQL 16 (Keycloak 26.4.4 requires PostgreSQL 13+ minimum, 16.8 recommended).
 -   **Scalability**: Aurora Serverless v2, featuring configurable capacity and auto-scaling.
 -   **High Availability**: Multi-AZ deployment with automatic failover mechanisms.
 -   **Security**: Data encryption at rest and automated backup procedures.
@@ -535,7 +535,7 @@ module "aurora_postgresql" {
 
   name           = "keycloak-db"
   engine         = "aurora-postgresql"
-  engine_version = "15.4"
+  engine_version = "16.8"
   instance_class = "db.serverless"
   instances = {
     one = {}
@@ -663,7 +663,7 @@ domain_name         = "auth.example.com"
 # Database configuration
 db_instance_class   = "db.serverless"
 db_allocated_storage = 20
-db_engine_version   = "15.4"
+db_engine_version   = "16.8"
 
 # Aurora Serverless v2 scaling
 aurora_serverless_min_capacity = 0.5
@@ -740,7 +740,7 @@ Log in to the Keycloak admin console to verify the deployment's integrity.
 cd mcp-oauth
 
 # Auto-generate configuration from parent deployment
-./init-from-parent.sh --gateway-url "https://mcp-server.example.com/mcp"
+./init-from-parent.sh --mcp-server-url "https://mcp-server.example.com/mcp"
 
 # Review generated terraform.tfvars
 cat terraform.tfvars
