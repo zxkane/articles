@@ -2,7 +2,7 @@
 title: "Technical Deconstruction of MCP Authorization: A Deep Dive into OAuth 2.1 and IETF RFC Specifications"
 description: "A comprehensive technical analysis of the Model Context Protocol (MCP) authorization flow, exploring its foundation in OAuth 2.1 and critical IETF RFC specifications including PKCE, JWT, Resource Indicators, and Protected Resource Metadata."
 date: 2025-11-12
-lastmod: 2025-11-12
+lastmod: 2025-11-21
 draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
@@ -420,6 +420,8 @@ The Google Identity Platform is **incompatible and highly proprietary**. It does
 
 This open-source project is **partially compliant**. It offers excellent, extensible support for DCR but does not support RFC 8707 out-of-the-box. This is a known issue with active development. The established workaround is to use Keycloak's proprietary `audience` parameter and configure a custom "Audience Mapper."
 
+For a complete implementation guide showing how to deploy Keycloak on AWS with full MCP OAuth 2.1 support—including the audience mapper workaround, JDBC_PING clustering for zero-downtime deployments, and automated Terraform orchestration—see [Implementing MCP OAuth 2.1 with Keycloak on AWS][keycloak-mcp-implementation]. The guide provides infrastructure code, step-by-step deployment instructions, and detailed configuration examples for making Keycloak compatible with MCP clients through realm default scopes and protocol mappers.
+
 ### Ping Identity (PingFederate)
 
 Ping Identity is the **most compliant provider on this list**. Its platform offers mature, robust support for RFC 7591 (DCR) and, as of version 12.1, provides full, standards-compliant support for RFC 8707 (Resource Indicators).
@@ -456,8 +458,9 @@ As a newer open-source platform, Zitadel is **not yet compliant with the MCP flo
 
 ### Related Articles
 
-- [Building an MCP Agentic Chatbot on AWS]({{< relref "/posts/2025/build-agentic-chatbot-on-aws/index.md" >}}): My previous exploration of MCP server implementation
-- [Using MCP Client OAuthClientProvider with AWS Agentcore]({{< relref "/posts/2025/use-mcp-client-oauthclientprovider-invoke-mcp-hosted-on-aws-agentcore/index.md" >}}): Practical implementation of MCP OAuth client patterns
+- [Building an MCP Agentic Chatbot on AWS][mcp-agentic-chatbot]: My previous exploration of MCP server implementation
+- [Using MCP Client OAuthClientProvider with AWS Agentcore][mcp-oauth-client-provider]: Practical implementation of MCP OAuth client patterns
+- [Implementing MCP OAuth 2.1 with Keycloak on AWS][keycloak-mcp-implementation]: Complete guide to configuring Keycloak as an MCP-compatible authorization server
 
 ---
 
@@ -480,6 +483,7 @@ As a newer open-source platform, Zitadel is **not yet compliant with the MCP flo
 
 ---
 
+<!-- OAuth and RFC Specifications -->
 [rfc-6749]: https://tools.ietf.org/html/rfc6749
 [rfc-6750]: https://tools.ietf.org/html/rfc6750
 [rfc-7636]: https://tools.ietf.org/html/rfc7636
@@ -490,5 +494,12 @@ As a newer open-source platform, Zitadel is **not yet compliant with the MCP flo
 [rfc-9728]: https://tools.ietf.org/html/rfc9728
 [rfc-9700]: https://tools.ietf.org/html/rfc9700
 [oauth-2-1-draft]: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-14
+
+<!-- MCP Specifications -->
 [mcp-spec]: https://spec.modelcontextprotocol.io/
 [mcp-auth-docs]: https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization
+
+<!-- Related Articles (Internal Links) -->
+[keycloak-mcp-implementation]: {{< relref "/posts/2025/deploy-keycloak-aws-mcp-oauth/index.md" >}}
+[mcp-agentic-chatbot]: {{< relref "/posts/2025/build-agentic-chatbot-on-aws/index.md" >}}
+[mcp-oauth-client-provider]: {{< relref "/posts/2025/use-mcp-client-oauthclientprovider-invoke-mcp-hosted-on-aws-agentcore/index.md" >}}

@@ -106,12 +106,57 @@ series: series-name # For multi-part content
 - Link to official documentation and external resources
 - Use structured headings (H2, H3) for better SEO and readability
 - Include "Resources" section at the end with relevant links
-- Use reference-style links (footer annotations) for all external links to keep content clean:
-  ```markdown
-  This is an example of an [external link][example-link].
+- **Reference-Style Links**: Use reference-style links (footer annotations) for ALL links (both external URLs and internal Hugo relref) to keep content clean and maintainable
 
-  [example-link]: https://example.com/
-  ```
+#### Reference-Style Link Guidelines
+
+**Format**: All links should use `[link text][reference-id]` in content, with definitions at the end of the document.
+
+**External Links** (URLs):
+```markdown
+For detailed information, see the [AWS documentation][aws-docs].
+
+<!-- At end of document -->
+[aws-docs]: https://docs.aws.amazon.com/
+```
+
+**Internal Links** (Hugo relref):
+```markdown
+See my previous post on [MCP Authorization][mcp-oauth-guide].
+
+<!-- At end of document -->
+[mcp-oauth-guide]: {{< relref "/posts/2025/post-name/index.md" >}}
+```
+
+**Link Organization at Document End**:
+
+Organize all reference links by category with HTML comments for clarity:
+
+```markdown
+---
+
+<!-- OAuth and RFC Specifications -->
+[rfc-7636]: https://datatracker.ietf.org/doc/html/rfc7636
+[rfc-8707]: https://datatracker.ietf.org/doc/html/rfc8707
+
+<!-- Official Documentation -->
+[keycloak-docs]: https://www.keycloak.org/documentation
+[aws-docs]: https://docs.aws.amazon.com/
+
+<!-- GitHub Repository -->
+[project-repo]: https://github.com/username/repository
+
+<!-- Related Articles (Internal Links) -->
+[mcp-oauth-guide]: {{< relref "/posts/2025/mcp-oauth/index.md" >}}
+[other-post]: {{< relref "/posts/2025/other-post/index.md" >}}
+```
+
+**Benefits**:
+- Clean, readable content without inline URLs
+- Single source of truth for all links
+- Easy to update URLs in one place
+- Clear organization by category
+- Works for both external URLs and internal Hugo links
 
 ### SEO Optimization Standards
 
@@ -170,8 +215,8 @@ Optimize this blog post's writing style to be:
 Return ONLY the optimized markdown content without any explanations or comments.
 EOF
 
-# Run gemini to optimize
-gemini --output-format text "$(cat /tmp/optimize_prompt.txt)" > /tmp/optimized_post.md
+# Run gemini to optimize (with 16GB memory and latest flash model)
+NODE_OPTIONS="--max-old-space-size=16384" gemini --model gemini-2.5-flash --output-format text "$(cat /tmp/optimize_prompt.txt)" > /tmp/optimized_post.md
 
 # Extract clean content (skip error messages)
 tail -n +20 /tmp/optimized_post.md > content/posts/YYYY/post-name/index.md
