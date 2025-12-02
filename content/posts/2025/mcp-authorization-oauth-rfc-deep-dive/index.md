@@ -2,7 +2,7 @@
 title: "Technical Deconstruction of MCP Authorization: A Deep Dive into OAuth 2.1 and IETF RFC Specifications"
 description: "A comprehensive technical analysis of the Model Context Protocol (MCP) authorization flow, exploring its foundation in OAuth 2.1 and critical IETF RFC specifications including PKCE, JWT, Resource Indicators, and Protected Resource Metadata."
 date: 2025-11-12
-lastmod: 2025-11-21
+lastmod: 2025-12-02
 draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
@@ -458,6 +458,7 @@ As a newer open-source platform, Zitadel is **not yet compliant with the MCP flo
 
 ### Related Articles
 
+- [MCP OAuth Evolution: SEP-991 Simplifies Client Registration][sep-991-post]: How Client ID Metadata Documents replace Dynamic Client Registration **[NEW]**
 - [Building an MCP Agentic Chatbot on AWS][mcp-agentic-chatbot]: My previous exploration of MCP server implementation
 - [Using MCP Client OAuthClientProvider with AWS Agentcore][mcp-oauth-client-provider]: Practical implementation of MCP OAuth client patterns
 - [Implementing MCP OAuth 2.1 with Keycloak on AWS][keycloak-mcp-implementation]: Complete guide to configuring Keycloak as an MCP-compatible authorization server
@@ -500,6 +501,7 @@ As a newer open-source platform, Zitadel is **not yet compliant with the MCP flo
 [mcp-auth-docs]: https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization
 
 <!-- Related Articles (Internal Links) -->
+[sep-991-post]: {{< relref "/posts/2025/mcp-oauth-sep-991-simplified-registration/index.md" >}}
 [keycloak-mcp-implementation]: {{< relref "/posts/2025/deploy-keycloak-aws-mcp-oauth/index.md" >}}
 [mcp-agentic-chatbot]: {{< relref "/posts/2025/build-agentic-chatbot-on-aws/index.md" >}}
 [mcp-oauth-client-provider]: {{< relref "/posts/2025/use-mcp-client-oauthclientprovider-invoke-mcp-hosted-on-aws-agentcore/index.md" >}}
