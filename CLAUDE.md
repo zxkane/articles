@@ -267,43 +267,62 @@ rm /tmp/optimize_prompt.txt /tmp/optimized_post.md
 
 ### Cover Image Generation
 
-Use the **canvas-design** skill to generate cover images for blog posts:
+**MANDATORY**: Use the **canvas-design** skill for ALL cover image creation. This ensures consistent, museum-quality craftsmanship across all blog posts.
 
-```bash
-# Invoke the canvas-design skill
-/canvas-design
+Skills are **model-invoked** - Claude automatically decides when to use them based on context. To trigger the canvas-design skill, simply ask Claude to create a cover image with a detailed design brief.
 
-# Provide a design brief:
-# - Post topic and key concepts
-# - Desired visual style (modern, technical, abstract)
-# - Color preferences (align with AWS/tech branding)
-# - Required dimensions: 1200x630px for social sharing
+#### Design Brief Template
+
+When requesting a cover image, provide:
+- **Post topic**: Main subject and key concepts
+- **Visual style**: Light theme (preferred), modern, technical
+- **Key elements**: What should be visually represented (terminal, notification, flow diagram, etc.)
+- **Dimensions**: 1200x630px for social sharing
+
+#### Example Design Brief
+
+```
+Create a cover image for a blog post about Claude Code notification hooks.
+
+Topic: Desktop notifications via OSC escape sequences for VSCode Remote SSH
+Style: Light theme, technical but sophisticated, museum-quality craftsmanship
+Key elements:
+- Terminal window showing Claude Code execution (left)
+- Signal flow with OSC 777 label (center)
+- Desktop notification popup (right)
+- Flow diagram at bottom: Claude Code → Hook → OSC → SSH → Desktop
+Colors: Blue (#2563eb) for signals, green (#16a34a) for success, white background
 ```
 
-**Design Guidelines for Cover Images**:
-- **Style**: Modern, professional, tech-focused aesthetic
-- **Content**: Visual representation of the post's main concept
-- **Text**: Minimal or no text overlay (title is in metadata)
-- **Format**: PNG with high quality
-- **Dimensions**: 1200x630px (optimized for social media cards)
-- **File location**: Save to `./images/cover.png` in post directory
+#### Post-Generation Requirements
 
-**Post-Generation Cleanup**:
-After the canvas-design skill generates the cover image, clean up the intermediate design philosophy file:
+1. **Review the output** - Ensure thumbnail visibility at small sizes
+2. **Request light theme** if dark theme is generated
+3. **Clean up temporary files**:
 ```bash
-# Remove the design philosophy markdown file (not needed in final post)
+# Remove the design philosophy markdown file
 rm content/posts/YYYY/post-name/design-philosophy.md
 ```
 
-**Example Design Brief**:
-```
-Create a cover image for a blog post about Amazon QuickSuite.
-- Theme: AI-powered business intelligence
-- Style: Modern, professional with AWS color palette
-- Elements: Abstract data visualization, AI brain/neural network motifs
-- Dimensions: 1200x630px
-- Format: PNG
-```
+#### Design Guidelines
+
+- **Theme**: Light background (white/off-white) preferred
+- **Style**: Modern, professional, tech-focused aesthetic
+- **Content**: Visual representation of the post's main concept
+- **Text**: Minimal - only essential labels, no paragraphs
+- **Format**: PNG with high quality
+- **Dimensions**: 1200x630px (optimized for social media cards)
+- **File location**: Save to `./images/cover.png` in post directory
+- **Thumbnail test**: Preview at 400x225px to ensure readability
+
+#### Thumbnail Optimization
+
+The canvas-design skill should produce images that:
+- Use **large, bold visual elements** visible at small sizes
+- Keep **text minimal and large** (labels only)
+- Use **high contrast colors** for key elements
+- Include **flow diagrams** to explain technical concepts
+- Avoid fine details that disappear when scaled down
 
 ### Image Optimization
 - Use page bundles (`usePageBundles: true`) for posts with images
@@ -314,7 +333,7 @@ Create a cover image for a blog post about Amazon QuickSuite.
 
 ### Image Best Practices
 - Cover images: 1200x630px for social sharing (use canvas-design skill)
-- Thumbnails: 400x225px for homepage cards
+- Thumbnails: 400x225px for homepage cards - always test cover at this size
 - Screenshots: Use high-resolution with proper compression
 - Diagrams: Prefer Mermaid or SVG for scalability
 
