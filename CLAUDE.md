@@ -81,6 +81,15 @@ series: series-name # For multi-part content
 ---
 ```
 
+### Date and Directory Guidelines
+
+**IMPORTANT**: Before creating a new post:
+1. **Check the current date** from the environment context (provided in system prompt as "Today's date")
+2. **Use the correct year** for both the `date` field in front matter AND the directory path (`content/posts/YYYY/`)
+3. **Set `lastmod`** to the same date as `date` for new posts
+
+Example: If today is 2026-01-15, create the post in `content/posts/2026/post-name/` with `date: 2026-01-15`.
+
 ### Writing Style Guidelines
 
 #### Technical Content Structure
