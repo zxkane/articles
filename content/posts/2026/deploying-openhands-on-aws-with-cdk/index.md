@@ -2,7 +2,7 @@
 title: "Deploying OpenHands AI Platform on AWS with CDK"
 description: "An AWS CDK project that extends OpenHands from a local development tool to a multi-user, self-healing deployment on AWS with Cognito authentication and persistent storage"
 date: 2026-01-26
-lastmod: 2026-01-26
+lastmod: 2026-01-27
 draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
@@ -22,6 +22,8 @@ tags:
 - CloudFront
 - Cognito
 - Aurora PostgreSQL
+- Devin Alternative
+- Self-Hosted AI
 keywords:
 - OpenHands AWS deployment
 - AI development platform infrastructure
@@ -29,11 +31,40 @@ keywords:
 - Self-healing architecture
 - Cognito Lambda Edge authentication
 - Aurora Serverless v2
+- Devin alternative self-hosted
+- OpenAI Codex alternative
+- autonomous AI coding agent
+- self-hosted AI development platform
 ---
 
 [OpenHands][openhands-github] is an open-source AI-driven development platform that enables AI agents to write code, fix bugs, and execute complex development tasks autonomously. The default setup works well for local development, but what if you want to run it for a team or make it accessible from anywhere?
 
 This post introduces an [AWS CDK project][openhands-infra-repo] that extends OpenHands beyond single-user local usage. It adds multi-user authentication, persistent storage, and automatic recovery capabilities—transforming OpenHands into a shared service that your team can access from anywhere.
+
+## The Rise of Cloud-Based AI Coding Agents
+
+The AI coding landscape has evolved rapidly. While IDE-integrated tools like GitHub Copilot focus on code completion, a new category of **autonomous AI coding agents** has emerged—platforms that can independently plan, write, test, and deploy code with minimal human intervention.
+
+**Commercial cloud platforms** now offer managed AI coding experiences:
+
+- **[Devin][devin]** (Cognition AI): The first widely-known autonomous AI software engineer, handling complete tasks from planning to deployment
+- **[Claude Code][claude-code]**: Anthropic's agentic coding tool that runs in your terminal, with Claude.ai offering [Artifacts][claude-artifacts] for interactive code generation
+- **[OpenAI Codex][openai-codex]**: OpenAI's cloud-based coding agent running in sandboxed environments with GitHub integration
+- **[v0][v0-vercel]** (Vercel): Cloud-based platform for generating full-stack applications with one-click deployment
+
+These platforms provide convenience but come with trade-offs: **vendor lock-in**, **data privacy concerns**, **limited customization**, and **recurring subscription costs**.
+
+**Why self-host OpenHands?**
+
+| Consideration | Cloud Platforms | Self-Hosted OpenHands |
+|--------------|-----------------|----------------------|
+| Data privacy | Data processed by third parties | Your data stays in your AWS account |
+| Customization | Limited to vendor features | Full control over configuration |
+| Cost model | Per-seat subscription | Infrastructure cost (scales with usage) |
+| LLM choice | Vendor-selected models | Any model (Bedrock, OpenAI, local) |
+| Integration | Vendor-provided integrations | Custom integrations via API |
+
+For organizations with strict compliance requirements, existing AWS infrastructure, or teams that prefer open-source solutions, self-hosting OpenHands provides the autonomous coding capabilities without the constraints of commercial platforms.
 
 <!--more-->
 
@@ -266,3 +297,10 @@ The cost is higher than running locally, but provides:
 <!-- Official Documentation -->
 [openhands-docs]: https://docs.all-hands.dev/
 [aws-cdk-docs]: https://docs.aws.amazon.com/cdk/latest/guide/
+
+<!-- Cloud AI Coding Platforms -->
+[devin]: https://devin.ai/
+[claude-code]: https://docs.anthropic.com/en/docs/claude-code
+[claude-artifacts]: https://support.anthropic.com/en/articles/9487310-what-are-artifacts-and-how-do-i-use-them
+[openai-codex]: https://openai.com/codex
+[v0-vercel]: https://v0.dev/

@@ -1,0 +1,32 @@
+{
+  "enabledPlugins": {
+    "seo-technical-optimization@claude-code-workflows": true,
+    "seo-analysis-monitoring@claude-code-workflows": true
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/check-seo-optimization.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/post-commit-clear.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
