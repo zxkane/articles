@@ -1,8 +1,4 @@
 {
-  "enabledPlugins": {
-    "seo-technical-optimization@claude-code-workflows": true,
-    "seo-analysis-monitoring@claude-code-workflows": true
-  },
   "hooks": {
     "PreToolUse": [
       {
@@ -28,5 +24,10 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "seo-technical-optimization@claude-code-workflows": true,
+    "seo-analysis-monitoring@claude-code-workflows": true,
+    "seo-content-creation@claude-code-workflows": true
   }
 }
