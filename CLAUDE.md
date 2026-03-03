@@ -117,6 +117,26 @@ Example: If today is 2026-01-15, create the post in `content/posts/2026/post-nam
 - Include "Resources" section at the end with relevant links
 - **Reference-Style Links**: Use reference-style links (footer annotations) for ALL links (both external URLs and internal Hugo relref) to keep content clean and maintainable
 
+#### Mermaid Diagram Guidelines
+
+The hugo-clarity theme uses mermaid v11. Avoid syntax that causes rendering failures:
+
+**Do NOT use in node labels:**
+- HTML tags like `<br/>` — use shorter plain text labels instead
+- `@` symbol — write `Lambda Edge` not `Lambda@Edge`
+- Unicode special characters (e.g., `✗`) — use mermaid's built-in `-.-x` for crossed links
+- Quoted strings with HTML — `["App Service<br/>(Fargate)"]` will fail
+
+**Safe patterns:**
+```mermaid
+flowchart LR
+    A[Simple Label] --> B[Another Label]
+    B -->|description| C[Third Node]
+    C -.-x D[Blocked]
+```
+
+**Always verify** Mermaid diagrams render correctly using the Hugo server + Chrome DevTools workflow below.
+
 #### Reference-Style Link Guidelines
 
 **Format**: All links should use `[link text][reference-id]` in content, with definitions at the end of the document.
@@ -245,6 +265,43 @@ rm /tmp/optimize_prompt.txt /tmp/optimized_post.md
 - Better SEO optimization
 - Improved clarity and structure
 - Consistent tone across posts
+
+### Post Verification with Hugo Server + Chrome DevTools
+
+**MANDATORY**: After writing or modifying a blog post, verify rendering using the local Hugo server and Chrome DevTools MCP. This catches Mermaid diagram errors, broken layouts, and rendering issues that `hugo --minify` alone cannot detect.
+
+#### Verification Workflow
+
+```bash
+# 1. Start Hugo dev server (use available port)
+hugo server -D --port 1315 --bind 0.0.0.0 &
+```
+
+Then use Chrome DevTools MCP tools to verify:
+
+1. **Navigate** to the post URL with `navigate_page`
+2. **Check console errors** with `list_console_messages` (filter `types: ["error"]`)
+3. **Verify Mermaid diagrams** — evaluate JS to check all `.mermaid` elements have rendered SVGs and no "Syntax error" text:
+   ```javascript
+   // Check all mermaid diagrams rendered
+   document.querySelectorAll('.mermaid').forEach(el => {
+     console.log(el.querySelector('svg') !== null, el.textContent.includes('Syntax error'));
+   });
+   ```
+4. **Take screenshots** of key sections with `take_screenshot` to visually confirm layout
+5. **Scroll to specific sections** (tables, diagrams, code blocks) and screenshot each
+
+#### When to Run Verification
+- After creating a new post (before committing)
+- After Gemini CLI optimization (may alter Mermaid syntax)
+- After any edit to Mermaid diagrams
+- Before final commit of a post
+
+#### Cleanup
+```bash
+# Stop Hugo server when done
+kill %1  # or find and kill the hugo process
+```
 
 ## Theme Configuration
 
