@@ -70,6 +70,11 @@ public/
 CLAUDE.local.md
 .claude/settings.local.json
 .claude/state/
+.claude/skills/
+.claude/*.lock
+
+# Agent skills (restored via: npx skills experimental_install)
+.agents/
 
 # playwright test results
 .playwright-mcp/
