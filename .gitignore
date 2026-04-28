@@ -78,3 +78,6 @@ CLAUDE.local.md
 
 # playwright test results
 .playwright-mcp/
+
+# Superpowers workflow artifacts (specs, plans, local scratch)
+docs/superpowers/
