@@ -179,26 +179,28 @@ aside .nav-link {
   text-decoration: none;
 }
 
-/* Accessibility: strengthen syntax-highlight contrast for hljs classes that
-   ship with too-low luminance by default (fails WCAG AA on white bg) */
-.post_body .hljs-built_in { color: #0b5d63; }
-.post_body .hljs-comment,
-.post_body .hljs-quote { color: #5a6470; font-style: italic; }
-.post_body .nv,
-.post_body .hljs-variable { color: #a03a00; }
-.post_body .nb,
-.post_body .hljs-name { color: #0b5d63; }
-:root[data-mode="dim"] .post_body .hljs-built_in,
-body.dark .post_body .hljs-built_in { color: #7fd8df; }
-:root[data-mode="dim"] .post_body .hljs-comment,
-:root[data-mode="dim"] .post_body .hljs-quote,
-body.dark .post_body .hljs-comment,
-body.dark .post_body .hljs-quote { color: #a0a7b4; }
-:root[data-mode="dim"] .post_body .nv,
-:root[data-mode="dim"] .post_body .hljs-variable,
-body.dark .post_body .nv,
-body.dark .post_body .hljs-variable { color: #ffb084; }
-:root[data-mode="dim"] .post_body .nb,
-:root[data-mode="dim"] .post_body .hljs-name,
-body.dark .post_body .nb,
-body.dark .post_body .hljs-name { color: #7fd8df; }
+/* Accessibility: give div.highlight the same dark bg as its pre child so the
+   a11y checker walks up to a correct ancestor color instead of assuming white,
+   then brighten low-luminance hljs tokens that would otherwise fail contrast. */
+/* Set dark background explicitly on every level of the code-block hierarchy
+   so axe-core's contrast check walks a solid ancestor chain. Colors chosen
+   to exceed WCAG AA 4.5:1 against #002538. */
+.post_body div.highlight,
+.post_body div.highlight pre,
+.post_body div.highlight pre code,
+.highlight_wrap > div.highlight {
+  background-color: #002538;
+}
+.post_body div.highlight,
+.post_body div.highlight pre,
+.post_body div.highlight pre code { color: #e6edf3; }
+.post_body div.highlight .hljs-built_in,
+.post_body div.highlight .nb,
+.post_body div.highlight .hljs-name { color: #7fd8df; }
+.post_body div.highlight .hljs-comment,
+.post_body div.highlight .hljs-quote { color: #a8b0bc; font-style: italic; }
+.post_body div.highlight .nv,
+.post_body div.highlight .hljs-variable { color: #ffb084; }
+.post_body div.highlight .s1,
+.post_body div.highlight .s2,
+.post_body div.highlight .hljs-string { color: #b5e28c; }
