@@ -1,3 +1,5 @@
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="modulepreload" href="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs">
 <script type="module">
   const CDN = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
@@ -12,22 +14,50 @@
     return document.body && document.body.classList.contains('dark') ? 'dark' : 'default';
   }
 
-  import(CDN).then(({ default: mermaid }) => {
-    function render() {
+  let loaded = null;
+  function loadMermaid() {
+    if (!loaded) loaded = import(CDN);
+    return loaded;
+  }
+
+  async function render() {
+    try {
+      const { default: mermaid } = await loadMermaid();
       mermaid.initialize({ startOnLoad: false, theme: theme() });
-      mermaid.run({ querySelector: '.mermaid, pre.mermaid' })
-        .catch(err => console.error('[mermaid] render failed:', err));
+      await mermaid.run({ querySelector: '.mermaid, pre.mermaid' });
+    } catch (err) {
+      markFailed(err);
     }
-    render();
-    document.addEventListener('themeChanged', () => {
-      document.querySelectorAll('.mermaid, pre.mermaid').forEach(el => {
-        const src = el.getAttribute('data-source');
-        if (src) {
-          el.removeAttribute('data-processed');
-          el.textContent = src;
+  }
+
+  function scheduleRender() {
+    if (!('IntersectionObserver' in window)) { render(); return; }
+    const io = new IntersectionObserver((entries, obs) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          obs.disconnect();
+          render();
+          return;
         }
-      });
-      render();
+      }
+    }, { rootMargin: '400px' });
+    document.querySelectorAll('.mermaid, pre.mermaid').forEach(el => io.observe(el));
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', scheduleRender);
+  } else {
+    scheduleRender();
+  }
+
+  document.addEventListener('themeChanged', async () => {
+    document.querySelectorAll('.mermaid, pre.mermaid').forEach(el => {
+      const src = el.getAttribute('data-source');
+      if (src) {
+        el.removeAttribute('data-processed');
+        el.textContent = src;
+      }
     });
-  }).catch(markFailed);
+    render();
+  });
 </script>

@@ -18,7 +18,7 @@
       {{- end }}
       {{- if $showAuthorPhoto }}
         <div class="author_header">
-          <img src="{{ absURL $author.photo }}" alt="{{ $author.name }} photo">
+          <img src="{{ absURL $author.photo }}" alt="{{ $author.name }} photo" width="32" height="32" loading="lazy" decoding="async">
           <h2>{{  $author.name }}</h2>
         </div>
       {{- else }}

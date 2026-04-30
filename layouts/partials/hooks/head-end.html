@@ -2,5 +2,6 @@
 {{- partialCached "adsense.html" . }}
 {{- partial "json-ld.html" . }}
 {{- if .IsPage }}
-  <link rel="stylesheet" href="{{ "css/copy-markdown.css" | absURL }}">
+  {{- $copyCSS := resources.Get "css/copy-markdown.css" | resources.Minify | resources.Fingerprint "sha512" }}
+  <link rel="stylesheet" href="{{ $copyCSS.Permalink }}" integrity="{{ $copyCSS.Data.Integrity }}" crossorigin="anonymous">
 {{- end }}
