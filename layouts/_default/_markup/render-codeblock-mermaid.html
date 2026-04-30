@@ -1,6 +1,14 @@
 <style>
 pre.mermaid {
   background-color: #ffffff;
+  contain: layout;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 200px;
+}
+pre.mermaid.mermaid-failed {
+  padding: 0.75rem;
+  font-family: monospace;
+  white-space: pre-wrap;
 }
 :root[data-mode="dim"] pre.mermaid,
 body.dark pre.mermaid {

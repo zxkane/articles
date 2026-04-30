@@ -1,4 +1,15 @@
 {{- with site.Params.adsense }}
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .publisher }}"
-     crossorigin="anonymous"></script>
+<script>
+  (function () {
+    function load() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.crossOrigin = 'anonymous';
+      s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ .publisher }}';
+      document.head.appendChild(s);
+    }
+    if (document.readyState === 'complete') load();
+    else window.addEventListener('load', load);
+  })();
+</script>
 {{- end }}

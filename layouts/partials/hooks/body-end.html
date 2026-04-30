@@ -1,0 +1,10 @@
+{{- /* Lazy-load Mermaid only on pages that actually contain a diagram. */ -}}
+{{- if .Page.Store.Get "hasMermaid" }}
+  {{- partial "mermaid.html" . }}
+{{- end }}
+
+{{- /* Defer markdown export only on article pages. */ -}}
+{{- if .IsPage }}
+<script src="https://cdn.jsdelivr.net/npm/turndown@7.2.0/dist/turndown.min.js" defer></script>
+<script src="{{ "js/markdown-export.js" | absURL }}" defer></script>
+{{- end }}

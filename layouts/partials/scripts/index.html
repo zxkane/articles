@@ -1,0 +1,8 @@
+{{- $bundle := partialCached "func/getJavascriptBundle" . }}
+<script defer src="{{ $bundle.Permalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- partial "search/scripts" . }}
+{{- with site.Params.customJS }}
+  {{- range . -}}
+  <script defer src="{{ relURL . }}"></script>
+  {{- end }}
+{{- end }}

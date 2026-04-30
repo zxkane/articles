@@ -1,36 +1,33 @@
-<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-<script>
-  function updateMermaidConfig() {
-    const isDark = document.body && document.body.classList.contains('dark');
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: isDark ? 'dark' : 'default',
-      themeVariables: {
-        background: isDark ? '#252a33' : '#ffffff',
-        primaryColor: isDark ? '#252a33' : '#ffffff',
-        secondaryColor: isDark ? '#252a33' : '#ffffff'
-      }
+<script type="module">
+  const CDN = 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+  function markFailed(err) {
+    console.error('[mermaid] unavailable:', err);
+    document.querySelectorAll('.mermaid, pre.mermaid').forEach(el => {
+      el.classList.add('mermaid-failed');
     });
   }
 
-  // Wait for DOM to be ready before initial configuration
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', updateMermaidConfig);
-  } else {
-    updateMermaidConfig();
+  function theme() {
+    return document.body && document.body.classList.contains('dark') ? 'dark' : 'default';
   }
 
-  // Update on theme change
-  document.addEventListener('themeChanged', function(e) {
-    updateMermaidConfig();
-    // Force redraw all diagrams
-    document.querySelectorAll('.mermaid').forEach(el => {
-      const content = el.getAttribute('data-source');
-      if (content) {
-        el.removeAttribute('data-processed');
-        el.innerHTML = content;
-        mermaid.init(undefined, el);
-      }
+  import(CDN).then(({ default: mermaid }) => {
+    function render() {
+      mermaid.initialize({ startOnLoad: false, theme: theme() });
+      mermaid.run({ querySelector: '.mermaid, pre.mermaid' })
+        .catch(err => console.error('[mermaid] render failed:', err));
+    }
+    render();
+    document.addEventListener('themeChanged', () => {
+      document.querySelectorAll('.mermaid, pre.mermaid').forEach(el => {
+        const src = el.getAttribute('data-source');
+        if (src) {
+          el.removeAttribute('data-processed');
+          el.textContent = src;
+        }
+      });
+      render();
     });
-  });
+  }).catch(markFailed);
 </script>

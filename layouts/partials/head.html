@@ -74,33 +74,20 @@
   {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
 {{ end -}}
 
-<!-- Performance Optimizations -->
-<!-- DNS prefetch for external domains -->
-<link rel="dns-prefetch" href="//fonts.googleapis.com">
-<link rel="dns-prefetch" href="//fonts.gstatic.com">
-<link rel="dns-prefetch" href="//www.google-analytics.com">
+<!-- Performance: DNS prefetch / preconnect for third-party origins actually used -->
+{{- if $params.ga_analytics }}
 <link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+{{- end }}
+{{- if $params.adsense.publisher }}
 <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+{{- end }}
 
-<!-- Preconnect to critical domains -->
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Resource hints for better performance -->
-<link rel="prefetch" href="/posts/">
-<link rel="prefetch" href="/about/">
-
-<!-- preload assets declaration -->
-<!-- preload main css file -->
+<!-- Preload main css (render-critical) -->
 {{ $styles := partialCached "func/getStylesBundle" . }}
-<link rel="preload" href="{{ $styles.Permalink }}" integrity = "{{ $styles.Data.Integrity }}" as="style" crossorigin="anonymous">
+<link rel="preload" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}" as="style" crossorigin="anonymous">
 
-<!-- preload main javascript file -->
-{{ $bundle := partialCached "func/getJavascriptBundle" . }}
-<link rel="preload" href="{{ $bundle.Permalink }}" as="script" integrity=
-"{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
-
-<!-- Preload critical fonts if any -->
+<!-- Preload custom fonts if configured -->
 {{- if $params.customFonts }}
 <link rel="preload" href="/fonts/primary.woff2" as="font" type="font/woff2" crossorigin>
 {{- end }}
