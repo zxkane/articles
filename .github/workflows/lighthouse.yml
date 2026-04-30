@@ -5,17 +5,20 @@ on:
     branches: [master]
   push:
     branches: [master]
+  schedule:
+    - cron: '0 3 * * 1'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: lighthouse-${{ github.ref }}
+  group: lighthouse-${{ github.ref }}-${{ github.event_name }}
   cancel-in-progress: true
 
 jobs:
-  lighthouse:
+  lighthouse-build:
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -57,3 +60,28 @@ jobs:
           name: lighthouse-reports
           path: .lighthouseci
           retention-days: 14
+
+  lighthouse-prod:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.14.x
+
+      - name: Run Lighthouse CI against kane.mx
+        run: lhci autorun --config=.lighthouserc.prod.json
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports-prod
+          path: .lighthouseci
+          retention-days: 90
