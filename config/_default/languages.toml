@@ -2,3 +2,8 @@
   title = "The road"
   LanguageName = "English"
   weight = 0
+
+[zh]
+  title = "生活在路上"
+  LanguageName = "中文"
+  weight = 10

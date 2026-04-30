@@ -78,3 +78,81 @@
 .no-webp .optimized-image source[type="image/webp"] {
   display: none;
 }
+
+/* Accessibility: strengthen tag button contrast (theme uses alpha 0.15 which fails WCAG AA) */
+.post_tag.button_translucent,
+.post_tag.button_translucent:link,
+.post_tag.button_translucent:visited {
+  color: #0a3d6d;
+  background-color: rgba(10, 61, 109, 0.12);
+  border: 1px solid rgba(10, 61, 109, 0.25);
+}
+:root[data-mode="dim"] .post_tag.button_translucent,
+body.dark .post_tag.button_translucent {
+  color: #9fc5ef;
+  background-color: rgba(159, 197, 239, 0.14);
+  border: 1px solid rgba(159, 197, 239, 0.3);
+}
+
+/* Accessibility: meet WCAG 2.5.8 tap target size (>=24px) for nav items */
+.nav_item,
+.nav_child.nav_item {
+  min-height: 24px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Accessibility: tap targets for sidebar links, pagination, and dark-mode toggle */
+.sidebar .nav-link,
+aside .nav-link {
+  display: inline-block;
+  min-height: 24px;
+  padding: 0.25rem 0;
+  line-height: 1.4;
+}
+.pagination .page-link,
+.pagination a {
+  min-height: 24px;
+  min-width: 24px;
+  padding: 0.25rem 0.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.color_choice,
+#mode {
+  width: 2rem;
+  height: 2rem;
+  min-width: 24px;
+  min-height: 24px;
+}
+.post_tag,
+.post_tag.button,
+.post_tag.button_translucent {
+  min-height: 24px;
+  padding: 0.375rem 0.75rem;
+  margin: 0.2rem 0.2rem 0.2rem 0;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+}
+/* Table of contents: make TOC links tall enough for touch */
+.post_toc a,
+#TableOfContents a {
+  display: inline-block;
+  min-height: 24px;
+  padding: 0.25rem 0;
+  line-height: 1.5;
+}
+.post_toc li,
+#TableOfContents li {
+  padding: 0.15rem 0;
+}
+/* Copy-markdown button spacing */
+.btn_copy_markdown,
+.btn_copy_toggle {
+  min-width: 24px;
+  min-height: 24px;
+}
