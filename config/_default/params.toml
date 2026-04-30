@@ -6,8 +6,8 @@ description = "A tech blog sharing personal experiences and insights about cloud
 
 # showShare = false # Uncomment to not show share buttons on each post. Also available in each post's front matter.
 
-# Google analytics Id
-ga_analytics = "UA-11561366-2"
+# Google analytics Id (UA sunset July 2023; GA4 tracking comes through AdSense)
+# ga_analytics = "UA-11561366-2"
 
 # Baidu analytics Id
 # baidu_analytics = "XXXXXXXX"

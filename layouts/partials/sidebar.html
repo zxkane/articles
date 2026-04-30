@@ -29,7 +29,11 @@
       </div>
       {{- if ( ne $s.introURL false ) }}
       {{- $r := T "read_more" }}
-      <a href='{{ absLangURL (default "about/" $s.introURL) }}' class="button mt-1" role="button" title='{{ $r }}'>{{ $r }}</a>
+      {{- $authorName := "" }}
+      {{- with $s.Author }}
+        {{- if reflect.IsMap . }}{{ $authorName = .name }}{{ else }}{{ $authorName = . }}{{ end }}
+      {{- end }}
+      <a href='{{ absLangURL (default "about/" $s.introURL) }}' class="button mt-1" role="button" title='{{ $r }}'>{{ $r }} <span class="sr_only">about {{ default "the author" $authorName }}</span></a>
       {{- end }}
     {{- end }}
 
