@@ -303,6 +303,92 @@ Then use Chrome DevTools MCP tools to verify:
 kill %1  # or find and kill the hugo process
 ```
 
+### LLM Team Review (Triple-Reviewer Editorial Pass)
+
+For substantive posts (technical deep-dives, opinion pieces, posts that will rank for high-intent SEO terms), run an editorial review across **three different LLM reviewers in parallel**: Codex (GPT-5), Claude Sonnet 4.6, and Gemini 3.1 Pro Preview. Each model has different strengths and blind spots, so the consensus across three is meaningfully more reliable than one.
+
+Use this when the cost of shipping a wrong claim is high (factual SEO, technical authority posts) or when you want a credibility check before publishing.
+
+#### Why Three Reviewers
+
+- **Codex** — strong at fact-checking via web search; will pull current docs and pricing; flags overclaims
+- **Sonnet 4.6** — strong at editorial flow, internal consistency, and catching logic gaps between sections
+- **Gemini 3.1 Pro Preview** — strong at structural critique and missing-context flags; current training data (knows recent model versions / pricing); occasionally hallucinates specific quoted strings — always grep the post before "fixing" anything Gemini quotes
+
+When all three agree, the issue is real. When two of three agree, it's worth fixing. When only one flags something, evaluate on its own merits and be willing to push back.
+
+#### Review Workflow
+
+**Step 1: Build the review prompt.** Write a self-contained prompt that includes:
+- Post context (which series it belongs to, prior posts)
+- What changed since v1 (only on second-pass reviews)
+- Specific claims worth fact-checking (pricing, AZ counts, parameter names, version-sensitive features)
+- The exact output format you want (Verdict / Top issues / Specific corrections / What's strong)
+- The full post body appended at the end
+
+```bash
+# Build prompt + post into single input
+cat /tmp/review_prompt.md content/posts/YYYY/post-name/index.md > /tmp/review_full.md
+```
+
+**Step 2: Dispatch all three reviewers in parallel.** Run each via Bash with `run_in_background: true` so they execute concurrently.
+
+```bash
+# Codex
+cat /tmp/review_full.md | codex exec --skip-git-repo-check --color never - > /tmp/review_codex.md 2>&1
+
+# Claude Sonnet 4.6 via Bedrock (model is sonnet under the existing claude wrapper)
+EDITOR=vim CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 AWS_REGION=us-west-2 \
+  ANTHROPIC_DEFAULT_SONNET_MODEL='<bedrock-inference-profile-arn>' \
+  ANTHROPIC_MODEL='<bedrock-inference-profile-arn>' \
+  CLAUDE_CODE_USE_BEDROCK=1 \
+  /home/ubuntu/.local/bin/claude --print --model sonnet --bare --dangerously-skip-permissions \
+    < /tmp/review_full.md > /tmp/review_sonnet.md 2>&1
+
+# Gemini 3.1 Pro Preview (requires gemini-cli >= 0.41.x)
+gemini --model gemini-3.1-pro-preview --yolo --prompt "$(cat /tmp/review_full.md)" > /tmp/review_gemini.md 2>&1
+```
+
+Typical wall-clock: codex 4–7 min (web research is slow), sonnet 1–2 min, gemini 1–4 min. Codex usually finishes last because it does the most independent fact-checking.
+
+**Step 3: Synthesize.** Categorize findings as:
+- **Strong consensus** (all 3 agree) → must fix
+- **Significant** (2 of 3 agree) → must fix unless you have a specific counter-reason
+- **Single-reviewer flags** → evaluate on merits, often genuine but sometimes hallucinated
+- **What everyone praised** → keep, don't accidentally edit out
+
+Group fixes by priority:
+- **P0** — factual errors, broken claims, wrong parameter names, SEO-blocking issues (title length, etc.)
+- **P1** — credibility issues (overclaims, missing security context, date-stamping)
+- **P2** — polish (consistency, configurability caveats, additional caveats)
+
+**Step 4: Verify uncertain facts before applying edits.** When two reviewers disagree on a fact, look it up:
+- AWS facts → `aws ec2 describe-...` directly, or AWS docs via WebFetch
+- GitHub facts → official docs via WebFetch (e.g., `docs.github.com/en/actions/...`)
+- Module/library facts → `gh api repos/.../contents/...` to read the actual source
+- Pricing → real-time API or vendor pricing page (always with date stamp in post)
+
+Don't trust any single LLM's pricing/version/availability claim — they all have stale training data. **Verify before editing the post.**
+
+**Step 5: Apply edits + re-render.** Use the standard Hugo verification workflow above to confirm Mermaid still renders, links resolve, no console errors.
+
+**Step 6: Optional second-pass review.** For high-stakes posts, run the same three-reviewer flow on the revised version. The second pass usually moves verdicts from "substantial edits" to "minor edits / ship" and catches new issues introduced by the first round of fixes.
+
+#### Common Hallucinations to Watch For
+
+- **Gemini** sometimes invents quoted text that isn't in the post — always grep the post for any string Gemini quotes before "fixing" it.
+- **Codex** sometimes cites stale pricing or claims a feature is "outdated" when it's actually current — verify with the AWS API or vendor docs.
+- **Sonnet** sometimes flags parameter names as wrong based on inference — verify against the actual module source.
+
+#### Saving Reviews
+
+Keep `/tmp/review_codex.md`, `/tmp/review_sonnet.md`, `/tmp/review_gemini.md` until the post is published. They are useful for:
+- Linking to specific corrections in commit messages
+- Re-checking whether a flagged issue was actually addressed
+- Building intuition over time about which reviewer is reliable for which kind of claim
+
+Clean them up after the post is shipped.
+
 ## Theme Configuration
 
 ### Hugo Clarity Theme
