@@ -23,8 +23,26 @@
   url = "https://twitter.com/"
 
 [[main]]
+  name = "工具"
+  identifier = "Tools"
+  weight = -100
+[[main]]
+  parent = "Tools"
+  name = "AWS 单词听写练习"
+  url = "https://dictation.aws.kane.mx/"
+  weight = 10
+[[main]]
+  parent = "Tools"
+  name = "Vercel 单词听写练习"
+  url = "https://dictation.vercel.kane.mx/"
+  weight = 20
+[[main]]
+  parent = "Tools"
+  name = "足球英语 (KET/PET 阅读)"
+  url = "https://pitch.kane.mx/"
+  weight = 30
+
+[[main]]
   name = "简介"
   url = "about/"
   weight = -107
-  
-  

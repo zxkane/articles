@@ -109,14 +109,21 @@ body.dark .post_tag.button_translucent {
   border: 1px solid rgba(159, 197, 239, 0.3);
 }
 
-/* Accessibility: meet WCAG 2.5.8 tap target size (>=24px) for nav items */
-.nav_item,
-.nav_child.nav_item {
+/* Accessibility: meet WCAG 2.5.8 tap target size (>=24px) for nav items.
+   Top-level items use inline-flex so the caret icon stays inline.
+   Submenu items must use display: block so the dropdown stacks vertically —
+   the theme's SASS &_sub &_item rule mis-compiles to a bare .nav_item
+   selector, so we re-apply the intended block layout here. */
+.nav_parent > .nav_item {
   min-height: 24px;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   display: inline-flex;
   align-items: center;
+}
+.nav_sub .nav_child.nav_item {
+  display: block;
+  min-height: 24px;
 }
 
 /* Accessibility: tap targets for sidebar links, pagination, and dark-mode toggle */

@@ -1,6 +1,6 @@
 twitter = "@zxkane"
 largeTwitterCard = false # set to true if you want to show a large twitter card image. The default is a small twitter card image
-introDescription = "A tech blog sharing personal experiences and insights about cloud computing, software development, and emerging technologies."
+introDescription = "A tech blog sharing personal experiences and insights about cloud computing, software development, and emerging technologies. Side project: [Football English](https://pitch.kane.mx/) — KET/PET reading practice through football history."
 introURL = "about/" # set the url for the 'read more' button below the introDescription, or set to false to not show the button
 description = "A tech blog sharing personal experiences and insights about cloud computing, software development, and emerging technologies." # set your site's description here. will be use for home page content meta tags (seo). Alternatively set this description in your homepage content file i.e content/_index.md. Whatever is set in the latter will take precedence
 

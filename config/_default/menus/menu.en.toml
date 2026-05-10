@@ -48,6 +48,11 @@
   url = "https://dictation.vercel.kane.mx/"
   weight = 20
 [[main]]
+  parent = "Tools"
+  name = "Football English (KET/PET)"
+  url = "https://pitch.kane.mx/"
+  weight = 30
+[[main]]
   name = "About"
   url = "about/"
   weight = -50
