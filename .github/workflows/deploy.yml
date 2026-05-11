@@ -48,6 +48,9 @@ jobs:
           
       - name: Build
         run: |
+          # Clear stale build artifacts so source-side deletions propagate to gh-pages.
+          # Keep .git so the deploy commit lands on the right branch.
+          find public -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
           hugo --minify
 
       - name: Deploy
@@ -55,6 +58,6 @@ jobs:
           cd public/
           git config --global user.name 'Kane Zhu'
           git config --global user.email '843303+zxkane@users.noreply.github.com'
-          git add .
-          git commit -am "new release at `date`"
+          git add -A
+          git commit -m "new release at `date`" || echo "nothing to commit"
           git push
