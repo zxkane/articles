@@ -11,7 +11,12 @@ date = 2024-11-13
 ----
 Hey there! 👋 I'm a proud dad of three awesome boys who keep me on my toes (and occasionally drive me crazy 😅). Currently calling Beijing my home, where I juggle parenting with my tech adventures.
 
-![My crazy kids 😅](/img/crazy-kids.png) 
+<figure>
+  <picture>
+    <source srcset="/img/crazy-kids.webp" type="image/webp">
+    <img src="/img/crazy-kids.jpg" alt="My crazy kids 😅" width="1000" height="572" loading="eager" fetchpriority="high" decoding="async">
+  </picture>
+</figure>
 
 Speaking of tech - I'm one of those *nix nerds who gets excited about terminal commands and clean code. By day, I wear multiple hats as a full-stack software engineer, but I also geek out over DevOps and all things cloud native especially Serverless technologies. Think of me as a digital Swiss Army knife - I love tinkering with different technologies and making things work seamlessly together!
 
