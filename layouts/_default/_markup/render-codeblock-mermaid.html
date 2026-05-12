@@ -1,4 +1,5 @@
 <style>
+.post_body div.highlight pre.mermaid,
 pre.mermaid {
   background-color: #ffffff;
   contain: layout;
@@ -10,9 +11,11 @@ pre.mermaid.mermaid-failed {
   font-family: monospace;
   white-space: pre-wrap;
 }
+:root[data-mode="dim"] .post_body div.highlight pre.mermaid,
 :root[data-mode="dim"] pre.mermaid,
+body.dark .post_body div.highlight pre.mermaid,
 body.dark pre.mermaid {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: #ffffff;
 }
 </style>
 <pre class="mermaid">
