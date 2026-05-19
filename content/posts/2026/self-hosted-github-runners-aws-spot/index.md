@@ -32,6 +32,7 @@ keywords:
 - autonomous ai dev team ci cd cost
 - price-capacity-optimized spot allocation
 - ephemeral self-hosted runner
+series: effective-cloud-computing
 ---
 
 [Autonomous AI dev teams][autonomous-team] move the bottleneck. When a dispatcher fans out work to dev and review agents every 5 minutes, the constraint is no longer human attention — it is the **CI/CD pipeline that gates every PR**. Each agent push triggers builds, tests, E2E verification, and bot reviews. With even a small team of agents iterating in parallel, GitHub Actions minutes become the dominant operational cost.

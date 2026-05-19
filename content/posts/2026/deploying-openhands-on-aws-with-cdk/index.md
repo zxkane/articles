@@ -35,6 +35,7 @@ keywords:
 - OpenAI Codex alternative
 - autonomous AI coding agent
 - self-hosted AI development platform
+series: build-serverless-application
 ---
 
 [OpenHands][openhands-github] is an open-source AI-driven development platform that enables AI agents to write code, fix bugs, and execute complex development tasks autonomously. The default setup works well for local development, but what if you want to run it for a team or make it accessible from anywhere?

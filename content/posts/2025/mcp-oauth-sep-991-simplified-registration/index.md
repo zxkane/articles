@@ -27,6 +27,7 @@ keywords:
 - OAuth Client ID Metadata Documents
 - Dynamic Client Registration alternative
 - MCP authorization simplified
+series: model-context-protocol
 ---
 
 ## The Problem with Dynamic Client Registration

@@ -44,7 +44,7 @@ keywords:
 - MCP HTTP transport OAuth
 - protected resource metadata AWS
 - SST infrastructure as code
-series: mcp-oauth
+series: model-context-protocol
 ---
 
 ## Introduction

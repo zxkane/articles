@@ -35,6 +35,7 @@ keywords:
 - OAuth 2.1 IdP
 - MCP identity provider
 - Keycloak protocol mappers
+series: model-context-protocol
 ---
 
 ## Introduction

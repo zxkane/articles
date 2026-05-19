@@ -36,6 +36,7 @@ keywords:
 - edge to cloud integration
 - websocket mcp bridge
 - distributed ai architecture
+series: model-context-protocol
 ---
 
 The [Xiaozhi hardware][xiaozhi-repo] is an impressive ESP32-based AI voice assistant capable of offline wake-up, multi-language support, and cloud connectivity. But what if you want your Xiaozhi device to access multiple AI tools, APIs, and services without managing complex integrations on the hardware side? This is where Amazon Bedrock AgentCore Gateway shines as a unified aggregation layer for Model Context Protocol (MCP) servers.

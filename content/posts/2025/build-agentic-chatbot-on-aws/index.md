@@ -30,6 +30,7 @@ keywords:
 - aws claude integration
 - next.js ai chatbot
 - enterprise knowledge base ai
+series: model-context-protocol
 ---
 
 ## Overview

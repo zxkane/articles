@@ -31,6 +31,7 @@ keywords:
 - just-in-time provisioning
 - AWS CDK
 - Zero Trust
+series: effective-cloud-computing
 ---
 
 AWS IAM Identity Center (formerly AWS SSO) provides centralized access management for AWS accounts and applications. While it natively supports SAML 2.0 for external identity providers, many organizations prefer OIDC-based authentication through providers like Amazon Cognito. This post demonstrates how to use [Cloudflare Access][cloudflare-access] as a SAML bridge between Amazon Cognito and AWS IAM Identity Center with automatic just-in-time (JIT) user provisioning.

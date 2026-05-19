@@ -34,6 +34,7 @@ keywords:
 - AWS CDK multi-tenant architecture
 - OpenHands ECS deployment
 - Devin alternative serverless
+series: build-serverless-application
 ---
 
 In a [previous post][previous-post], I introduced an [AWS CDK project][openhands-infra-repo] for deploying [OpenHands][openhands-github] on EC2, featuring Cognito authentication and Aurora PostgreSQL. While this architecture successfully facilitated initial deployment, operating a shared AI coding platform for a team revealed three fundamental limitations:

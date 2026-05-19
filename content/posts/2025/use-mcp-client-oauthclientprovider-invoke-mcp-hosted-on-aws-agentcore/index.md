@@ -28,6 +28,7 @@ keywords:
 - m2m authentication
 - bedrock agentcore
 - mcp sdk oauth
+series: model-context-protocol
 ---
 
 ## Overview

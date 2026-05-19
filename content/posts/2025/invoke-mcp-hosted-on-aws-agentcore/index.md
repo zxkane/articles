@@ -25,6 +25,7 @@ keywords:
 - mcp servers
 - oauth authentication
 - bedrock agentcore
+series: model-context-protocol
 ---
 
 ## Overview

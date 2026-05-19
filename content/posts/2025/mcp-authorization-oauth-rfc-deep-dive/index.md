@@ -39,6 +39,7 @@ keywords:
 - Dynamic client registration
 - Federated AI systems
 - OAuth security best practices
+series: model-context-protocol
 ---
 
 ## Executive Summary

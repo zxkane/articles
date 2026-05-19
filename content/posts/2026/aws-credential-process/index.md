@@ -25,6 +25,7 @@ keywords:
 - encrypted AWS access keys
 - dotfiles backup
 - AWS SDK credential sourcing
+series: effective-cloud-computing
 ---
 
 Managing AWS credentials securely is a fundamental challenge for developers. Storing plain text access keys in `~/.aws/credentials` creates significant security risks, especially when backing up dotfiles to version control systems. This post introduces `credential_process`, a powerful AWS CLI feature that allows you to source credentials from external processes, enabling encrypted credential storage while maintaining seamless AWS access.
