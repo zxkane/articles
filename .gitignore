@@ -72,6 +72,7 @@ CLAUDE.local.md
 .claude/state/
 .claude/skills/
 .claude/*.lock
+.claude/scheduled_tasks.json
 
 # Agent skills (restored via: npx skills experimental_install)
 .agents/
