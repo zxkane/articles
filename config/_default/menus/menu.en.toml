@@ -10,6 +10,11 @@
   weight = -108
 [[main]]
   parent = "Series"
+  name = "Model Context Protocol (MCP)"
+  url = "/series/model-context-protocol/"
+  weight = 5
+[[main]]
+  parent = "Series"
   name = "Effective Cloud Computing"
   url = "/series/effective-cloud-computing/"
   weight = 10
@@ -26,7 +31,7 @@
 [[main]]
   parent = "Series"
   name = "Serverless"
-  url = "/series/serverless-computing/"
+  url = "/series/build-serverless-application/"
   weight = 20
 [[main]]
   parent = "Series"
