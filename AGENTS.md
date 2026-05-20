@@ -497,6 +497,36 @@ The canvas-design skill should produce images that:
 - Include navigation between parts
 - Create series landing page with overview
 
+### Series Menu and Slug Coordination
+
+The top-nav **Series dropdown** in `config/_default/menus/menu.en.toml` is **manually curated** — Hugo does not auto-generate it from the series taxonomy. New series introduced via front matter alone will **not** appear in the menu.
+
+**Whenever you create a new series, also add a menu entry**:
+
+```toml
+[[main]]
+  parent = "Series"
+  name = "Model Context Protocol (MCP)"   # human-readable name (parens, casing OK)
+  url = "/series/model-context-protocol/" # MUST match the slug used in `series:` front matter
+  weight = 5                              # lower = earlier in dropdown
+```
+
+**Verify menu URLs match real series slugs.** A menu entry pointing at `/series/<slug>/` only renders posts if at least one post has `series: <slug>` in its front matter. Hugo will still build a 200-OK page for the URL (because of the taxonomy fallback), but the post list will be empty. This silent dead-link mode is easy to miss without clicking through every menu item.
+
+To audit, list all series slugs in use vs. what the menu points at:
+
+```bash
+# Series slugs actually used by posts
+grep -rh "^series:" content/posts/ | awk -F': ' '{print $2}' | sort -u
+
+# Series slugs referenced by the menu
+grep -E "url = \"/series/" config/_default/menus/menu.en.toml
+```
+
+Any URL in the menu that doesn't appear in the post-side list is a dead link.
+
+**Verify after every series rename**: even if the post-side change deploys cleanly, the menu still points at the old slug until manually updated. Use Chrome DevTools to actually click through the homepage Series dropdown — `curl /series/<slug>/` returns 200 even for empty taxonomy pages, so HTTP status is not enough.
+
 ### Cross-Referencing
 Use Hugo's `relref` shortcode for internal links:
 ```markdown
