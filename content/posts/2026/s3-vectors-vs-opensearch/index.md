@@ -3,7 +3,7 @@ title: "S3 Vectors vs OpenSearch: Decision Tree from 30+ Projects"
 description: "Field-tested decision tree, cost crossover math, and migration pitfalls for choosing between Amazon S3 Vectors and OpenSearch/AOSS on AWS."
 date: 2026-05-27
 lastmod: 2026-05-27
-draft: true
+draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
 featured: false
