@@ -207,9 +207,9 @@ The blog implements comprehensive SEO optimizations (see `SEO_OPTIMIZATIONS.md`)
 - [ ] Proper heading structure (H1 > H2 > H3)
 - [ ] Cover image optimized for social sharing
 
-### Content Optimization with Gemini CLI
+### Content Optimization with agy
 
-Use **gemini** (Gemini CLI) in headless mode to optimize blog post writing style based on guidelines in `AGENTS.md`:
+Use **agy** in headless print mode to optimize blog post writing style based on guidelines in `AGENTS.md`:
 
 ```bash
 # Create optimization prompt
@@ -244,17 +244,18 @@ Optimize this blog post's writing style to be:
 Return ONLY the optimized markdown content without any explanations or comments.
 EOF
 
-# Run gemini to optimize (with 16GB memory and latest flash model)
-NODE_OPTIONS="--max-old-space-size=16384" gemini --model gemini-2.5-flash --output-format text "$(cat /tmp/optimize_prompt.txt)" > /tmp/optimized_post.md
+# Run agy to optimize (stdin-driven, auto-approve tool prompts, generous timeout)
+agy --print --dangerously-skip-permissions --print-timeout 10m \
+  < /tmp/optimize_prompt.txt > /tmp/optimized_post.md
 
-# Extract clean content (skip error messages)
-tail -n +20 /tmp/optimized_post.md > content/posts/YYYY/post-name/index.md
+# Replace the post (agy returns clean markdown when the prompt asks for it)
+cp /tmp/optimized_post.md content/posts/YYYY/post-name/index.md
 
 # Clean up
 rm /tmp/optimize_prompt.txt /tmp/optimized_post.md
 ```
 
-**When to Use Gemini Optimization**:
+**When to Use agy Optimization**:
 - After creating a new blog post draft
 - When refining technical explanations
 - To improve SEO optimization
@@ -293,7 +294,7 @@ Then use Chrome DevTools MCP tools to verify:
 
 #### When to Run Verification
 - After creating a new post (before committing)
-- After Gemini CLI optimization (may alter Mermaid syntax)
+- After agy optimization (may alter Mermaid syntax)
 - After any edit to Mermaid diagrams
 - Before final commit of a post
 
@@ -305,7 +306,7 @@ kill %1  # or find and kill the hugo process
 
 ### LLM Team Review (Triple-Reviewer Editorial Pass)
 
-For substantive posts (technical deep-dives, opinion pieces, posts that will rank for high-intent SEO terms), run an editorial review across **three different LLM reviewers in parallel**: Codex (GPT-5), Claude Sonnet 4.6, and Gemini 3.1 Pro Preview. Each model has different strengths and blind spots, so the consensus across three is meaningfully more reliable than one.
+For substantive posts (technical deep-dives, opinion pieces, posts that will rank for high-intent SEO terms), run an editorial review across **three different LLM reviewers in parallel**: Codex (GPT-5), Claude Sonnet 4.6, and agy (Antigravity 2.0 CLI). Each model has different strengths and blind spots, so the consensus across three is meaningfully more reliable than one.
 
 Use this when the cost of shipping a wrong claim is high (factual SEO, technical authority posts) or when you want a credibility check before publishing.
 
@@ -313,7 +314,7 @@ Use this when the cost of shipping a wrong claim is high (factual SEO, technical
 
 - **Codex** — strong at fact-checking via web search; will pull current docs and pricing; flags overclaims
 - **Sonnet 4.6** — strong at editorial flow, internal consistency, and catching logic gaps between sections
-- **Gemini 3.1 Pro Preview** — strong at structural critique and missing-context flags; current training data (knows recent model versions / pricing); occasionally hallucinates specific quoted strings — always grep the post before "fixing" anything Gemini quotes
+- **agy (Antigravity 2.0 CLI)** — strong at structural critique and missing-context flags; current training data (knows recent model versions / pricing); occasionally hallucinates specific quoted strings — always grep the post before "fixing" anything agy quotes
 
 When all three agree, the issue is real. When two of three agree, it's worth fixing. When only one flags something, evaluate on its own merits and be willing to push back.
 
@@ -345,11 +346,12 @@ EDITOR=vim CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 AWS_REGION=us-west-2 \
   /home/ubuntu/.local/bin/claude --print --model sonnet --bare --dangerously-skip-permissions \
     < /tmp/review_full.md > /tmp/review_sonnet.md 2>&1
 
-# Gemini 3.1 Pro Preview (requires gemini-cli >= 0.41.x)
-gemini --model gemini-3.1-pro-preview --yolo --prompt "$(cat /tmp/review_full.md)" > /tmp/review_gemini.md 2>&1
+# agy (Antigravity 2.0 CLI) — stdin-driven print mode, auto-approve tool prompts
+agy --print --dangerously-skip-permissions --print-timeout 10m \
+  < /tmp/review_full.md > /tmp/review_agy.md 2>&1
 ```
 
-Typical wall-clock: codex 4–7 min (web research is slow), sonnet 1–2 min, gemini 1–4 min. Codex usually finishes last because it does the most independent fact-checking.
+Typical wall-clock: codex 4–7 min (web research is slow), sonnet 1–2 min, agy 1–4 min. Codex usually finishes last because it does the most independent fact-checking.
 
 **Step 3: Synthesize.** Categorize findings as:
 - **Strong consensus** (all 3 agree) → must fix
@@ -376,13 +378,13 @@ Don't trust any single LLM's pricing/version/availability claim — they all hav
 
 #### Common Hallucinations to Watch For
 
-- **Gemini** sometimes invents quoted text that isn't in the post — always grep the post for any string Gemini quotes before "fixing" it.
+- **agy** sometimes invents quoted text that isn't in the post — always grep the post for any string agy quotes before "fixing" it.
 - **Codex** sometimes cites stale pricing or claims a feature is "outdated" when it's actually current — verify with the AWS API or vendor docs.
 - **Sonnet** sometimes flags parameter names as wrong based on inference — verify against the actual module source.
 
 #### Saving Reviews
 
-Keep `/tmp/review_codex.md`, `/tmp/review_sonnet.md`, `/tmp/review_gemini.md` until the post is published. They are useful for:
+Keep `/tmp/review_codex.md`, `/tmp/review_sonnet.md`, `/tmp/review_agy.md` until the post is published. They are useful for:
 - Linking to specific corrections in commit messages
 - Re-checking whether a flagged issue was actually addressed
 - Building intuition over time about which reviewer is reliable for which kind of claim
