@@ -85,3 +85,4 @@ docs/superpowers/
 
 # Antigravity CLI (agy) local project metadata
 .antigravitycli/
+.gstack/
