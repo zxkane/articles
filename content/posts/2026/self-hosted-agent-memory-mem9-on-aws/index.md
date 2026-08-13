@@ -188,26 +188,68 @@ It's also a silo. It is per-product, not portable, not exportable on my terms, a
 
 So I use both, deliberately, for different things. Vendor memory holds product-local preferences. mem9 holds the durable, cross-agent facts: decisions and their rationale, environment gotchas, hard-won constraints. The distinction that matters is which one I can still read after I stop paying.
 
-## Making it automatic
+## Making code agents actually use it
 
-A memory store nobody writes to is a wiki nobody edits. The hooks are what make this real, and they live in my dotfiles rather than in the infrastructure repo — one implementation symlinked into three agent homes:
+This is the part I underestimated, and the part I'd most want to tell someone before they build this.
 
-```bash
-create_symlink "$SCRIPT_DIR/common/.claude-config/hooks/mem9" "$HOME_DIR/.codex/hooks/mem9"
-create_symlink "$SCRIPT_DIR/common/.claude-config/hooks/mem9" "$HOME_DIR/.kiro/hooks/mem9"
+Registering the MCP server is not the hard part. Getting the agent to *use* it is. An agent with `search_memories` sitting in its tool list will mostly not call it — nothing in the conversation makes the tool salient at the moment it would help, and "check your memory first" is exactly the instruction a model drops when the user's actual request is more interesting. I shipped the server, connected four clients, and then watched them cheerfully re-derive facts that were already in the store.
+
+Hooks are the enforcement layer. The insight that made it work is that **reads and writes need completely different mechanisms.**
+
+### Reads get a nudge; writes get determinism
+
+A hook cannot force a tool call. So recall doesn't try — it runs on `UserPromptSubmit` and injects an instruction into the agent's context, then lets the agent use its own already-authenticated MCP connection:
+
+```js
+"You have a shared cross-session memory via the mem9 MCP server " +
+  "(tools: search_memories, add_memory). Before starting substantive work on " +
+  "this request, call search_memories with a natural-language query (limit 5-10, " +
+  "no agent_id) to recall any relevant past context; use the relevant hits and " +
+  "ignore the rest. ..."
 ```
 
-Each client fires different events with different payload shapes, normalized in one small module:
+That design has a property worth naming: the recall hook makes **no network call and holds no credentials**. It reuses the OAuth session the client already established, so it needs zero auth code and cannot fail a session.
 
-| Client | Recall hook | Ingest hooks | Usable event data |
-| --- | --- | --- | --- |
-| Claude Code | `UserPromptSubmit` | `Stop`, `PreCompact`, `SessionEnd` | `session_id`, `transcript_path` |
-| Codex | `UserPromptSubmit` | `Stop`, `PreCompact` | prompt cache + `last_assistant_message` |
-| Kiro CLI | `userPromptSubmit` | `stop` | `KIRO_SESSION_ID`, `prompt`, `assistant_response` |
+Writes are the opposite. I deliberately do **not** rely on the agent remembering to persist anything, because that's the same unreliable behavior that made recall need a nudge in the first place. The ingest hooks call mem9 themselves, outside the agent turn, on fixed lifecycle events:
 
-The asymmetry is instructive. Claude Code hands you a transcript path, so ingestion can read the real conversation. Codex and Kiro don't, so the recall hook caches each prompt and pairs it with the final assistant message at `Stop`. Even the response channel differs — Claude Code expects a `hookSpecificOutput` JSON envelope, while Kiro injects successful `userPromptSubmit` stdout directly into context, so the same recall text has to be formatted two ways.
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command",
+                     "command": "$HOME/.claude/hooks/mem9/run.sh recall",
+                     "timeout": 5 } ] }
+    ],
+    "Stop": [
+      { "hooks": [ { "type": "command",
+                     "command": "$HOME/.claude/hooks/mem9/run.sh ingest stop",
+                     "timeout": 30 } ] }
+    ]
+  }
+}
+```
 
-Every hook is **best-effort by design**: missing config, a parse error, or a network failure exits 0. A memory layer that can block your agent session is worse than no memory layer.
+`PreCompact` and `SessionEnd` follow the same shape with `ingest precompact` and `ingest sessionend`. `PreCompact` matters more than it sounds: it's the last chance to capture a long session before the context is summarized away.
+
+Nudge for reads, determinism for writes. This is also why the write path is the one holding M2M credentials — it's machinery, not a conversation.
+
+### What I learned wiring three clients
+
+One implementation lives in my dotfiles and is symlinked into three agent homes (`~/.claude/hooks/mem9`, `~/.codex/hooks/mem9`, `~/.kiro/hooks/mem9`), because maintaining three copies of this logic would guarantee three different behaviors. The grit that made it reliable:
+
+**Nudge once per session, not every turn.** A session-scoped marker file gates it. Injecting the instruction on every prompt burns context and — worse — trains the agent to ignore a block of text it has seen twenty times.
+
+**Skip trivial prompts.** Anything under 12 characters is a "yes", a "/clear", or a typo, and doesn't warrant a memory search.
+
+**The recall hook does double duty.** Claude Code hands you a `transcript_path`, so ingestion can read the real conversation. Codex and Kiro CLI don't. So recall also caches each prompt to a `0600` file, which the `Stop` hook consumes and unlinks, pairing it with the final assistant message. One hook, two jobs, and no second source of truth.
+
+**Best-effort or bust.** Every hook exits 0 — missing config, unparseable stdin, network failure, `node` not installed. Timeouts are tight: 5s for recall, 30s for ingest. A memory layer that can wedge your agent session is strictly worse than no memory layer, and you will not be in a forgiving mood the first time it happens mid-task.
+
+**The response channel differs per client.** Claude Code expects a `hookSpecificOutput` JSON envelope; Kiro injects successful `userPromptSubmit` stdout directly into context. Same recall text, two formats, normalized in one small module.
+
+**Two client-specific traps.** Codex requires a one-time trust review — the hooks silently do nothing until you approve them in `/hooks`. And Kiro's hooks are *per-agent*: switching to a different custom agent quietly loses them, because there's no universal global-hooks file.
+
+**Tag write provenance.** Each client writes with `agent_id` of `<client>-<project>`, so months later I can tell which agent recorded a fact and in what repo. That turned out to matter more than expected when a memory looked wrong and I needed to know where it came from.
 
 ### What actually gets uploaded
 
@@ -215,20 +257,11 @@ This is where the sovereignty argument would quietly collapse if I were careless
 
 That last exclusion matters more than it looks. Without it, recalled memories get re-ingested as if they were new observations, and the store slowly fills with echoes of itself.
 
-## What it costs to own
+## What it costs to run
 
-Sovereignty has a bill, and it's mostly fixed cost:
+Sovereignty has a bill, and it is mostly fixed: roughly **$135–160 per month** before model usage, dominated by an always-on arm64 Fargate task and the Aurora Serverless v2 capacity floor. That's an architecture estimate as of August 2026, not a quote. For a single-operator deployment the always-on task is the obvious line item to attack first.
 
-| Driver | Assumption | Monthly |
-| --- | --- | --- |
-| ECS Fargate | one arm64 task, 2 vCPU / 6 GB, always on | ~$78 |
-| Aurora PostgreSQL Serverless v2 | 0.5 ACU floor, light I/O | $50–60 |
-| Supporting services | CloudWatch, Secrets Manager, ECR, Lambda, API Gateway, Cognito, Gateway ops | $5–20 |
-| **Baseline** | before model usage | **$135–160** |
-
-These are architecture estimates as of August 2026, not a quote — prices vary by region and change. The honest comparison isn't against a SaaS memory subscription; it's against a subscription *plus* the cost of not owning the data. Whether that's worth $135 a month is a genuinely personal call, and for a low-volume single-operator deployment the always-on Fargate task is the line item to attack first.
-
-The subtler cost is operational. Two lessons from running it:
+The operational cost is the more interesting one. Two lessons from running it:
 
 **Memory needs garbage collection.** Left alone, a memory store accumulates contradictions, near-duplicate fragments, and facts that were true in June. A weekly Fargate task clusters existing memories, uses an LLM to detect contradictions and staleness, and applies at most **20 mutations per run**. It defaults to report-only and **never executes a DELETE** — it can merge fragments, archive the strictly older side of a contradiction, or mark a fact stale. Deletions require explicit approval routed through Slack. Automating deletion of your own knowledge base is a decision to make on purpose, not by default.
 
@@ -239,6 +272,8 @@ The subtler cost is operational. Two lessons from running it:
 **Take "own the data" literally and let it design the system.** Every genuinely load-bearing decision here — Postgres over TiDB, a self-hosted embedding sidecar, no public ingress — came from refusing to soften one of the four constraints. The awkward one, embeddings, is where the requirement earned its keep.
 
 **Expect an auth taxonomy, not an integration.** The single most useful mental shift was to stop thinking "add MCP clients" and start classifying workers by *how they can prove who they are*: loopback, hosted redirect, local bridge, or machine credentials. Each class needs different server-side accommodation, and that shape is stable across vendors.
+
+**Nudge for reads, be deterministic about writes.** Availability of a tool is not adoption of a tool. Assume the agent will forget to search, and inject a once-per-session reminder; assume the agent will forget to save, and take the decision away from it entirely with a lifecycle hook that writes on its own.
 
 **Split read and write scope by transport.** Read-only for interactive sessions, write scope only on the headless path. It's cheap, it neutralizes a class of prompt-injection risk, and it funnels every write through one auditable path.
 
