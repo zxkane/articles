@@ -3,7 +3,7 @@ title: "Own Your Agents' Memory: Self-Hosted mem9 on AWS"
 description: "Self-host mem9 on AWS so Claude Code, Codex, Kiro, Gemini Spark, and Amazon Quick share one memory you own — no SaaS, no third-party embeddings."
 date: 2026-08-13
 lastmod: 2026-08-13
-draft: true
+draft: false
 thumbnail: ./images/cover.png
 usePageBundles: true
 featured: true
