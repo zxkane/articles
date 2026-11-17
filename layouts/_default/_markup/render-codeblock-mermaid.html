@@ -2,9 +2,23 @@
 .post_body div.highlight pre.mermaid,
 pre.mermaid {
   background-color: #ffffff;
+  box-sizing: border-box;
   contain: layout;
   content-visibility: auto;
   contain-intrinsic-size: auto 200px;
+  max-width: 100%;
+  overflow-x: auto;
+  width: 100%;
+}
+.post_body pre.mermaid svg {
+  height: auto;
+  max-width: 100%;
+}
+@media (max-width: 640px) {
+  .post_body pre.mermaid svg {
+    max-width: none;
+    min-width: 720px;
+  }
 }
 pre.mermaid.mermaid-failed {
   padding: 0.75rem;
