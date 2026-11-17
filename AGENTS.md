@@ -50,6 +50,8 @@ hugo --gc --minify --cleanDestinationDir
 
 ## Blog Writing Style and SEO Guidelines
 
+**Default post language is English.** Write a post in Chinese only when the user explicitly requests it; a Chinese-language request does not change this default.
+
 ### Front Matter Template
 Always include comprehensive front matter for optimal SEO:
 
