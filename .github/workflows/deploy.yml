@@ -4,9 +4,18 @@ on:
   push:
     branches:
       - master  # Set a branch to deploy
+  schedule:
+    # Publish scheduled posts at noon Beijing time (UTC+8).
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: github-pages-deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
