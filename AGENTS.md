@@ -11,7 +11,9 @@ This is a Hugo-based personal technical blog (kane.mx) focusing on cloud computi
 ### Hugo Commands
 ```bash
 # Start development server
-hugo server -D --port 1313
+hugo server -D --port 1313 \
+  --baseURL http://localhost:1313/ \
+  --renderToMemory
 
 # Build for production
 hugo --minify
@@ -275,7 +277,9 @@ rm /tmp/optimize_prompt.txt /tmp/optimized_post.md
 
 ```bash
 # 1. Start Hugo dev server (use available port)
-hugo server -D --port 1315 --bind 0.0.0.0 &
+hugo server -D --port 1315 --bind 0.0.0.0 \
+  --baseURL http://localhost:1315/ \
+  --renderToMemory &
 ```
 
 Then use Chrome DevTools MCP tools to verify:

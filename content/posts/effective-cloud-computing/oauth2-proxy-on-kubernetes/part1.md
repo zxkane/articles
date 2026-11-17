@@ -7,7 +7,6 @@ thumbnail: /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/images/co
 aliases:
 - /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/
 - /posts/effective-cloud-computing-series/oauth2-proxy-on-kubernetes/
-thumbnail: /posts/effective-cloud-computing/oauth2-proxy-on-kubernetes/images/cover.jpg
 series: effective-cloud-computing
 categories:
 - kubernetes
