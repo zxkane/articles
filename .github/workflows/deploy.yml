@@ -84,5 +84,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh workflow disable deploy.yml --repo "$GITHUB_REPOSITORY"
-          workflow_state=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/deploy.yml" --jq '.state')
-          test "$workflow_state" = disabled_manually
+          for attempt in 1 2 3 4 5; do
+            if workflow_state=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/deploy.yml" --jq '.state') &&
+              [ "$workflow_state" = disabled_manually ]; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 5 ]; then sleep 2; fi
+          done
+          echo '::error::Workflow disable could not be confirmed.'
+          exit 1
