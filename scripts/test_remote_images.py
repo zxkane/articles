@@ -32,7 +32,7 @@ PNG = (b"\x89PNG\r\n\x1a\n"
 class ImageServer(BaseHTTPRequestHandler):
     def do_GET(self):
         status = {"/ok.png": 200, "/missing.png": 404,
-                  "/denied.png": 403, "/unavailable.png": 503}[self.path]
+                  "/denied.png": 403, "/unavailable.png": 503}.get(self.path, 404)
         self.send_response(status)
         self.send_header("Content-Type", "image/png" if status == 200 else "text/plain")
         self.end_headers()
