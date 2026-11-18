@@ -8,13 +8,8 @@
 {{- $bundle := .bundle -}}
 
 {{- $fileWeb := .file -}}
-{{- if eq $bundle true -}}
+{{- if and (eq $bundle true) (not (strings.HasPrefix $file "http")) -}}
   {{ $fileWeb = path.Join $webPath $file }}
-  {{ if in $classes "image_svg" }}
-    {{ if strings.HasPrefix $file "http" }}
-      {{ $fileWeb = $file }}
-    {{- end -}}
-  {{- end -}}
 {{- end -}}
 
 <figure>

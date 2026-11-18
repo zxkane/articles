@@ -35,6 +35,9 @@ jobs:
           hugo-version: ${{ env.HUGO_VERSION }}
           extended: true
 
+      - name: Test remote image handling
+        run: python3 scripts/test_remote_images.py
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
