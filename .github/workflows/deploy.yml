@@ -70,3 +70,26 @@ jobs:
           git add -A
           git commit -m "new release at `date`" || echo "nothing to commit"
           git push
+
+  disable-after-scheduled-run:
+    needs: deploy
+    if: ${{ always() && needs.deploy.result != 'skipped' && github.event_name == 'schedule' && github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Disable this workflow after the scheduled run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow disable deploy.yml --repo "$GITHUB_REPOSITORY"
+          for attempt in 1 2 3 4 5; do
+            if workflow_state=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/deploy.yml" --jq '.state') &&
+              [ "$workflow_state" = disabled_manually ]; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 5 ]; then sleep 2; fi
+          done
+          echo '::error::Workflow disable could not be confirmed.'
+          exit 1
